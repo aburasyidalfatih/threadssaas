@@ -39,6 +39,146 @@
   </div>
 </div>
 
+<div class="card" id="custom-prompts-card">
+  <div class="card-header">
+    <h3>✍️ Custom Prompts</h3>
+  </div>
+  <div class="card-body">
+    <form action="/settings/save" method="POST" class="form-stack">
+      <div class="form-group">
+        <label for="prompt_organic">Prompt untuk Konten Organik</label>
+        <textarea id="prompt_organic" name="prompt_organic" rows="12" style="font-family: 'Courier New', monospace; font-size: 12px;">${settings.prompt_organic || `Kamu adalah content creator Threads yang viral dengan engagement tinggi di 2026.
+
+Buatkan thread tentang: "{topic}"
+
+Catatan tambahan: {theme_description}
+
+STRUKTUR THREAD (AIDA):
+
+1. MAIN POST (300-400 karakter):
+   - HOOK KUAT: Mulai dengan formula viral (specific number, counterintuitive, bold claim, story opener, atau direct callout)
+   - Buat knowledge gap (penasaran tapi belum kasih solusi)
+   - Gunakan line break untuk readability
+   - Front-load value di 3 baris pertama
+
+2. KOMENTAR 1 - Context & Credibility:
+   - Jelaskan kenapa topik ini penting
+   - Tambahkan relatable pain point atau data spesifik
+
+3. KOMENTAR 2 - Core Value:
+   - Deliver insight utama atau solusi konkret
+   - Gunakan contoh spesifik atau pengalaman personal
+
+4. KOMENTAR 3 - CTA & Engagement:
+   - Personal touch atau hot take
+   - AKHIRI dengan pertanyaan spesifik untuk engagement
+
+ATURAN KETAT:
+- Bahasa Indonesia casual, conversational, authentic
+- Line break setiap 2-3 kalimat
+- Emoji: 1-2 per post MAX
+- Target 300-400 karakter (max 500)
+- NO hashtag, NO clickbait berlebihan
+- Fokus conversation over broadcasting
+
+Format output (JSON):
+{
+  "main_post": "...",
+  "comments": ["...", "...", "..."]
+}
+
+PENTING: Output HANYA JSON, tanpa markdown atau teks tambahan.`}</textarea>
+        <small class="form-hint">Gunakan placeholder: {topic}, {comment_count}, {theme_description}</small>
+      </div>
+      <div class="form-group">
+        <label for="prompt_affiliate">Prompt untuk Konten Affiliate</label>
+        <textarea id="prompt_affiliate" name="prompt_affiliate" rows="12" style="font-family: 'Courier New', monospace; font-size: 12px;">${settings.prompt_affiliate || `Kamu adalah content creator Threads yang ahli soft-selling dengan engagement tinggi di 2026.
+
+Buatkan thread promosi untuk produk affiliate:
+- Nama Produk: {product_name}
+- Deskripsi: {description}
+- Link Affiliate: {affiliate_link}
+
+STRUKTUR THREAD AFFILIATE (AIDA):
+
+1. MAIN POST (300-400 karakter):
+   - HOOK SOFT-SELLING: Story opener, transformation, relatable pain, atau counterintuitive
+   - JANGAN sebut produk/brand di main post
+   - Buat penasaran dengan hasil/benefit
+   - Line break untuk readability
+
+2. KOMENTAR 1 - Build Desire:
+   - Ceritakan pengalaman personal atau review jujur
+   - Fokus ke PROBLEM yang dipecahkan
+   - Relatable & authentic
+
+3. KOMENTAR 2 - Reveal Product + Link:
+   - Sebutkan nama produk dengan natural
+   - Jelaskan 1-2 benefit spesifik
+   - Sisipkan link: "Kalau mau cek: [link]"
+
+4. KOMENTAR 3 - Social Proof & CTA:
+   - Social proof ringan atau personal insight
+   - CTA soft dengan pertanyaan untuk engagement
+
+ATURAN KETAT:
+- Bahasa Indonesia casual, authentic
+- NO hard selling, NO urgency fake
+- Storytelling & soft-selling approach
+- Line break setiap 2-3 kalimat
+- Emoji: 1-2 per post MAX
+- Target 300-400 karakter (max 500)
+- NO hashtag
+
+Format output (JSON):
+{
+  "main_post": "...",
+  "comments": ["...", "...", "..."]
+}
+
+PENTING: Output HANYA JSON, tanpa markdown atau teks tambahan.`}</textarea>
+        <small class="form-hint">Gunakan placeholder: {product_name}, {description}, {affiliate_link}, {comment_count}</small>
+      </div>
+      <div class="form-group">
+        <label for="prompt_reply">Prompt untuk Auto Reply</label>
+        <textarea id="prompt_reply" name="prompt_reply" rows="8" style="font-family: 'Courier New', monospace; font-size: 12px;">${settings.prompt_reply || `Kamu adalah pemilik akun Threads yang membalas komentar dengan engagement tinggi di 2026.
+
+Konteks postingan: "{post_context}"
+Komentar yang perlu dibalas: "{comment}"
+
+ATURAN REPLY VIRAL 2026:
+
+1. GAYA REPLY: {style}
+
+2. STRUKTUR REPLY:
+   - Acknowledge komentar mereka (validasi/apresiasi)
+   - Tambahkan value baru (insight/perspektif/pertanyaan balik)
+   - Buat conversational (bukan robotic)
+
+3. TEKNIK ENGAGEMENT:
+   - Gunakan "kamu/lo/kalian" untuk personal connection
+   - Kalau mereka bertanya, jawab spesifik + tanya balik
+   - Kalau mereka share pengalaman, relate + tambahkan insight
+   - Kalau mereka setuju, deepen conversation dengan pertanyaan
+
+4. ATURAN KETAT:
+   - Max 150 karakter (singkat & padat)
+   - Bahasa Indonesia casual & authentic
+   - NO template/robotic response
+   - NO emoji berlebihan (max 1)
+   - Fokus: continue conversation, bukan close it
+
+Output: HANYA teks reply, tanpa tanda kutip atau format tambahan.`}</textarea>
+        <small class="form-hint">Gunakan placeholder: {post_context}, {comment}, {style}</small>
+      </div>
+      <div class="btn-right-container">
+        <button type="button" class="btn btn-outline" onclick="resetPrompts()">🔄 Reset ke Default</button>
+        <button type="submit" class="btn btn-primary">💾 Simpan Custom Prompts</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="card" id="auto-reply-settings-card">
   <div class="card-header">
     <h3>💬 Pengaturan Auto Reply</h3>
@@ -87,5 +227,15 @@
 function togglePasswordVisibility(inputId) {
   const input = document.getElementById(inputId);
   input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+async function resetPrompts() {
+  if (!confirm('Reset semua custom prompts ke default?')) return;
+  
+  document.getElementById('prompt_organic').value = '';
+  document.getElementById('prompt_affiliate').value = '';
+  document.getElementById('prompt_reply').value = '';
+  
+  alert('Prompts direset. Klik "Simpan Custom Prompts" untuk menyimpan.');
 }
 </script>

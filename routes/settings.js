@@ -25,15 +25,30 @@ router.get('/', (req, res) => {
 
 // Save settings
 router.post('/save', (req, res) => {
-  const { gemini_api_key, default_comment_count, post_delay_seconds, auto_reply_style, gemini_model } = req.body;
+  const { gemini_api_key, default_comment_count, post_delay_seconds, auto_reply_style, gemini_model, prompt_organic, prompt_affiliate, prompt_reply } = req.body;
 
   const updateSetting = db.prepare("UPDATE settings SET value = ?, updated_at = datetime('now') WHERE key = ?");
+  const insertSetting = db.prepare("INSERT OR IGNORE INTO settings (key, value) VALUES (?, '')");
 
   if (gemini_api_key !== undefined) updateSetting.run(gemini_api_key, 'gemini_api_key');
   if (default_comment_count) updateSetting.run(default_comment_count, 'default_comment_count');
   if (post_delay_seconds) updateSetting.run(post_delay_seconds, 'post_delay_seconds');
   if (auto_reply_style) updateSetting.run(auto_reply_style, 'auto_reply_style');
   if (gemini_model) updateSetting.run(gemini_model, 'gemini_model');
+  
+  // Save custom prompts
+  if (prompt_organic !== undefined) {
+    insertSetting.run('prompt_organic');
+    updateSetting.run(prompt_organic, 'prompt_organic');
+  }
+  if (prompt_affiliate !== undefined) {
+    insertSetting.run('prompt_affiliate');
+    updateSetting.run(prompt_affiliate, 'prompt_affiliate');
+  }
+  if (prompt_reply !== undefined) {
+    insertSetting.run('prompt_reply');
+    updateSetting.run(prompt_reply, 'prompt_reply');
+  }
 
   res.redirect('/settings?success=Pengaturan+berhasil+disimpan');
 });

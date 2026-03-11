@@ -17,9 +17,9 @@ router.get('/create', (req, res) => {
 
 // Generate content via AI
 router.post('/generate', async (req, res) => {
-  const { topic, comment_count } = req.body;
+  const { topic, theme_description, comment_count } = req.body;
   try {
-    const content = await GeminiService.generatePostContent(topic, parseInt(comment_count || '3', 10));
+    const content = await GeminiService.generatePostContent(topic, parseInt(comment_count || '3', 10), theme_description);
     res.json({ success: true, content });
   } catch (error) {
     res.json({ success: false, error: error.message });
@@ -53,10 +53,37 @@ router.post('/post-now', async (req, res) => {
 
     // Execute immediately
     SchedulerService.executePost(result.lastInsertRowid);
-    res.json({ success: true, postId: result.lastInsertRowid });
+    res.json({ success: true, postId: result.lastInsertRowid, message: 'Posting dimulai...' });
   } catch (error) {
     res.json({ success: false, error: error.message });
   }
+});
+
+// Check post status
+router.get('/status/:id', (req, res) => {
+  const post = db.prepare('SELECT * FROM posts WHERE id = ?').get(req.params.id);
+  if (!post) {
+    return res.json({ success: false, error: 'Post tidak ditemukan' });
+  }
+  
+  const statusMap = {
+    'draft': '📝 Draft',
+    'scheduled': '⏳ Terjadwal',
+    'posting': '📤 Sedang Posting...',
+    'done': '✅ Berhasil Diposting',
+    'failed': '❌ Gagal Posting',
+    'cancelled': '⛔ Dibatalkan'
+  };
+
+  res.json({
+    success: true,
+    id: post.id,
+    status: post.status,
+    statusLabel: statusMap[post.status] || post.status,
+    posted_at: post.posted_at,
+    error_log: post.error_log,
+    main_post_thread_id: post.main_post_thread_id
+  });
 });
 
 // Schedule post

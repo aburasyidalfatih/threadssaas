@@ -16,7 +16,6 @@
       '<div class="queue-form-wrapper">' +
       accounts.map(acc =>
         '<div class="queue-account-card" id="queue-card-' + acc.id + '" style="display:none">' +
-          '<form action="/queue/generate/' + acc.id + '" method="POST" class="queue-form">' +
             '<div class="queue-card-top">' +
               '<div class="queue-user-info">' +
                 '<div class="queue-avatar">👤</div>' +
@@ -36,7 +35,7 @@
                 '<div class="form-group queue-config-box">' +
                   '<label class="config-label">⚡ Status Auto Post</label>' +
                   '<label class="toggle-switch">' +
-                    '<input type="checkbox" name="is_enabled" value="1" ' + (queueConfigs[acc.id]?.is_enabled ? 'checked' : '') + '>' +
+                    '<input type="checkbox" class="queue-toggle" name="is_enabled" value="1" ' + (queueConfigs[acc.id]?.is_enabled ? 'checked' : '') + '>' +
                     '<span class="toggle-slider"></span>' +
                     '<span class="toggle-label">' + (queueConfigs[acc.id]?.is_enabled ? 'Aktif' : 'Nonaktif') + '</span>' +
                   '</label>' +

@@ -18,6 +18,11 @@
         <input type="text" id="post-topic" placeholder="Contoh: Tips produktivitas untuk remote worker" required>
       </div>
       <div class="form-group">
+        <label for="post-theme-desc">📋 Deskripsi Tema (opsional)</label>
+        <input type="text" id="post-theme-desc" placeholder="Detail gaya bahasa, target audience, tone, dll">
+        <small class="form-hint">Tambahan instruksi untuk AI, misal: "Gunakan bahasa formal", "Target audience: mahasiswa", dll</small>
+      </div>
+      <div class="form-group">
         <label for="post-comment-count">Jumlah Komentar Lanjutan: <span id="comment-count-display">${defaultCommentCount}</span></label>
         <input type="range" id="post-comment-count" min="2" max="7" value="${defaultCommentCount}" oninput="document.getElementById('comment-count-display').textContent=this.value">
       </div>
@@ -71,6 +76,7 @@ let generatedContent = null;
 
 async function generateContent() {
   const topic = document.getElementById('post-topic').value;
+  const themeDesc = document.getElementById('post-theme-desc').value;
   const commentCount = document.getElementById('post-comment-count').value;
 
   if (!topic) return alert('Masukkan topik terlebih dahulu');
@@ -84,7 +90,7 @@ async function generateContent() {
     const res = await fetch('/posts/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic, comment_count: commentCount })
+      body: JSON.stringify({ topic, theme_description: themeDesc, comment_count: commentCount })
     });
     const data = await res.json();
 
@@ -174,12 +180,55 @@ async function postNow() {
       body: JSON.stringify(data)
     });
     const result = await res.json();
-    showResult(result.success, result.success ? 'Post sedang diproses! Cek riwayat untuk status.' : result.error);
+    
+    if (result.success) {
+      showResult(true, '✅ Post dimulai! Monitoring status...');
+      // Monitor status setiap 2 detik
+      monitorPostStatus(result.postId);
+    } else {
+      showResult(false, result.error);
+    }
   } catch (err) {
     showResult(false, err.message);
   } finally {
     btn.disabled = false;
   }
+}
+
+async function monitorPostStatus(postId) {
+  let attempts = 0;
+  const maxAttempts = 60; // 2 menit
+  
+  const checkStatus = async () => {
+    try {
+      const res = await fetch(`/posts/status/${postId}`);
+      const result = await res.json();
+      
+      if (result.success) {
+        const status = result.status;
+        
+        if (status === 'done') {
+          showResult(true, `✅ ${result.statusLabel}\n\nPost berhasil diposting ke Threads!`);
+          return;
+        } else if (status === 'failed') {
+          showResult(false, `❌ ${result.statusLabel}\n\nError: ${result.error_log}`);
+          return;
+        } else {
+          // Masih posting, cek lagi
+          attempts++;
+          if (attempts < maxAttempts) {
+            setTimeout(checkStatus, 2000);
+          } else {
+            showResult(false, 'Timeout: Posting memakan waktu terlalu lama');
+          }
+        }
+      }
+    } catch (err) {
+      console.error('Error checking status:', err);
+    }
+  };
+  
+  checkStatus();
 }
 
 async function saveDraft() {
@@ -221,13 +270,48 @@ async function schedulePost() {
 }
 
 function showResult(success, message) {
-  const el = document.getElementById('post-result');
-  el.style.display = 'block';
-  el.className = 'alert ' + (success ? 'alert-success' : 'alert-error');
-  el.textContent = (success ? '✅ ' : '⚠️ ') + message;
-  el.scrollIntoView({ behavior: 'smooth' });
+  const modal = document.getElementById('status-modal');
+  const icon = document.getElementById('status-icon');
+  const title = document.getElementById('status-title');
+  const text = document.getElementById('status-text');
+  
+  if (success) {
+    icon.textContent = '✅';
+    icon.style.color = '#2dd4a0';
+    title.textContent = 'Berhasil!';
+    title.style.color = '#2dd4a0';
+  } else {
+    icon.textContent = '⚠️';
+    icon.style.color = '#ff4d6a';
+    title.textContent = 'Error!';
+    title.style.color = '#ff4d6a';
+  }
+  
+  text.textContent = message;
+  modal.style.display = 'flex !important';
+}
+
+function closeStatusModal() {
+  document.getElementById('status-modal').style.display = 'none !important';
 }
 </script>
+
+<!-- Status Modal -->
+<div id="status-modal" style="display: none !important; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(4px);">
+  <div style="background: linear-gradient(135deg, #16162a 0%, #1a1a2e 100%); border: 1px solid rgba(124, 106, 255, 0.2); border-radius: 16px; padding: 48px 40px; text-align: center; max-width: 450px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 106, 255, 0.15);">
+    <div id="status-icon" style="font-size: 56px; margin-bottom: 20px; animation: pulse 2s infinite;">✅</div>
+    <h2 id="status-title" style="margin: 0 0 12px 0; color: #e8e8f0; font-size: 24px; font-weight: 700;">Berhasil!</h2>
+    <p id="status-text" style="margin: 0 0 32px 0; color: #9898b0; line-height: 1.6; white-space: pre-wrap; font-size: 14px;"></p>
+    <button onclick="closeStatusModal()" style="background: linear-gradient(135deg, #7c6aff 0%, #ff6b9d 100%); color: white; border: none; padding: 12px 32px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; transition: all 0.25s; box-shadow: 0 0 20px rgba(124, 106, 255, 0.3);" onmouseover="this.style.boxShadow='0 0 30px rgba(124, 106, 255, 0.5)'" onmouseout="this.style.boxShadow='0 0 20px rgba(124, 106, 255, 0.3)'">Tutup</button>
+  </div>
+</div>
+
+<style>
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+</style>
 
 <div class="card" id="create-post-info-card" style="margin-top: 24px;">
   <div class="card-header"><h3>ℹ️ Panduan Buat Postingan</h3></div>

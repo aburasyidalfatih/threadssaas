@@ -1,0 +1,2057 @@
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5006
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+OAuth callback error: Error: Token exchange failed: [object Object]
+    at ThreadsAPI.exchangeCodeForToken (/home/ubuntu/threadsbot/services/threads-api.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/ubuntu/threadsbot/routes/api.js:27:23
+OAuth callback error: Error: Token exchange failed: [object Object]
+    at ThreadsAPI.exchangeCodeForToken (/home/ubuntu/threadsbot/services/threads-api.js:47:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/ubuntu/threadsbot/routes/api.js:27:23
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[ThreadsAPI] Token exchange error: {
+  "error": {
+    "message": "Invalid client_secret: THAAZCx30A5t8hBUVNIaHg1NWhodS1RSFlWMEhKMGN0Q1NHUGI2ZAEpkZAmdzVUZALZA3lleTNMblZA6MmlJaTJLLVZAGOXdxUGRlVUptVXJhcWw1S1VyeFlaQk5SWVY0THNOUHF3VVJVNllzUXZAUa3k2aTF3QWhyZA2p0X09ETzVNVXZAIZAHNvNGRqaU9fODlNM3BxU1UZD",
+    "type": "OAuthException",
+    "code": 101,
+    "fbtrace_id": "AH11mcxjUjgAiH2Vi6QSb0U"
+  }
+}
+OAuth callback error: Error: Token exchange failed: {"message":"Invalid client_secret: THAAZCx30A5t8hBUVNIaHg1NWhodS1RSFlWMEhKMGN0Q1NHUGI2ZAEpkZAmdzVUZALZA3lleTNMblZA6MmlJaTJLLVZAGOXdxUGRlVUptVXJhcWw1S1VyeFlaQk5SWVY0THNOUHF3VVJVNllzUXZAUa3k2aTF3QWhyZA2p0X09ETzVNVXZAIZAHNvNGRqaU9fODlNM3BxU1UZD","type":"OAuthException","code":101,"fbtrace_id":"AH11mcxjUjgAiH2Vi6QSb0U"}
+    at ThreadsAPI.exchangeCodeForToken (/home/ubuntu/threadsbot/services/threads-api.js:48:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/ubuntu/threadsbot/routes/api.js:27:23
+[ThreadsAPI] Token exchange error: {
+  "error": {
+    "message": "Invalid client_secret: THAAZCx30A5t8hBUVNIaHg1NWhodS1RSFlWMEhKMGN0Q1NHUGI2ZAEpkZAmdzVUZALZA3lleTNMblZA6MmlJaTJLLVZAGOXdxUGRlVUptVXJhcWw1S1VyeFlaQk5SWVY0THNOUHF3VVJVNllzUXZAUa3k2aTF3QWhyZA2p0X09ETzVNVXZAIZAHNvNGRqaU9fODlNM3BxU1UZD",
+    "type": "OAuthException",
+    "code": 101,
+    "fbtrace_id": "A84pIRqt4QqKMhQPIGLc6x0"
+  }
+}
+OAuth callback error: Error: Token exchange failed: {"message":"Invalid client_secret: THAAZCx30A5t8hBUVNIaHg1NWhodS1RSFlWMEhKMGN0Q1NHUGI2ZAEpkZAmdzVUZALZA3lleTNMblZA6MmlJaTJLLVZAGOXdxUGRlVUptVXJhcWw1S1VyeFlaQk5SWVY0THNOUHF3VVJVNllzUXZAUa3k2aTF3QWhyZA2p0X09ETzVNVXZAIZAHNvNGRqaU9fODlNM3BxU1UZD","type":"OAuthException","code":101,"fbtrace_id":"A84pIRqt4QqKMhQPIGLc6x0"}
+    at ThreadsAPI.exchangeCodeForToken (/home/ubuntu/threadsbot/services/threads-api.js:48:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/ubuntu/threadsbot/routes/api.js:27:23
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[ThreadsAPI] Token exchange error: {
+  "error": {
+    "message": "Invalid client_secret: THAAZCx30A5t8hBUVNCS1pkbHhPZAU9ZAempZAb0xRTXpzVWp5V2VLWG9EZAVdvSXc2eVdEQU1acHUwUjR1MVpLT2J5OEpTTDJKbTBIcEpMbXFObHEtZAUtmUVVVSjMteXdSQmJZAVmtueDNQdUJ1N2JvYzN3UHNKbDNQeEUzN1FTNWhILWI4UWgzeVhyczhkWTRYVkUZD",
+    "type": "OAuthException",
+    "code": 101,
+    "fbtrace_id": "AjPx0TdmCu4o7mfo-JKqvkP"
+  }
+}
+OAuth callback error: Error: Token exchange failed: {"message":"Invalid client_secret: THAAZCx30A5t8hBUVNCS1pkbHhPZAU9ZAempZAb0xRTXpzVWp5V2VLWG9EZAVdvSXc2eVdEQU1acHUwUjR1MVpLT2J5OEpTTDJKbTBIcEpMbXFObHEtZAUtmUVVVSjMteXdSQmJZAVmtueDNQdUJ1N2JvYzN3UHNKbDNQeEUzN1FTNWhILWI4UWgzeVhyczhkWTRYVkUZD","type":"OAuthException","code":101,"fbtrace_id":"AjPx0TdmCu4o7mfo-JKqvkP"}
+    at ThreadsAPI.exchangeCodeForToken (/home/ubuntu/threadsbot/services/threads-api.js:48:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/ubuntu/threadsbot/routes/api.js:27:23
+[ThreadsAPI] Token exchange error: {
+  "error": {
+    "message": "Invalid client_secret: 0c435fe89f99017bb048d9b5fb12382d",
+    "type": "OAuthException",
+    "code": 101,
+    "fbtrace_id": "AvZ_ZZlp4HnJUfYgM30bsqJ"
+  }
+}
+OAuth callback error: Error: Token exchange failed: {"message":"Invalid client_secret: 0c435fe89f99017bb048d9b5fb12382d","type":"OAuthException","code":101,"fbtrace_id":"AvZ_ZZlp4HnJUfYgM30bsqJ"}
+    at ThreadsAPI.exchangeCodeForToken (/home/ubuntu/threadsbot/services/threads-api.js:48:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/ubuntu/threadsbot/routes/api.js:27:23
+[ThreadsAPI] Token exchange error: {
+  "error": {
+    "message": "Invalid client_secret: 0c435fe89f99017bb048d9b5fb12382d",
+    "type": "OAuthException",
+    "code": 101,
+    "fbtrace_id": "AvjgF_kKYprDi0V2nL4QTP9"
+  }
+}
+OAuth callback error: Error: Token exchange failed: {"message":"Invalid client_secret: 0c435fe89f99017bb048d9b5fb12382d","type":"OAuthException","code":101,"fbtrace_id":"AvjgF_kKYprDi0V2nL4QTP9"}
+    at ThreadsAPI.exchangeCodeForToken (/home/ubuntu/threadsbot/services/threads-api.js:48:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/ubuntu/threadsbot/routes/api.js:27:23
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[ThreadsAPI] Exchanging code for token...
+[ThreadsAPI] client_id: 4488065808185288
+[ThreadsAPI] client_secret length: 32
+[ThreadsAPI] redirect_uri: https://threadsbot.kelasmaster.id/callback/threads
+[ThreadsAPI] Token exchange error: {
+  "error": {
+    "message": "Invalid client_secret: 0c435fe89f99017bb048d9b5fb12382d",
+    "type": "OAuthException",
+    "code": 101,
+    "fbtrace_id": "ArsT1IusmuP4YY4JmD3M0NB"
+  }
+}
+OAuth callback error: Error: Token exchange failed: {"message":"Invalid client_secret: 0c435fe89f99017bb048d9b5fb12382d","type":"OAuthException","code":101,"fbtrace_id":"ArsT1IusmuP4YY4JmD3M0NB"}
+    at ThreadsAPI.exchangeCodeForToken (/home/ubuntu/threadsbot/services/threads-api.js:53:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/ubuntu/threadsbot/routes/api.js:27:23
+[ThreadsAPI] Exchanging code for token...
+[ThreadsAPI] client_id: 4488065808185288
+[ThreadsAPI] client_secret length: 32
+[ThreadsAPI] redirect_uri: https://threadsbot.kelasmaster.id/callback/threads
+[ThreadsAPI] Token exchange error: {
+  "error": {
+    "message": "Invalid client_secret: b25b4a1509ca9eb8b26afd2da33d27d9",
+    "type": "OAuthException",
+    "code": 101,
+    "fbtrace_id": "A9UpjPzyb7KwQCiaw_WcVEe"
+  }
+}
+OAuth callback error: Error: Token exchange failed: {"message":"Invalid client_secret: b25b4a1509ca9eb8b26afd2da33d27d9","type":"OAuthException","code":101,"fbtrace_id":"A9UpjPzyb7KwQCiaw_WcVEe"}
+    at ThreadsAPI.exchangeCodeForToken (/home/ubuntu/threadsbot/services/threads-api.js:53:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/ubuntu/threadsbot/routes/api.js:27:23
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[Scheduler] Executing post 1...
+[Scheduler] Main post published: 18083942995994534
+[Scheduler] Comment 1/3 posted: 17983806875959798 (reply to: main post)
+[Scheduler] Comment 2/3 posted: 18123396877576468 (reply to: comment 1)
+[AutoReply] Checking for new comments...
+[Scheduler] Comment 3/3 posted: 18361127710200573 (reply to: comment 2)
+[Scheduler] Post 1 completed successfully
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[Scheduler] Executing post 2...
+[Scheduler] Main post published: 18081790346522428
+[Scheduler] Comment 1/3 posted: 18137678038504365 (reply to: main post)
+[Scheduler] Comment 2/3 posted: 18095740090824038 (reply to: comment 1)
+[Scheduler] Comment 3/3 posted: 18146208481465262 (reply to: comment 2)
+[Scheduler] Post 2 completed successfully
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[Scheduler] Executing post 3...
+[Scheduler] Main post published: 17882722770377481
+[Scheduler] Comment 1/3 posted: 18097032475799703 (reply to: main post)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  override existing env vars with { override: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  override existing env vars with { override: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoPilot] Generating real-time for @curhat_parenting | Topic: Mengatasi rasa bersalah saat terpaksa menjadikan gadget sebagai babysitter.
+(node:1995465) Warning: Accessing non-existent property 'executePost' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Mengapa kamu mungkin perlu 'memensiunkan' beberapa kebiasaan baikmu.
+(node:1995465) Warning: Accessing non-existent property 'executePost' of module exports inside circular dependency
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Mengenali bedanya istirahat restoratif dengan lari dari tanggung jawab.
+[AutoPilot Trigger] Error: SchedulerService.executePost is not a function
+(node:1997893) Warning: Accessing non-existent property 'executePost' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  override existing env vars with { override: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Menerapkan konsep energy budgeting alih-alih time management.
+[AutoPilot Trigger] Error: Gemini returned empty response
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot Trigger] Error: Gemini returned empty response
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Pentingnya 'shutdown ritual' di akhir hari kerja untuk memisahkan urusan kantor dan pribadi.
+[AutoPilot Trigger] Error: No valid JSON found in Gemini response: ```json
+{
+  "main_post": "Otak masih nge-load kerjaan padahal badan udah di kasur? 😩 Ini tanda lo butuh 'shutdown ritual'. Ritual simpel di akhir hari kerja buat 'nutup' otak dari mode kantor. Serius
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Pentingnya 'shutdown ritual' untuk memisahkan otak dari mode kerja.
+[AutoReply] Checking for new comments...
+[Gemini] Raw response: ```json
+{
+  "main_post": "Pernah gak sih, badan udah rebahan di kasur tapi otak masih meeting sama klien? 😩 Kayaknya kita semua butuh yang namanya 'shutdown ritual' deh. Semacam tombol 'log out' buat pikiran, biar kerjaan gak ngehantui sampai ke mimpi. Kalian punya ritual ginian gak? Spill dong!",
+
+[Gemini] Cleaned response: {
+  "main_post": "Pernah gak sih, badan udah rebahan di kasur tapi otak masih meeting sama klien? 😩 Kayaknya kita semua butuh yang namanya 'shutdown ritual' deh. Semacam tombol 'log out' buat pikiran, biar kerjaan gak ngehantui sampai ke mimpi. Kalian punya ritual ginian gak? Spill dong!",
+  "comme
+[AutoPilot] Post created for @putra_chaniago001: "Pentingnya 'shutdown ritual' untuk memisahkan otak dari mode kerja." (3/1 today)
+[Scheduler] Executing post 7...
+[Scheduler] Main post published: 17864636223598690
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[Gemini] API Error: {
+  "code": 404,
+  "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+  "status": "NOT_FOUND"
+}
+[AutoPilot Trigger] Error: Gemini API error: models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[Gemini] API Error: {
+  "code": 404,
+  "message": "models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+  "status": "NOT_FOUND"
+}
+[AutoPilot Trigger] Error: Gemini API error: models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Mengatasi 'productive procrastination': Ketika kesibukan tidak berarti produktivitas sejati.
+[Gemini] Raw response: {
+  "main_post": "Gue yakin banyak di antara kita yang tiap hari sibuk banget. Dari pagi sampe malem kerja terus, balas email, meeting sana-sini, tapi pas ngaca di akhir hari... kok rasanya nggak ada yang kelar-kelar ya? 🤯 Ini nih yang namanya 'productive procrastination'. Kita sibuk, tapi sibuknya
+[Gemini] Cleaned response: {
+  "main_post": "Gue yakin banyak di antara kita yang tiap hari sibuk banget. Dari pagi sampe malem kerja terus, balas email, meeting sana-sini, tapi pas ngaca di akhir hari... kok rasanya nggak ada yang kelar-kelar ya? 🤯 Ini nih yang namanya 'productive procrastination'. Kita sibuk, tapi sibuknya
+[AutoPilot] Post created for @putra_chaniago001: "Mengatasi 'productive procrastination': Ketika kesibukan tidak berarti produktivitas sejati." (4/1 today)
+[Scheduler] Executing post 8...
+[Scheduler] Main post published: 18449640070101532
+[Scheduler] Comment 1/5 posted: 18078370739091320 (reply to: main post)
+[AutoPilot] Generating real-time for @curhat_parenting | Topic: Orang tua selalu 'ada' tapi tidak 'hadir': Strategi melepaskan diri dari gadget demi koneksi nyata dengan anak.
+[Gemini] Raw response: {
+  "main_post": "Sering nggak sih kita mikir, 'Ah, aku kan selalu ada di rumah sama anak'? Tapi pas anak ngajak ngobrol, mata kita masih nempel di layar HP. 😬 Ada fisik, tapi jiwa kita di dunia maya. Ini yang sering bikin anak ngerasa ortu 'ada' tapi gak 'hadir' lho. Jujur deh, siapa yang relate? 
+[Gemini] Cleaned response: {
+  "main_post": "Sering nggak sih kita mikir, 'Ah, aku kan selalu ada di rumah sama anak'? Tapi pas anak ngajak ngobrol, mata kita masih nempel di layar HP. 😬 Ada fisik, tapi jiwa kita di dunia maya. Ini yang sering bikin anak ngerasa ortu 'ada' tapi gak 'hadir' lho. Jujur deh, siapa yang relate? 
+[AutoPilot] Post created for @curhat_parenting: "Orang tua selalu 'ada' tapi tidak 'hadir': Strategi melepaskan diri dari gadget demi koneksi nyata dengan anak." (2/1 today)
+[Scheduler] Executing post 9...
+[Scheduler] Main post published: 18089699129145958
+[Scheduler] Comment 2/5 posted: 17849389848662660 (reply to: comment 1)
+[Scheduler] Comment 1/5 posted: 17958438519071270 (reply to: main post)
+[Scheduler] Comment 3/5 posted: 17939454672159633 (reply to: comment 2)
+[Scheduler] Comment 2/5 posted: 18115114966565681 (reply to: comment 1)
+[Scheduler] Comment 4/5 posted: 18097964236764624 (reply to: comment 3)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[Scheduler] Comment 3/5 posted: 17914044384336505 (reply to: comment 2)
+[Scheduler] Comment 5/5 posted: 18118620106544599 (reply to: comment 4)
+[Scheduler] Post 8 completed successfully
+[Scheduler] Comment 4/5 posted: 17962167374908367 (reply to: comment 3)
+[Scheduler] Comment 5/5 posted: 18009813737838616 (reply to: comment 4)
+[Scheduler] Post 9 completed successfully
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Topics history reset for account 2
+[AutoPilot] Topics history reset for account 2
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Menerapkan 'Strategic Boredom' untuk memulihkan energi kreatif dan fokus.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Otak lagi nge-lag & kreativitas mentok? Mungkin solusinya bukan 'hustle harder', tapi sengaja BIKIN DIRI SENDIRI BOSEN. 🤯 Gue lagi nyoba 'Strategic Boredom' & hasilnya gila. Kalian tim mana: gabut scrolling sampe pusing atau gabut ngelamun dapet ilham?",
+  "comments": [
+  
+[Gemini] Cleaned response: {
+  "main_post": "Otak lagi nge-lag & kreativitas mentok? Mungkin solusinya bukan 'hustle harder', tapi sengaja BIKIN DIRI SENDIRI BOSEN. 🤯 Gue lagi nyoba 'Strategic Boredom' & hasilnya gila. Kalian tim mana: gabut scrolling sampe pusing atau gabut ngelamun dapet ilham?",
+  "comments": [
+    "Jadi 
+[AutoPilot] Error processing @putra_chaniago001: No valid JSON found in Gemini response: ```json
+{
+  "main_post": "Otak lagi nge-lag & kreativitas mentok? Mungkin solusinya bukan 'hustle harder', tapi sengaja BIKIN DIRI SENDIRI BOSEN. 🤯 Gue lagi nyoba 'Strategic Boredom' & hasilnya gila.
+[AutoPilot] Generating real-time for @curhat_parenting | Topic: Konflik parenting beda generasi: Saat aturan di rumah dilanggar oleh kakek-nenek.
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Topics history reset for account 2
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoPilot] Topics history reset for account 3
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[Gemini] Empty response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 133,
+    "totalTokenCount": 2178,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133
+      }
+    ],
+    "thoughtsTokenCount": 2045
+  },
+  "modelVersion": "gemini-2.5-pro",
+  "responseId": "KjaxafyAL77GjuMPjpaIsAQ"
+}
+[AutoPilot] Error processing @putra_chaniago001: Gemini returned empty response
+[Gemini] Empty response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 123,
+    "totalTokenCount": 2168,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123
+      }
+    ],
+    "thoughtsTokenCount": 2045
+  },
+  "modelVersion": "gemini-2.5-pro",
+  "responseId": "PzaxaYnEMuSJmNMP447cKA"
+}
+[AutoPilot] Error processing @curhat_parenting: Gemini returned empty response
+[Gemini] Empty response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 147,
+    "totalTokenCount": 2192,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 147
+      }
+    ],
+    "thoughtsTokenCount": 2045
+  },
+  "modelVersion": "gemini-2.5-pro",
+  "responseId": "nzaxabvYIOr2juMP9Z7Z0A4"
+}
+[AutoPilot Trigger] Error: Gemini returned empty response
+[AutoPilot] Generating real-time for @curhat_parenting | Topic: Kesalahan mengubah waktu bermain anak menjadi sesi les terselubung.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Ortu, please stop 'mencuri' waktu main anak buat jadi les terselubung. Niatnya sih baik biar anak pinter, tapi efeknya bisa bikin mereka burnout & malah benci belajar, lho. 🤯 Siapa yg pernah kejebak nanya 'ini warna apa?' pas anak lagi asyik gambar?",
+  "comments": [
+    "
+[Gemini] Cleaned response: {
+  "main_post": "Ortu, please stop 'mencuri' waktu main anak buat jadi les terselubung. Niatnya sih baik biar anak pinter, tapi efeknya bisa bikin mereka burnout & malah benci belajar, lho. 🤯 Siapa yg pernah kejebak nanya 'ini warna apa?' pas anak lagi asyik gambar?",
+  "comments": [
+    "Bedanya 
+[AutoPilot] Post created for @curhat_parenting: "Kesalahan mengubah waktu bermain anak menjadi sesi les terselubung." (1/1 today)
+[Scheduler] Executing post 10...
+[Scheduler] Main post published: 17914338228301345
+[Scheduler] Comment 1/5 posted: 17994204767756518 (reply to: main post)
+[Scheduler] Comment 2/5 posted: 18095485738994489 (reply to: comment 1)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Generating real-time for @curhat_parenting | Topic: Membandingkan anak dengan saudaranya sebagai "motivasi" yang justru menjadi racun.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Niatnya sih 'motivasi', tapi membandingkan anak sama saudaranya sendiri itu resep jitu bikin toxic sibling rivalry. ☠️ \"Lihat tuh kakakmu ranking 1 terus, kamu kok nggak?\" Kalimat ini bukan bikin semangat, tapi malah bikin anak ngerasa 'gue emang gak sebaik dia'. Sedih ba
+[Gemini] Cleaned response: {
+  "main_post": "Niatnya sih 'motivasi', tapi membandingkan anak sama saudaranya sendiri itu resep jitu bikin toxic sibling rivalry. ☠️ \"Lihat tuh kakakmu ranking 1 terus, kamu kok nggak?\" Kalimat ini bukan bikin semangat, tapi malah bikin anak ngerasa 'gue emang gak sebaik dia'. Sedih banget gak
+[AutoPilot] Post created for @curhat_parenting: "Membandingkan anak dengan saudaranya sebagai "motivasi" yang justru menjadi racun." (2/1 today)
+[Scheduler] Executing post 11...
+[AutoReply] Checking for new comments...
+[Scheduler] Main post published: 17887316142446713
+[Scheduler] Comment 1/5 posted: 18113492914737596 (reply to: main post)
+[Scheduler] Comment 2/5 posted: 18574057405044726 (reply to: comment 1)
+[Scheduler] Comment 3/5 posted: 17887362099451176 (reply to: comment 2)
+[Scheduler] Comment 4/5 posted: 17939593803011791 (reply to: comment 3)
+[Scheduler] Comment 5/5 posted: 18160039468426910 (reply to: comment 4)
+[Scheduler] Post 11 completed successfully
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[AutoPilot] Generating real-time for @bekalpernikahan.id | Topic: Mengatasi rasa hampa setelah pesta pernikahan usai.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Gila ya, ternyata ada yang namanya 'post-wedding blues'. Habis euphoria pesta nikahan yang heboh, tiba-tiba kok rasanya hampa, sepi, dan bingung... 'terus sekarang ngapain lagi?'. Momen paling bahagia malah diikuti rasa aneh gini. Ada yang pernah ngalamin juga? Share dong!"
+[Gemini] Cleaned response: {
+  "main_post": "Gila ya, ternyata ada yang namanya 'post-wedding blues'. Habis euphoria pesta nikahan yang heboh, tiba-tiba kok rasanya hampa, sepi, dan bingung... 'terus sekarang ngapain lagi?'. Momen paling bahagia malah diikuti rasa aneh gini. Ada yang pernah ngalamin juga? Share dong!",
+  "com
+[AutoPilot Trigger] Error: No valid JSON found in Gemini response: ```json
+{
+  "main_post": "Gila ya, ternyata ada yang namanya 'post-wedding blues'. Habis euphoria pesta nikahan yang heboh, tiba-tiba kok rasanya hampa, sepi, dan bingung... 'terus sekarang ngapain la
+[AutoPilot] Generating real-time for @bekalpernikahan.id | Topic: Ketika euforia pernikahan hilang dan menyisakan kehampaan
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[Gemini] Raw response: ```json
+{
+  "main_post": "Pernikahan itu kayak nonton konser band favorit. Hype-nya gila-gilaan, persiapan berbulan-bulan. Begitu selesai, lampu venue dinyalain, yang tersisa cuma kuping berdenging & rasa sepi yang aneh. Ada yang pernah ngalamin 'post-concert depression' versi nikahan ini?",
+  "comm
+[Gemini] Cleaned response: {
+  "main_post": "Pernikahan itu kayak nonton konser band favorit. Hype-nya gila-gilaan, persiapan berbulan-bulan. Begitu selesai, lampu venue dinyalain, yang tersisa cuma kuping berdenging & rasa sepi yang aneh. Ada yang pernah ngalamin 'post-concert depression' versi nikahan ini?",
+  "comments": [
+[AutoPilot] Post created for @bekalpernikahan.id: "Ketika euforia pernikahan hilang dan menyisakan kehampaan" (1/1 today)
+[Scheduler] Executing post 12...
+[Scheduler] Main post published: 18088046185925814
+[Scheduler] Comment 1/5 posted: 18075292016128916 (reply to: main post)
+[Scheduler] Comment 2/5 posted: 18095842733077712 (reply to: comment 1)
+[Scheduler] Comment 3/5 posted: 18096915310794609 (reply to: comment 2)
+[Scheduler] Comment 4/5 posted: 17877831729511597 (reply to: comment 3)
+[Scheduler] Comment 5/5 posted: 18086457080464117 (reply to: comment 4)
+[Scheduler] Post 12 completed successfully
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[Gemini] Raw response: ```json
+{
+  "main_post": "Kalau kamu mulai ngerasa 'sedih Ramadhan mau selesai' tapi cuma jadi status doang, thread ini buat kamu.\n\nAda satu 'jebakan' di 10 hari terakhir yang sering bikin kita nyesel nanti.\n\nIni cara biar perpisahan sama Ramadhan kali ini bener-bener beda.",
+  "comments": [
+   
+[Gemini] Cleaned response: {
+  "main_post": "Kalau kamu mulai ngerasa 'sedih Ramadhan mau selesai' tapi cuma jadi status doang, thread ini buat kamu.\n\nAda satu 'jebakan' di 10 hari terakhir yang sering bikin kita nyesel nanti.\n\nIni cara biar perpisahan sama Ramadhan kali ini bener-bener beda.",
+  "comments": [
+    "Pentin
+[Scheduler] Executing post 13...
+[Scheduler] Main post published: 18106194388871472
+[Scheduler] Comment 1/3 posted: 18078301025099808 (reply to: main post)
+[Scheduler] Comment 2/3 posted: 18003369572854789 (reply to: comment 1)
+[Scheduler] Comment 3/3 posted: 17854313943681394 (reply to: comment 2)
+[Scheduler] Post 13 completed successfully
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Berhenti menyalahkan 'prokrastinasi', bisa jadi itu sinyal tubuhmu butuh istirahat, bukan malas.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Kebanyakan orang salah tentang prokrastinasi.\n\nKita selalu mikir nunda kerjaan = malas. Padahal, itu seringkali cara tubuh kita teriak minta tolong.\n\nAda 3 sinyal kunci yang sering kita abaikan buat bedain kapan harus 'gas' dan kapan harus 'rem'. 👇",
+  "comments": [
+  
+[Gemini] Cleaned response: {
+  "main_post": "Kebanyakan orang salah tentang prokrastinasi.\n\nKita selalu mikir nunda kerjaan = malas. Padahal, itu seringkali cara tubuh kita teriak minta tolong.\n\nAda 3 sinyal kunci yang sering kita abaikan buat bedain kapan harus 'gas' dan kapan harus 'rem'. 👇",
+  "comments": [
+    "Dulu 
+[AutoPilot] Error processing @putra_chaniago001: No valid JSON found in Gemini response: ```json
+{
+  "main_post": "Kebanyakan orang salah tentang prokrastinasi.\n\nKita selalu mikir nunda kerjaan = malas. Padahal, itu seringkali cara tubuh kita teriak minta tolong.\n\nAda 3 sinyal kunci y
+[AutoPilot] Generating real-time for @curhat_parenting | Topic: Kesalahan terbesarku sebagai orang tua bukanlah saat aku marah, tapi saat aku terlalu gengsi untuk bilang 'maaf' setelahnya.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Kesalahan terbesarku sebagai orang tua bukanlah saat aku marah, tapi saat aku terlalu gengsi untuk bilang 'maaf' setelahnya.\n\nDulu aku kira dengan diam saja, aku sedang menjaga wibawa di depan anak.\n\nTernyata, aku justru lagi mengajarkan dia satu hal yang sangat berbaha
+[Gemini] Cleaned response: {
+  "main_post": "Kesalahan terbesarku sebagai orang tua bukanlah saat aku marah, tapi saat aku terlalu gengsi untuk bilang 'maaf' setelahnya.\n\nDulu aku kira dengan diam saja, aku sedang menjaga wibawa di depan anak.\n\nTernyata, aku justru lagi mengajarkan dia satu hal yang sangat berbahaya tanpa
+[AutoPilot] Error processing @curhat_parenting: No valid JSON found in Gemini response: ```json
+{
+  "main_post": "Kesalahan terbesarku sebagai orang tua bukanlah saat aku marah, tapi saat aku terlalu gengsi untuk bilang 'maaf' setelahnya.\n\nDulu aku kira dengan diam saja, aku sedang men
+[Gemini] Empty response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 287,
+    "totalTokenCount": 2332,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 287
+      }
+    ],
+    "thoughtsTokenCount": 2045
+  },
+  "modelVersion": "gemini-2.5-pro",
+  "responseId": "tGexabrGGYGvjuMP3fDxgAw"
+}
+[AutoPilot] Error processing @bekalpernikahan.id: Gemini returned empty response
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[Gemini] Empty response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 241,
+    "totalTokenCount": 2286,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 241
+      }
+    ],
+    "thoughtsTokenCount": 2045
+  },
+  "modelVersion": "gemini-2.5-pro",
+  "responseId": "bW6xaYr-J_SPjuMPkYbQ8AQ"
+}
+[AutoPilot] Error processing @putra_chaniago001: Gemini returned empty response
+[AutoPilot] Generating real-time for @curhat_parenting | Topic: Mengapa refleks kita untuk segera 'memperbaiki' perasaan sedih anak justru merampas skill terpenting dalam hidupnya.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Dulu, tiap anakku nangis, refleks pertamaku adalah: \"Udah jangan nangis, sini mama kasih es krim.\"\n\nNiatnya baik, mau nenangin. Tapi ternyata, cara ini justru merampas skill terpenting yang bakal dia butuhin seumur hidupnya.\n\nSebuah 'kesalahan' yang baru aku sadari se
+[Gemini] Cleaned response: {
+  "main_post": "Dulu, tiap anakku nangis, refleks pertamaku adalah: \"Udah jangan nangis, sini mama kasih es krim.\"\n\nNiatnya baik, mau nenangin. Tapi ternyata, cara ini justru merampas skill terpenting yang bakal dia butuhin seumur hidupnya.\n\nSebuah 'kesalahan' yang baru aku sadari setelah be
+[AutoPilot] Error processing @curhat_parenting: No valid JSON found in Gemini response: ```json
+{
+  "main_post": "Dulu, tiap anakku nangis, refleks pertamaku adalah: \"Udah jangan nangis, sini mama kasih es krim.\"\n\nNiatnya baik, mau nenangin. Tapi ternyata, cara ini justru merampas sk
+[AutoPilot] Generating real-time for @bekalpernikahan.id | Topic: Konflik dengan mertua jelang pernikahan itu bukan soal uang atau selera, tapi soal 'kehilangan' yang tak terucap.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Dulu gue kira drama sama mertua jelang nikah itu soal selera & duit. Salah besar. 🤦‍♂️\n\nSetelah ngelewatin sendiri dan denger puluhan cerita, gue sadar akar masalahnya jauh lebih dalam.\n\nIni soal 'kehilangan' yang nggak pernah mereka ucapin.",
+  "comments": [
+    "Past
+[Gemini] Cleaned response: {
+  "main_post": "Dulu gue kira drama sama mertua jelang nikah itu soal selera & duit. Salah besar. 🤦‍♂️\n\nSetelah ngelewatin sendiri dan denger puluhan cerita, gue sadar akar masalahnya jauh lebih dalam.\n\nIni soal 'kehilangan' yang nggak pernah mereka ucapin.",
+  "comments": [
+    "Pasti banyak
+[AutoPilot] Post created for @bekalpernikahan.id: "Konflik dengan mertua jelang pernikahan itu bukan soal uang atau selera, tapi soal 'kehilangan' yang tak terucap." (2/4 today)
+[Scheduler] Executing post 14...
+[Scheduler] Main post published: 18078207113422267
+[Scheduler] Comment 1/3 posted: 17914447581142465 (reply to: main post)
+[Scheduler] Comment 2/3 posted: 18056927933444016 (reply to: comment 1)
+[Scheduler] Comment 3/3 posted: 18039270698767520 (reply to: comment 2)
+[Scheduler] Post 14 completed successfully
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Checking for new comments...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[Gemini] Empty response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 425,
+    "totalTokenCount": 2470,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 425
+      }
+    ],
+    "thoughtsTokenCount": 2045
+  },
+  "modelVersion": "gemini-2.5-pro",
+  "responseId": "JHqxabbSOf_8juMPluyLiAw"
+}
+[AutoReply] Failed to reply to ernasusanti5241: Gemini returned empty response
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[Gemini] Empty response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 241,
+    "totalTokenCount": 2286,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 241
+      }
+    ],
+    "thoughtsTokenCount": 2045
+  },
+  "modelVersion": "gemini-2.5-pro",
+  "responseId": "SHqxabLTC9bBqfkPp5K_iAM"
+}
+[AutoPilot Trigger] Error: Gemini returned empty response
+[AutoPilot] Generating real-time for @curhat_parenting | Topic: Terlalu gengsi untuk minta maaf duluan ke anak, sebuah kesalahan yang baru kusadari dampaknya.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Kemarin, anakku yang umur 7 tahun bilang, \"Bunda kok nggak pernah minta maaf?\"\n\nSatu kalimat itu bikin aku sadar.\n\nGengsi orang tua ternyata 'racun' pelan-pelan buat mental anak. Sebuah kesalahan yang baru kusadari dampaknya setelah bertahun-tahun. 😔",
+  "comments": 
+[Gemini] Cleaned response: {
+  "main_post": "Kemarin, anakku yang umur 7 tahun bilang, \"Bunda kok nggak pernah minta maaf?\"\n\nSatu kalimat itu bikin aku sadar.\n\nGengsi orang tua ternyata 'racun' pelan-pelan buat mental anak. Sebuah kesalahan yang baru kusadari dampaknya setelah bertahun-tahun. 😔",
+  "comments": [
+    "D
+[AutoPilot] Post created for @curhat_parenting: "Terlalu gengsi untuk minta maaf duluan ke anak, sebuah kesalahan yang baru kusadari dampaknya." (2/1 today)
+[Scheduler] Executing post 15...
+[Scheduler] Main post published: 17869121169575544
+[Gemini] Empty response: {
+  "candidates": [
+    {
+      "content": {
+        "role": "model"
+      },
+      "finishReason": "MAX_TOKENS",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 317,
+    "totalTokenCount": 2362,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 317
+      }
+    ],
+    "thoughtsTokenCount": 2045
+  },
+  "modelVersion": "gemini-2.5-pro",
+  "responseId": "gXqxaanzKcTh4-EPlITzmAw"
+}
+[AutoPilot Trigger] Error: Gemini returned empty response
+[Scheduler] Comment 1/3 posted: 18096811708791078 (reply to: main post)
+[Scheduler] Comment 2/3 posted: 18041149778572043 (reply to: comment 1)
+[Scheduler] Comment 3/3 posted: 18075275699142026 (reply to: comment 2)
+[Scheduler] Post 15 completed successfully
+[AutoReply] Checking for new comments...
+[AutoReply] Replied to ernasusanti5241: "Hahaha kena banget ya pertanyaannya? Kalo kamu sen..."
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Mitos '21 hari membentuk kebiasaan' yang justru membuatmu lebih sering gagal.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Kalau kamu masih percaya butuh 21 hari buat bangun habit, kamu sengaja bikin diri sendiri gagal. 😅\n\nAngka 'magis' ini justru jadi beban psikologis yang bikin kita gampang nyerah pas hari ke-22 terasa berat.\n\nAda cara yang jauh lebih efektif & realistis buat jadi konsis
+[Gemini] Cleaned response: {
+  "main_post": "Kalau kamu masih percaya butuh 21 hari buat bangun habit, kamu sengaja bikin diri sendiri gagal. 😅\n\nAngka 'magis' ini justru jadi beban psikologis yang bikin kita gampang nyerah pas hari ke-22 terasa berat.\n\nAda cara yang jauh lebih efektif & realistis buat jadi konsisten. Mar
+[AutoPilot] Post created for @putra_chaniago001: "Mitos '21 hari membentuk kebiasaan' yang justru membuatmu lebih sering gagal." (1/1 today)
+[Scheduler] Executing post 16...
+[Scheduler] Main post published: 18574246720042910
+[Scheduler] Comment 1/3 posted: 17959987353062264 (reply to: main post)
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[Scheduler] Comment 2/3 posted: 18096619370006589 (reply to: comment 1)
+[Scheduler] Comment 3/3 posted: 18258409978292986 (reply to: comment 2)
+[Scheduler] Post 16 completed successfully
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Rahasia para CEO: Bukan time management, tapi 'energy management' yang jadi kunci.
+[AutoReply] Checking for new comments...
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Kenapa fokus pada 'decision fatigue' jauh lebih penting daripada sekadar bangun lebih pagi.
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[Gemini] Raw response: ```json
+{
+  "main_post": "Kebanyakan tips produktivitas itu salah.\n\nFokusnya selalu 'atur waktu', padahal yang habis itu 'energi' lo. Para CEO sadar ini.\n\nMereka nggak nambah jam kerja, tapi nambah kualitas energi di setiap jamnya. Mindset ini ngubah segalanya buat gue. 🤯",
+  "comments": [
+    
+[Gemini] Cleaned response: {
+  "main_post": "Kebanyakan tips produktivitas itu salah.\n\nFokusnya selalu 'atur waktu', padahal yang habis itu 'energi' lo. Para CEO sadar ini.\n\nMereka nggak nambah jam kerja, tapi nambah kualitas energi di setiap jamnya. Mindset ini ngubah segalanya buat gue. 🤯",
+  "comments": [
+    "Pernah 
+[AutoPilot] Post created for @putra_chaniago001: "Rahasia para CEO: Bukan time management, tapi 'energy management' yang jadi kunci." (2/1 today)
+[Scheduler] Executing post 17...
+[Scheduler] Main post published: 18097123288787674
+[Gemini] Raw response: ```json
+{
+  "main_post": "Kebanyakan orang salah kaprah soal produktivitas.\n\nBukan soal bangun jam 5 pagi. Tapi soal berapa banyak 'jatah' keputusan yang kamu bakar sebelum jam 9.\n\nMusuh utamamu bukan alarm, tapi 'decision fatigue'. Dan ini jauh lebih bahaya. 🧠",
+  "comments": [
+    "Pernah ngg
+[Gemini] Cleaned response: {
+  "main_post": "Kebanyakan orang salah kaprah soal produktivitas.\n\nBukan soal bangun jam 5 pagi. Tapi soal berapa banyak 'jatah' keputusan yang kamu bakar sebelum jam 9.\n\nMusuh utamamu bukan alarm, tapi 'decision fatigue'. Dan ini jauh lebih bahaya. 🧠",
+  "comments": [
+    "Pernah nggak sih, 
+[AutoPilot] Post created for @putra_chaniago001: "Kenapa fokus pada 'decision fatigue' jauh lebih penting daripada sekadar bangun lebih pagi." (3/1 today)
+[Scheduler] Executing post 18...
+[AutoPilot] Generating real-time for @curhat_parenting | Topic: Kebiasaan 'menceritakan anak' di depannya yang ternyata adalah bentuk pengkhianatan kecil yang baru kusadari.
+[Scheduler] Main post published: 18320384698269835
+[Gemini] Raw response: ```json
+{
+  "main_post": "Dulu aku kira 'memuji' anak di depan orang lain itu bagus.\n\nSampai aku sadar, kebiasaan 'menceritakan anak' di depannya justru bisa jadi bentuk pengkhianatan kecil yang nyesek.\n\nSekarang aku lihat bedanya banget, dan kenapa ini jadi kesalahan fatal yang banyak orang tua
+[Gemini] Cleaned response: {
+  "main_post": "Dulu aku kira 'memuji' anak di depan orang lain itu bagus.\n\nSampai aku sadar, kebiasaan 'menceritakan anak' di depannya justru bisa jadi bentuk pengkhianatan kecil yang nyesek.\n\nSekarang aku lihat bedanya banget, dan kenapa ini jadi kesalahan fatal yang banyak orang tua lakuin.
+[AutoPilot] Post created for @curhat_parenting: "Kebiasaan 'menceritakan anak' di depannya yang ternyata adalah bentuk pengkhianatan kecil yang baru kusadari." (3/1 today)
+[Scheduler] Executing post 19...
+[Scheduler] Main post published: 18112195168674007
+[Scheduler] Comment 1/3 posted: 18074971817530097 (reply to: main post)
+[AutoPilot] Generating real-time for @bekalpernikahan.id | Topic: Pertengkaran terbesar kami sebelum menikah ternyata bukan red flag, tapi justru jadi fondasi terkuat.
+[Scheduler] Comment 1/3 posted: 17930844831057074 (reply to: main post)
+[Gemini] Raw response: ```json
+{
+  "main_post": "Banyak yang bilang pertengkaran hebat sebelum nikah itu red flag. Gue dulu juga mikir gitu.\n\nSampai H-1 bulan, kami berantem soal keuangan & mertua sampai hampir batalin semuanya.\n\nTernyata, 'badai' itu justru yang jadi fondasi terkuat pernikahan kami sampai sekarang. K
+[Gemini] Cleaned response: {
+  "main_post": "Banyak yang bilang pertengkaran hebat sebelum nikah itu red flag. Gue dulu juga mikir gitu.\n\nSampai H-1 bulan, kami berantem soal keuangan & mertua sampai hampir batalin semuanya.\n\nTernyata, 'badai' itu justru yang jadi fondasi terkuat pernikahan kami sampai sekarang. Kok bisa?
+[AutoPilot] Post created for @bekalpernikahan.id: "Pertengkaran terbesar kami sebelum menikah ternyata bukan red flag, tapi justru jadi fondasi terkuat." (3/1 today)
+[Scheduler] Executing post 20...
+[Scheduler] Main post published: 17914481637148254
+[Scheduler] Comment 1/3 posted: 17891271879430440 (reply to: main post)
+[Scheduler] Comment 2/3 posted: 17877329121518270 (reply to: comment 1)
+[Scheduler] Comment 2/3 posted: 18333862636170275 (reply to: comment 1)
+[Scheduler] Comment 2/3 posted: 17954459139074205 (reply to: comment 1)
+[Scheduler] Comment 1/3 posted: 18109588960773958 (reply to: main post)
+[Scheduler] Comment 3/3 posted: 18073843463630814 (reply to: comment 2)
+[Scheduler] Post 17 completed successfully
+[Scheduler] Comment 3/3 posted: 18587911618032518 (reply to: comment 2)
+[Scheduler] Post 18 completed successfully
+[Scheduler] Comment 3/3 posted: 18178575847339817 (reply to: comment 2)
+[Scheduler] Post 19 completed successfully
+[Scheduler] Comment 2/3 posted: 17879109927397769 (reply to: comment 1)
+[Scheduler] Comment 3/3 posted: 18099906493927253 (reply to: comment 2)
+[Scheduler] Post 20 completed successfully
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Mitos 'inbox zero' yang sebenarnya adalah jebakan produktivitas yang membuatmu sibuk, bukan produktif.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Mitos 'Inbox Zero' itu jebakan produktivitas. 💀\n\nKamu pikir jadi produktif, padahal cuma jadi reaktif. Menghabiskan energi untuk merespon agenda orang lain, bukan mengerjakan agendamu sendiri.\n\nAda cara yang jauh lebih baik untuk mengelola email tanpa stres. Dan ini sa
+[Gemini] Cleaned response: {
+  "main_post": "Mitos 'Inbox Zero' itu jebakan produktivitas. 💀\n\nKamu pikir jadi produktif, padahal cuma jadi reaktif. Menghabiskan energi untuk merespon agenda orang lain, bukan mengerjakan agendamu sendiri.\n\nAda cara yang jauh lebih baik untuk mengelola email tanpa stres. Dan ini sama sekal
+[AutoPilot] Post created for @putra_chaniago001: "Mitos 'inbox zero' yang sebenarnya adalah jebakan produktivitas yang membuatmu sibuk, bukan produktif." (4/1 today)
+[Scheduler] Executing post 21...
+[Scheduler] Main post published: 18162351805419257
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[Scheduler] Comment 1/5 posted: 18076549007570747 (reply to: main post)
+[Scheduler] Comment 2/5 posted: 18099957590311635 (reply to: comment 1)
+[Scheduler] Comment 3/5 posted: 18136813642449333 (reply to: comment 2)
+[Scheduler] Comment 4/5 posted: 18344456635213851 (reply to: comment 3)
+[Scheduler] Comment 5/5 posted: 18050633858496291 (reply to: comment 4)
+[Scheduler] Post 21 completed successfully
+[AutoPilot] Generating real-time for @putra_chaniago001 | Topic: Prokrastinasi bukan tanda kemalasan, tapi sinyal 'error' dari sistem produktivitasmu yang perlu diperbaiki.
+[Gemini] Raw response: ```json
+{
+  "main_post": "Kebanyakan orang salah kaprah soal prokrastinasi. Kamu dibilang pemalas, padahal bukan itu masalahnya.\n\nProkrastinasi itu sebenarnya sinyal 'error' dari sistem produktivitasmu. Ada sesuatu yang salah, dan tubuhmu lagi coba kasih tau.\n\nCoba kita 'debug' bareng. Ada 3 sin
+[Gemini] Cleaned response: {
+  "main_post": "Kebanyakan orang salah kaprah soal prokrastinasi. Kamu dibilang pemalas, padahal bukan itu masalahnya.\n\nProkrastinasi itu sebenarnya sinyal 'error' dari sistem produktivitasmu. Ada sesuatu yang salah, dan tubuhmu lagi coba kasih tau.\n\nCoba kita 'debug' bareng. Ada 3 sinyal utam
+[AutoPilot] Post created for @putra_chaniago001: "Prokrastinasi bukan tanda kemalasan, tapi sinyal 'error' dari sistem produktivitasmu yang perlu diperbaiki." (5/1 today)
+[Scheduler] Executing post 22...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[Scheduler] Main post published: 18071433305541248
+[Scheduler] Comment 1/3 posted: 17995370189752220 (reply to: main post)
+[Scheduler] Comment 2/3 posted: 18097088245791450 (reply to: comment 1)
+[Scheduler] Comment 3/3 posted: 18316122550249279 (reply to: comment 2)
+[Scheduler] Post 22 completed successfully
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Replied to lily.umiel: "Bener banget, kita cermin mereka ya. Dari semua it..."
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation

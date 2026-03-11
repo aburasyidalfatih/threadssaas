@@ -43,8 +43,31 @@ router.post('/delete/:accountId', (req, res) => {
 
 // Reset topic history
 router.post('/reset-history/:accountId', (req, res) => {
-  AutoPilotService.resetHistory(req.params.accountId);
-  res.redirect('/autopilot?success=Riwayat+topik+direset');
+  try {
+    AutoPilotService.resetHistory(req.params.accountId);
+    // Also reset today's posts count
+    const today = new Date().toISOString().split('T')[0];
+    db.prepare("DELETE FROM posts WHERE account_id = ? AND type = 'autopilot' AND DATE(created_at) = ?")
+      .run(req.params.accountId, today);
+    res.redirect('/autopilot?success=Riwayat+topik+dan+posts+hari+ini+direset');
+  } catch (error) {
+    console.error('[AutoPilot Reset] Error:', error.message);
+    res.redirect('/autopilot?error=' + encodeURIComponent(error.message));
+  }
+});
+
+// Toggle autopilot status
+router.post('/toggle/:accountId', (req, res) => {
+  const { is_enabled } = req.body;
+  const isEnabled = is_enabled === '1' ? 1 : 0;
+  
+  try {
+    db.prepare("UPDATE autopilot_configs SET is_enabled = ? WHERE account_id = ?")
+      .run(isEnabled, req.params.accountId);
+    res.redirect('/autopilot?success=Status+autopilot+diperbarui');
+  } catch (error) {
+    res.redirect('/autopilot?error=' + encodeURIComponent(error.message));
+  }
 });
 
 // Trigger manual run for specific account
@@ -63,12 +86,23 @@ router.post('/trigger/:accountId', async (req, res) => {
     if (!config.access_token) {
       return res.redirect('/autopilot?error=Akun+belum+terkoneksi');
     }
+    if (!config.theme || !config.theme.trim()) {
+      return res.redirect('/autopilot?error=Tema+belum+dikonfigurasi');
+    }
+
+    // Check Gemini API Key from database or env
+    const geminiKeySetting = db.prepare("SELECT value FROM settings WHERE key = 'gemini_api_key'").get();
+    const geminiKey = geminiKeySetting?.value || process.env.GEMINI_API_KEY;
+    if (!geminiKey || !geminiKey.trim()) {
+      return res.redirect('/autopilot?error=Gemini+API+Key+belum+dikonfigurasi');
+    }
 
     // Force run: set posting_hours to current hour so it always matches
-    const currentHour = String(new Date().getHours()).padStart(2, '0');
-    await AutoPilotService.processAccount({ ...config, posting_hours: currentHour });
+    const currentHour = new Date().getHours();
+    await AutoPilotService.processAccount({ ...config, posting_hours: String(currentHour) });
     res.redirect('/autopilot?success=Post+berhasil+di-trigger+untuk+@' + config.username);
   } catch (error) {
+    console.error('[AutoPilot Trigger] Error:', error.message);
     res.redirect('/autopilot?error=' + encodeURIComponent(error.message));
   }
 });

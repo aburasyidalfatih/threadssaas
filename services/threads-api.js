@@ -30,12 +30,17 @@ class ThreadsAPI {
    * Exchange authorization code for short-lived access token
    */
   static async exchangeCodeForToken(code, account) {
+    console.log('[ThreadsAPI] Exchanging code for token...');
+    console.log('[ThreadsAPI] client_id:', account.app_id);
+    console.log('[ThreadsAPI] client_secret length:', account.app_secret?.length);
+    console.log('[ThreadsAPI] redirect_uri:', account.redirect_uri);
+    
     const response = await fetch(`${THREADS_API_BASE}/oauth/access_token`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
-        client_id: account.app_id,
-        client_secret: account.app_secret,
+        client_id: account.app_id.trim(),
+        client_secret: account.app_secret.trim(),
         grant_type: 'authorization_code',
         redirect_uri: account.redirect_uri,
         code: code
@@ -44,7 +49,8 @@ class ThreadsAPI {
 
     const data = await response.json();
     if (data.error) {
-      throw new Error(`Token exchange failed: ${data.error_message || data.error}`);
+      console.error('[ThreadsAPI] Token exchange error:', JSON.stringify(data, null, 2));
+      throw new Error(`Token exchange failed: ${data.error_message || JSON.stringify(data.error)}`);
     }
     return data; // { access_token, user_id }
   }

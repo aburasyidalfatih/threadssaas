@@ -39,11 +39,12 @@ router.get('/', (req, res) => {
 // Save Queue Settings
 router.post('/settings/:accountId', (req, res) => {
   const { is_enabled, schedule_hours } = req.body;
+  // Jika checkbox tidak di-check, is_enabled akan undefined
   const isEnabled = is_enabled === '1' ? 1 : 0;
   const hours = schedule_hours || '08,12,16,20';
   
   try {
-    db.prepare('UPDATE queue_configs SET is_enabled = ?, schedule_hours = ?, updated_at = datetime("now") WHERE account_id = ?')
+    db.prepare("UPDATE queue_configs SET is_enabled = ?, schedule_hours = ?, updated_at = datetime('now') WHERE account_id = ?")
       .run(isEnabled, hours, req.params.accountId);
     res.redirect('/queue?success=Pengaturan+jadwal+Queue+berhasil+disimpan');
   } catch (error) {

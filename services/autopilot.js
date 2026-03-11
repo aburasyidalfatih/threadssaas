@@ -1,6 +1,5 @@
 const db = require('../config/database');
 const GeminiService = require('./gemini');
-const SchedulerService = require('./scheduler');
 const ContentQueueService = require('./content-queue');
 
 class AutoPilotService {
@@ -15,13 +14,12 @@ class AutoPilotService {
       WHERE ap.is_enabled = 1 AND a.is_active = 1 AND a.access_token IS NOT NULL
     `).all();
 
-    for (const config of configs) {
-      try {
-        await this.processAccount(config);
-      } catch (error) {
+    // Process all accounts concurrently
+    await Promise.all(configs.map(config => 
+      this.processAccount(config).catch(error => {
         console.error(`[AutoPilot] Error processing @${config.username}:`, error.message);
-      }
-    }
+      })
+    ));
   }
 
   /**
@@ -64,7 +62,13 @@ class AutoPilotService {
     }
 
     console.log(`[AutoPilot] Generating real-time for @${config.username} | Topic: ${topic}`);
-    const content = await GeminiService.generatePostContent(topic, config.comment_count);
+    
+    // Pass theme_description to add personality variation
+    const content = await GeminiService.generatePostContent(
+      topic, 
+      config.comment_count,
+      config.theme_description || ''
+    );
     const contentMain = content.main_post;
     const contentComments = JSON.stringify(content.comments);
 
@@ -80,8 +84,15 @@ class AutoPilotService {
       JSON.parse(contentComments).length
     );
 
-    // Execute posting immediately
-    SchedulerService.executePost(result.lastInsertRowid);
+    // Execute posting immediately (require here to avoid circular dependency)
+    const SchedulerService = require('./scheduler');
+    setTimeout(() => {
+      try {
+        SchedulerService.executePost(result.lastInsertRowid);
+      } catch (err) {
+        console.error('[AutoPilot] Execute post error:', err.message);
+      }
+    }, 100);
 
     // Update last_posted_at and topics_history
     let topicsHistory = [];
@@ -141,6 +152,14 @@ Topik harus:
 - Spesifik dan menarik (bukan terlalu umum)
 - Mengundang diskusi dan engagement
 - Berbeda dari topik yang sudah pernah dibahas
+- Unik dan fresh (hindari topik mainstream yang sering dibahas)
+
+VARIASI ANGLE: Gunakan salah satu angle ini untuk membuat topik lebih unik:
+- Controversial take (pendapat yang berlawanan dengan mainstream)
+- Personal story angle (pengalaman spesifik yang relatable)
+- Data-driven angle (fakta atau statistik mengejutkan)
+- Myth-busting angle (membongkar mitos yang salah)
+- Behind-the-scenes angle (hal yang jarang diketahui orang)
 
 Output HANYA topik dalam 1 kalimat pendek, tanpa tanda kutip atau penjelasan tambahan.`;
 
@@ -206,8 +225,14 @@ Output HANYA topik dalam 1 kalimat pendek, tanpa tanda kutip atau penjelasan tam
    * Reset topic history for an account
    */
   static resetHistory(accountId) {
-    db.prepare("UPDATE autopilot_configs SET topics_history = '[]' WHERE account_id = ?")
-      .run(accountId);
+    try {
+      db.prepare("UPDATE autopilot_configs SET topics_history = '[]' WHERE account_id = ?")
+        .run(accountId);
+      console.log(`[AutoPilot] Topics history reset for account ${accountId}`);
+    } catch (error) {
+      console.error(`[AutoPilot] Reset history error for account ${accountId}:`, error.message);
+      throw error;
+    }
   }
 }
 

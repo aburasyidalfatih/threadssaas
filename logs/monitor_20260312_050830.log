@@ -1,0 +1,41 @@
+╔════════════════════════════════════════════════════════════════╗
+║              THREADSBOT HEALTH CHECK REPORT                    ║
+║              Time: 2026-03-12 05:08:30                    ║
+╚════════════════════════════════════════════════════════════════╝
+
+1. PROCESS STATUS:
+   ✓ Process running (PID: 2162912)
+   Memory: 43884KB CPU: 0.0%
+
+2. PORT STATUS:
+   ✓ Port 5008 listening
+
+3. HTTP RESPONSE:
+   ✓ HTTP 200 OK
+
+4. CONFIGURATION:
+   ✓ .env file exists
+   ✓ .env permissions: 600 (secure)
+
+5. DATABASE:
+   ✓ Database exists (Size: 0)
+
+6. RECENT LOGS (Last 10 lines):
+   [AutoReply] Checking for new comments...
+   [AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+   [AutoReply] Checking for new comments...
+   [AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+   [AutoPilot] Running autopilot check...
+   [QueueWorker] Checking content queue schedules...
+   [AutoReply] Checking for new comments...
+   [AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+   [AutoReply] Checking for new comments...
+   [AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+
+7. DISK SPACE:
+   Usage: 81%
+
+╔════════════════════════════════════════════════════════════════╗
+║                    SUMMARY                                     ║
+╚════════════════════════════════════════════════════════════════╝
+✅ ThreadsBot is HEALTHY and OPERATIONAL

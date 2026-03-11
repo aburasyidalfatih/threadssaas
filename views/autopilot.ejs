@@ -87,9 +87,16 @@
             '<div class="ap-stat"><span class="ap-stat-value">' + (c.posts_today || 0) + '/' + hours.length + '</span><span class="ap-stat-label">Hari Ini</span></div>' +
             '<div class="ap-stat"><span class="ap-stat-value">' + (c.total_posts || 0) + '</span><span class="ap-stat-label">Total Post</span></div>' +
           '</div>' +
-          '<div class="autopilot-actions" style="margin-top:0; display:flex; gap:8px;">' +
+          '<div class="autopilot-actions" style="margin-top:0; display:flex; gap:8px; align-items:center;">' +
             '<form action="/autopilot/trigger/' + c.account_id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm btn-primary" onclick="return confirm(\'Trigger post sekarang untuk @\' + c.username + \'?\')">⚡ Trigger</button></form>' +
-            '<form action="/autopilot/save" method="POST" style="display:inline"><input type="hidden" name="account_id" value="' + c.account_id + '"><input type="hidden" name="theme" value="' + c.theme + '"><input type="hidden" name="theme_description" value="' + (c.theme_description || '') + '"><input type="hidden" name="posting_hours" value="' + c.posting_hours + '"><input type="hidden" name="comment_count" value="' + c.comment_count + '"><input type="hidden" name="is_enabled" value="' + (c.is_enabled ? '0' : '1') + '"><button type="submit" class="btn btn-sm ' + (c.is_enabled ? 'btn-warning' : 'btn-success') + '">' + (c.is_enabled ? '⏸️ Pause' : '▶️ Resume') + '</button></form>' +
+            '<button type="button" class="btn btn-sm btn-info" data-account-id="' + c.account_id + '" data-theme="' + (c.theme || '').replace(/"/g, '&quot;') + '" data-description="' + (c.theme_description || '').replace(/"/g, '&quot;') + '" data-hours="' + c.posting_hours + '" data-comments="' + c.comment_count + '" onclick="openEditModal(this)">✏️ Edit</button>' +
+            '<form action="/autopilot/toggle/' + c.account_id + '" method="POST" style="display:inline" class="ap-toggle-form">' +
+              '<label class="toggle-switch" style="margin:0">' +
+                '<input type="checkbox" class="ap-toggle" name="is_enabled" value="1" ' + (c.is_enabled ? 'checked' : '') + ' onchange="this.closest(\'.ap-toggle-form\').submit()">' +
+                '<span class="toggle-slider"></span>' +
+                '<span class="toggle-label" style="font-size:12px">' + (c.is_enabled ? 'Aktif' : 'Pause') + '</span>' +
+              '</label>' +
+            '</form>' +
             '<form action="/autopilot/reset-history/' + c.account_id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm btn-outline" onclick="return confirm(\'Reset riwayat topik @\' + c.username + \'?\')">🔄 Reset</button></form>' +
             '<form action="/autopilot/delete/' + c.account_id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(\'Hapus autopilot @\' + c.username + \'?\')">🗑️</button></form>' +
           '</div>' +
@@ -112,4 +119,90 @@
     </div>
   </div>
 </div>
+
+<!-- Edit AutoPilot Modal -->
+<div id="editAutoPilotModal" style="display: none !important; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 2000; backdrop-filter: blur(4px);">
+  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: linear-gradient(135deg, #16162a 0%, #1a1a2e 100%); border: 1px solid rgba(124, 106, 255, 0.2); border-radius: 16px; padding: 40px; width: 90%; max-width: 700px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 106, 255, 0.15);">
+    <h3 style="color: #e8e8f0; margin-bottom: 24px;">✏️ Edit AutoPilot</h3>
+    <form id="editAutoPilotForm" method="POST" class="form-stack">
+      <div class="form-group">
+        <label style="color: #e8e8f0;">Tema / Niche</label>
+        <input type="text" id="edit_theme" name="theme" required style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;">
+      </div>
+      <div class="form-group">
+        <label style="color: #e8e8f0;">Deskripsi Tema (opsional)</label>
+        <input type="text" id="edit_theme_description" name="theme_description" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;">
+      </div>
+      <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div class="form-group">
+          <label style="color: #e8e8f0;">Jadwal Posting (Jam)</label>
+          <input type="text" id="edit_posting_hours" name="posting_hours" required style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;">
+          <small style="color: #9898b0; display: block; margin-top: 8px;">Contoh: 08,12,16,20</small>
+        </div>
+        <div class="form-group">
+          <label style="color: #e8e8f0;">Jumlah Komentar</label>
+          <select id="edit_comment_count" name="comment_count" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;">
+            <option value="2">2 komentar</option>
+            <option value="3">3 komentar</option>
+            <option value="4">4 komentar</option>
+            <option value="5">5 komentar</option>
+          </select>
+        </div>
+      </div>
+      <input type="hidden" id="edit_account_id" name="account_id">
+      <div style="display: flex; gap: 12px; margin-top: 32px;">
+        <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px;">💾 Simpan</button>
+        <button type="button" onclick="closeEditAutoPilot()" class="btn btn-outline" style="flex: 1; padding: 12px;">Batal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function openEditModal(button) {
+  const modal = document.getElementById('editAutoPilotModal');
+  if (!modal) {
+    console.error('Modal not found');
+    return;
+  }
+  
+  const accountId = button.getAttribute('data-account-id');
+  const theme = button.getAttribute('data-theme');
+  const description = button.getAttribute('data-description');
+  const hours = button.getAttribute('data-hours');
+  const comments = button.getAttribute('data-comments');
+  
+  console.log('Opening edit modal for account:', accountId);
+  
+  document.getElementById('edit_account_id').value = accountId;
+  document.getElementById('edit_theme').value = theme;
+  document.getElementById('edit_theme_description').value = description;
+  document.getElementById('edit_posting_hours').value = hours;
+  document.getElementById('edit_comment_count').value = comments;
+  document.getElementById('editAutoPilotForm').action = '/autopilot/save';
+  
+  modal.style.display = 'block';
+  modal.style.visibility = 'visible';
+}
+
+function closeEditAutoPilot() {
+  const modal = document.getElementById('editAutoPilotModal');
+  if (modal) {
+    modal.style.display = 'none';
+    modal.style.visibility = 'hidden';
+  }
+}
+
+// Setup modal close handler
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('editAutoPilotModal');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeEditAutoPilot();
+      }
+    });
+  }
+});
+</script>
 ` }) %>

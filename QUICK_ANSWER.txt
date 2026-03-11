@@ -1,0 +1,114 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    THREADS ACCOUNTS CAPACITY - QUICK ANSWER                ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+❓ PERTANYAAN:
+Berapa akun Threads yang bisa dihandle oleh aplikasi ini?
+
+✅ JAWABAN:
+UNLIMITED (Tidak Terbatas)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PENJELASAN:
+
+ThreadsBot dapat menangani unlimited (tidak terbatas) jumlah akun Threads.
+
+Setiap akun dapat:
+  ✓ Disimpan di database
+  ✓ Dikelola secara independen
+  ✓ Memiliki credentials terpisah
+  ✓ Memiliki configuration terpisah
+  ✓ Posting otomatis
+  ✓ Auto reply
+  ✓ Affiliate management
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+KAPASITAS:
+
+Database:
+  • Jumlah Akun: Unlimited
+  • Posts per Akun: Unlimited
+  • Comments per Akun: Unlimited
+  • Storage: Tergantung database size
+
+Threads API:
+  • Rate Limit: 200 requests/hour per token
+  • Concurrent: Multiple akun bersamaan
+  • Retry: Automatic dengan backoff
+
+Server:
+  • Memory: Tergantung server
+  • CPU: Tergantung server
+  • Bandwidth: Tergantung server
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTOH PENGGUNAAN:
+
+1 Dashboard → Multiple Akun:
+  ├─ Akun Personal
+  ├─ Akun Business
+  ├─ Akun Brand
+  ├─ Akun Tim A
+  ├─ Akun Tim B
+  └─ ... (unlimited)
+
+Semua dapat dikelola dari satu tempat!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FITUR PER AKUN:
+
+✓ Auto Posting (schedule, queue, autopilot)
+✓ Auto Reply (comments, custom messages)
+✓ Affiliate (Shopee links, products)
+✓ History (tracking, engagement)
+✓ Settings (configuration, preferences)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CARA MENAMBAH AKUN:
+
+1. Buka: https://threadsbot.kelasmaster.id/accounts
+2. Isi form dengan:
+   - Username Threads
+   - App ID (dari Meta Developer)
+   - App Secret (dari Meta Developer)
+3. Klik "Tambah Akun"
+4. Klik "Connect" untuk OAuth
+5. Authorize aplikasi
+6. Akun siap digunakan!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MANAJEMEN AKUN:
+
+Aktifkan/Nonaktifkan:
+  → Klik toggle untuk on/off
+  → Akun nonaktif tidak posting
+
+Disconnect:
+  → Klik "Disconnect" untuk logout
+  → Access token dihapus
+  → Akun tetap tersimpan
+
+Delete:
+  → Klik "Delete" untuk hapus
+  → Akun dihapus dari database
+  → Tidak bisa di-undo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+KESIMPULAN:
+
+✅ ThreadsBot = Unlimited Akun Threads
+✅ Setiap akun independen
+✅ Kelola dari 1 dashboard
+✅ Scalable & flexible
+✅ Production ready
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Untuk detail lebih lanjut, lihat: THREADS_ACCOUNTS_CAPACITY.md
