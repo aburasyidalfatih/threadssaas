@@ -52,6 +52,7 @@ app.use('/', require('./routes/auth'));
 app.use('/', require('./routes/dashboard'));
 app.use('/accounts', require('./routes/accounts'));
 app.use('/posts', require('./routes/posts'));
+app.use('/product', require('./routes/affiliate'));
 app.use('/affiliate', require('./routes/affiliate'));
 app.use('/autopilot', require('./routes/autopilot'));
 app.use('/queue', require('./routes/queue'));

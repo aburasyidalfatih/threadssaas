@@ -5,7 +5,7 @@ const AffiliateGenerator = require('../services/affiliate-generator');
 const GeminiService = require('../services/gemini');
 const SchedulerService = require('../services/scheduler');
 
-// Affiliate page
+// Product page
 router.get('/', (req, res) => {
   const products = AffiliateGenerator.getProducts();
   const accounts = db.prepare("SELECT * FROM accounts WHERE is_active = 1").all();
@@ -35,7 +35,7 @@ router.post('/product/delete/:id', (req, res) => {
   res.redirect('/affiliate');
 });
 
-// Generate affiliate content
+// Generate product content
 router.post('/generate', async (req, res) => {
   const { product_id, comment_count } = req.body;
 
@@ -58,7 +58,7 @@ router.post('/generate', async (req, res) => {
   }
 });
 
-// Post affiliate content
+// Post product content
 router.post('/post', async (req, res) => {
   const { account_id, product_name, content_main, content_comments, comment_count } = req.body;
   try {

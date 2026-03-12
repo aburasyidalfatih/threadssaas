@@ -2429,3 +2429,420 @@ memory, and will not scale past a single process.
 [Scheduler] Queue worker started (every 10 min)
 [AutoReply] Checking for new comments...
 [AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoPilot] Running autopilot check...
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+
+> threadsbot@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+🤖 ThreadsBot running at http://localhost:5008
+[Scheduler] Initializing...
+[Scheduler] Loaded 0 pending posts
+[Scheduler] Auto-reply monitor started (every 5 min)
+[Scheduler] Token refresh job scheduled (daily 3AM)
+[Scheduler] AutoPilot monitor started (every 30 min)
+[Scheduler] Queue worker started (every 10 min)
+[QueueWorker] Checking content queue schedules...
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation
+[AutoReply] Checking for new comments...
+[AutoReply] Error processing post 18083942995994534: Get replies failed: Unsupported get request. Object with ID '18083942995994534' does not exist, cannot be loaded due to missing permissions, or does not support this operation

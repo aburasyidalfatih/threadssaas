@@ -98,19 +98,6 @@ function toggleAuthMethod(method) {
   </div>
 </div>
 
-<div class="card" id="oauth-info-card">
-  <div class="card-header"><h3>ℹ️ Panduan Setup</h3></div>
-  <div class="card-body">
-    <div class="info-steps">
-      <div class="info-step"><span class="step-num">1</span> Buat Meta App di <a href="https://developers.facebook.com" target="_blank">developers.facebook.com</a></div>
-      <div class="info-step"><span class="step-num">2</span> Pilih use case <strong>"Threads"</strong></div>
-      <div class="info-step"><span class="step-num">3</span> Catat <strong>App ID</strong> dan <strong>App Secret</strong></div>
-      <div class="info-step"><span class="step-num">4</span> Set OAuth Redirect URI: <code id="redirect-uri">${accounts.length > 0 ? accounts[0].redirect_uri : (typeof process !== 'undefined' ? '' : 'http://localhost:3000') + '/callback/threads'}</code></div>
-      <div class="info-step"><span class="step-num">5</span> Tambah akun di form di atas, lalu klik <strong>Connect</strong></div>
-      <div class="info-step"><span class="step-num">6</span> Pastikan status akun <strong>Active</strong> (Enable) agar bisa digunakan di fitur lain (Queue, Affiliate, AutoPilot)</div>
-    </div>
-  </div>
-</div>
 
 <!-- Modal Edit Akun -->
 <div id="editModal" class="edit-modal-hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 2000; backdrop-filter: blur(4px); align-items: center; justify-content: center;">
@@ -137,6 +124,7 @@ function toggleAuthMethod(method) {
 </div>
 
 <style>
+  .card-panduan { grid-column: 1 / -1; width: 100%; }
 .edit-modal-hidden {
   display: none !important;
 }
@@ -211,4 +199,10 @@ document.getElementById('editForm').addEventListener('submit', function(e) {
   this.submit();
 });
 </script>
+<style>
+  .card { margin-bottom: 20px !important; }
+  .card:last-child { margin-bottom: 0 !important; }
+  .two-column { margin-bottom: 20px !important; }
+  .two-column .card { margin-bottom: 0 !important; }
+</style>
 ` }) %>

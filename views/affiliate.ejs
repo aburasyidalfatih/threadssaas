@@ -1,178 +1,289 @@
-<%- include('layout', { body: `
-<div class="card" id="affiliate-account-card">
-  <div class="card-header">
-    <h3>👤 Pilih Akun & Pengaturan</h3>
-  </div>
-  <div class="card-body">
-    <div class="form-row">
-      <div class="form-group">
-        <label for="aff-account">Akun Threads</label>
-        <select id="aff-account" required>
-          <option value="">— Pilih Akun —</option>
-          ${accounts.map(acc => '<option value="' + acc.id + '">@' + acc.username + '</option>').join('')}
-        </select>
-        ${accounts.length === 0 ? '<small class="form-hint">Belum ada akun aktif. <a href="/accounts">Tambah akun</a> terlebih dahulu.</small>' : ''}
-      </div>
-      <div class="form-group">
-        <label for="aff-comment-count">Jumlah Komentar Lanjutan: <span id="aff-count-display">${defaultCommentCount}</span></label>
-        <input type="range" id="aff-comment-count" min="2" max="7" value="${defaultCommentCount}" oninput="document.getElementById('aff-count-display').textContent=this.value">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="two-column">
-  <div class="card" id="add-product-card">
-    <div class="card-header">
-      <h3>🛍️ Tambah Produk Affiliate</h3>
-    </div>
-    <div class="card-body">
-      <form action="/affiliate/product/add" method="POST" class="form-stack">
-        <div class="form-group">
-          <label for="product_name">Nama Produk</label>
-          <input type="text" id="product_name" name="product_name" placeholder="Contoh: Headphone Bluetooth TWS" required>
-        </div>
-        <div class="form-group">
-          <label for="description">Deskripsi Produk</label>
-          <textarea id="description" name="description" rows="3" placeholder="Deskripsi singkat produk, fitur utama, harga..." required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="affiliate_link">Link URL Affiliate</label>
-          <input type="url" id="affiliate_link" name="affiliate_link" placeholder="https://..." required>
-        </div>
-        <div class="btn-right-container">
-          <button type="submit" class="btn btn-primary" id="btn-add-product">Tambah Produk</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="card" id="products-list-card">
-    <div class="card-header">
-      <h3>📦 Daftar Produk (${products.length})</h3>
-    </div>
-    <div class="card-body">
-      ${products.length === 0 ? '<p class="empty-state">Belum ada produk. Tambahkan di form sebelah.</p>' : ''}
-      <div class="product-list">
-        ${products.map(p => '<div class="product-item">' +
-          '<div class="product-info">' +
-            '<div class="product-name">' + p.product_name + '</div>' +
-            '<div class="product-desc">' + (p.description || '').substring(0, 80) + '...</div>' +
-            '<div class="product-link"><a href="' + p.affiliate_link + '" target="_blank">' + p.affiliate_link.substring(0, 40) + '...</a></div>' +
-          '</div>' +
-          '<div class="product-actions">' +
-            '<button class="btn btn-sm btn-primary" onclick="generateAffiliate(' + p.id + ')">🤖 Generate Post</button>' +
-            '<form action="/affiliate/product/delete/' + p.id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(\'Hapus produk ini?\')">🗑️</button></form>' +
-          '</div>' +
-        '</div>').join('')}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product - ThreadsBot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/mobile-improvements.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">🤖</span>
+        <span class="logo-text">ThreadsBot</span>
       </div>
     </div>
-  </div>
-</div>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="/" class="nav-link" id="nav-dashboard">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/accounts" class="nav-link" id="nav-accounts">
+          <span class="nav-icon">👥</span>
+          <span class="nav-label">Akun</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/posts/create" class="nav-link" id="nav-create-post">
+          <span class="nav-icon">✍️</span>
+          <span class="nav-label">Buat Post</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/queue" class="nav-link" id="nav-queue">
+          <span class="nav-icon">📝</span>
+          <span class="nav-label">Content Queue</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/autopilot" class="nav-link" id="nav-autopilot">
+          <span class="nav-icon">🚀</span>
+          <span class="nav-label">Auto Pilot</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/product" class="nav-link active" id="nav-affiliate">
+          <span class="nav-icon">🛍️</span>
+          <span class="nav-label">Product</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/posts/history" class="nav-link" id="nav-history">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">Riwayat</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/settings" class="nav-link" id="nav-settings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">Pengaturan</span>
+        </a>
+      </li>
+      <% if (user) { %>
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" id="nav-profile">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Profil</span>
+          </a>
+        </li>
+      <% } %>
+    </ul>
+    <div class="sidebar-footer">
+      <div class="app-version">v1.0.0</div>
+    </div>
+  </nav>
 
-<div class="card" id="affiliate-preview-card" style="display:none">
-  <div class="card-header">
-    <h3>👁️ Preview Konten Promosi</h3>
-    <span class="badge badge-affiliate" id="aff-product-badge"></span>
-  </div>
-  <div class="card-body">
-    <div class="thread-preview" id="aff-thread-preview"></div>
-  </div>
-  <div class="card-footer" style="justify-content: flex-end;">
-    <button class="btn btn-success btn-glow" id="btn-aff-post" onclick="postAffiliate()">
-      <span class="btn-loader" id="aff-post-loader" style="display:none"></span>
-      🚀 Post ke Threads
-    </button>
-  </div>
-</div>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="topbar">
+      <button class="menu-toggle" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+      <h1 class="page-title">Product</h1>
+      <div class="topbar-right">
+        <% if (user) { %>
+          <div class="user-header">
+            <span class="user-greeting">Halo, <strong><%= user.name %></strong></span>
+            <a href="/logout" class="logout-btn">
+              <span class="logout-icon">🚪</span>
+              <span class="logout-text">Logout</span>
+            </a>
+          </div>
+        <% } %>
+      </div>
+    </div>
 
-<div id="aff-result" class="alert" style="display:none"></div>
-` }) %>
+    <div class="content-area">
+      <div class="product-grid">
+        <!-- Account Settings Card -->
+        <div class="card-container">
+          <div class="card-header">
+            <h3 class="card-title">👤 Pilih Akun & Pengaturan</h3>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <label for="aff-account">Akun Threads</label>
+              <select id="aff-account" required>
+                <option value="">— Pilih Akun —</option>
+                <% accounts.forEach(acc => { %>
+                  <option value="<%= acc.id %>">@<%= acc.username %></option>
+                <% }); %>
+              </select>
+              <% if (accounts.length === 0) { %>
+                <small class="form-hint">Belum ada akun aktif. <a href="/accounts">Tambah akun</a> terlebih dahulu.</small>
+              <% } %>
+            </div>
+            <div class="form-group">
+              <label for="aff-comment-count">Jumlah Komentar: <span id="aff-count-display"><%= defaultCommentCount %></span></label>
+              <input type="range" id="aff-comment-count" min="2" max="7" value="<%= defaultCommentCount %>" oninput="document.getElementById('aff-count-display').textContent=this.value">
+            </div>
+          </div>
+        </div>
 
-<script>
-let selectedProductId = null;
-let affContent = null;
-let affProductName = '';
+        <!-- Add Product Card -->
+        <div class="card-container">
+          <div class="card-header">
+            <h3 class="card-title">🛍️ Tambah Produk</h3>
+          </div>
+          <div class="card-content">
+            <form action="/product/product/add" method="POST" class="form-stack">
+              <div class="form-group">
+                <label for="product_name">Nama Produk</label>
+                <input type="text" id="product_name" name="product_name" placeholder="Contoh: Headphone Bluetooth" required>
+              </div>
+              <div class="form-group">
+                <label for="description">Deskripsi</label>
+                <textarea id="description" name="description" rows="2" placeholder="Deskripsi produk..." required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="affiliate_link">Link URL Product</label>
+                <input type="url" id="affiliate_link" name="affiliate_link" placeholder="https://..." required>
+              </div>
+              <button type="submit" class="btn btn-primary">Tambah Produk</button>
+            </form>
+          </div>
+        </div>
+      </div>
 
-async function generateAffiliate(productId) {
-  selectedProductId = productId;
+      <!-- Products List -->
+      <div class="card-container" style="margin-top: 20px;">
+        <div class="card-header">
+          <h3 class="card-title">📦 Daftar Produk</h3>
+        </div>
+        <div class="card-content" id="products-list-card">
+          <p class="empty-state">Belum ada produk. Tambahkan produk terlebih dahulu.</p>
+        </div>
+      </div>
+    </div>
+  </main>
 
-  const accountId = document.getElementById('aff-account').value;
-  if (!accountId) {
-    alert('Pilih akun Threads terlebih dahulu di bagian atas!');
-    document.getElementById('aff-account').focus();
-    document.getElementById('affiliate-account-card').scrollIntoView({ behavior: 'smooth' });
-    return;
-  }
+  <style>
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
 
-  const btn = event.target;
-  btn.disabled = true;
-  btn.textContent = '⏳ Generating...';
+    .card-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+    }
 
-  try {
-    const res = await fetch('/affiliate/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        product_id: productId,
-        comment_count: document.getElementById('aff-comment-count').value
-      })
-    });
-    const data = await res.json();
-    if (!data.success) throw new Error(data.error);
+    .card-container:hover {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 20px var(--accent-primary-glow);
+    }
 
-    affContent = data.content;
-    affProductName = data.product.product_name;
-    document.getElementById('aff-product-badge').textContent = affProductName;
+    .card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-tertiary);
+    }
 
-    // Render preview
-    let html = '<div class="thread-main"><div class="thread-avatar">📝</div><div class="thread-content"><div class="thread-author">@username</div><div class="thread-text">' + data.content.main_post + '</div></div></div>';
-    data.content.comments.forEach((c, i) => {
-      html += '<div class="thread-reply"><div class="thread-line"></div><div class="thread-avatar">💬</div><div class="thread-content"><div class="thread-author">@username <span class="reply-badge">Reply ' + (i+1) + '</span></div><div class="thread-text">' + c + '</div></div></div>';
-    });
-    document.getElementById('aff-thread-preview').innerHTML = html;
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
 
-    document.getElementById('affiliate-preview-card').style.display = 'block';
-    document.getElementById('affiliate-preview-card').scrollIntoView({ behavior: 'smooth' });
-  } catch (err) {
-    alert('Error: ' + err.message);
-  } finally {
-    btn.disabled = false;
-    btn.textContent = '🤖 Generate Post';
-  }
-}
+    .card-content {
+      padding: 20px;
+    }
 
-async function postAffiliate() {
-  if (!affContent) return;
-  const accountId = document.getElementById('aff-account').value;
-  if (!accountId) return alert('Pilih akun terlebih dahulu');
-  if (!confirm('Post promosi ini ke Threads?')) return;
+    .form-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-  const btn = document.getElementById('btn-aff-post');
-  btn.disabled = true;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-  try {
-    const res = await fetch('/affiliate/post', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        account_id: accountId,
-        product_name: affProductName,
-        content_main: affContent.main_post,
-        content_comments: JSON.stringify(affContent.comments),
-        comment_count: affContent.comments.length
-      })
-    });
-    const result = await res.json();
-    const el = document.getElementById('aff-result');
-    el.style.display = 'block';
-    el.className = 'alert ' + (result.success ? 'alert-success' : 'alert-error');
-    el.textContent = result.success ? '✅ Konten promosi sedang diposting!' : '⚠️ ' + result.error;
-    el.scrollIntoView({ behavior: 'smooth' });
-  } catch (err) {
-    alert('Error: ' + err.message);
-  } finally {
-    btn.disabled = false;
-  }
-}
-</script>
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 10px 12px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-primary-glow);
+    }
+
+    .form-hint {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-affiliate));
+      color: white;
+      box-shadow: 0 4px 12px var(--accent-primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--accent-primary-glow);
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--text-secondary);
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

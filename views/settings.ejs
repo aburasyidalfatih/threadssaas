@@ -208,20 +208,15 @@ Output: HANYA teks reply, tanpa tanda kutip atau format tambahan.`}</textarea>
     '</form>').join('<hr>')}
   </div>
 </div>
+<style>
+  .card-panduan { grid-column: 1 / -1; width: 100%; }
+  .card { margin-bottom: 20px !important; }
+  .card:last-child { margin-bottom: 0 !important; }
+  .two-column { margin-bottom: 20px !important; }
+  .two-column .card { margin-bottom: 0 !important; }
+</style>
 ` }) %>
 
-<div class="card" id="settings-info-card" style="margin-top: 24px;">
-  <div class="card-header"><h3>ℹ️ Panduan Pengaturan</h3></div>
-  <div class="card-body">
-    <div class="info-steps">
-      <div class="info-step"><span class="step-num">1</span> <strong>Model Gemini:</strong> Pilih "Flash" untuk hasil cepat, atau "Pro" untuk logika yang kompleks</div>
-      <div class="info-step"><span class="step-num">2</span> <strong>Delay Post:</strong> Berikan jeda waktu minimum agar tidak terdeteksi spam/rate limit oleh Threads</div>
-      <div class="info-step"><span class="step-num">3</span> <strong>Auto Reply:</strong> Bot mengecek interaksi/balasan baru pada antrian komentar Anda setiap 5 menit</div>
-      <div class="info-step"><span class="step-num">4</span> <strong>Gaya Reply:</strong> AI akan merespons komentar masuk dan membalasnya dengan gaya tersebut</div>
-      <div class="info-step"><span class="step-num">5</span> <strong>Max Reply:</strong> Batas maksimal komentar yang direspon dalam sekali waktu pengecekan</div>
-    </div>
-  </div>
-</div>
 
 <script>
 function togglePasswordVisibility(inputId) {

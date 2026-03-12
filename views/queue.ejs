@@ -114,18 +114,6 @@
   </div>
 </div>
 
-<div class="card" id="queue-info-card">
-  <div class="card-header"><h3>ℹ️ Panduan Content Queue</h3></div>
-  <div class="card-body">
-    <div class="info-steps">
-      <div class="info-step"><span class="step-num">1</span> Generate antrian post massal dari sistem AI dengan memasukkan <strong>Tema/Topik</strong></div>
-      <div class="info-step"><span class="step-num">2</span> Anda bebas untuk me-<strong>Review, Edit, Hapus, atau Posting Manual</strong> konten dari antrian</div>
-      <div class="info-step"><span class="step-num">3</span> <strong>Jadwal Mandiri:</strong> Fitur Queue memiliki <strong>Jadwal Independen</strong> yang bisa diatur pada Header Akun</div>
-      <div class="info-step"><span class="step-num">4</span> Aktifkan tombol (ON), Queue akan diposting otomatis sesuai jadwal jam (Tanpa perlu AutoPilot)</div>
-      <div class="info-step"><span class="step-num">5</span> Fitur Content Queue ini <strong>berdiri sendiri 100%</strong> dan terpisah dari menu AutoPilot</div>
-    </div>
-  </div>
-</div>
 
 <div class="modal-overlay" id="edit-modal" style="display:none" onclick="if(event.target===this)this.style.display='none'">
   <div class="modal-content">
@@ -152,6 +140,13 @@
     </div>
   </div>
 </div>
+<style>
+  .card-panduan { grid-column: 1 / -1; width: 100%; }
+  .card { margin-bottom: 20px !important; }
+  .card:last-child { margin-bottom: 0 !important; }
+  .two-column { margin-bottom: 20px !important; }
+  .two-column .card { margin-bottom: 0 !important; }
+</style>
 ` }) %>
 
 <script>

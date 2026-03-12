@@ -107,18 +107,6 @@
   </div>
 </div>
 
-<div class="card" id="autopilot-info-card">
-  <div class="card-header"><h3>ℹ️ Panduan Auto Pilot</h3></div>
-  <div class="card-body">
-    <div class="info-steps">
-      <div class="info-step"><span class="step-num">1</span> Tentukan <strong>Tema/Niche</strong> spesifik dan konsisten untuk masing-masing akun</div>
-      <div class="info-step"><span class="step-num">2</span> Set <strong>Jadwal Jam Posting</strong> (pisahkan dengan koma), misal: <code>08,12,16,20</code> = 4x sehari</div>
-      <div class="info-step"><span class="step-num">3</span> Saat waktunya tiba, AI otomatis <strong>Men-generate Konten & Topik Unik Real-time</strong></div>
-      <div class="info-step"><span class="step-num">4</span> Bot Autopilot dijalankan otomatis via Scheduler yang mengecek setiap <strong>30 menit</strong></div>
-      <div class="info-step"><span class="step-num">5</span> Klik tombol <strong>⚡ Trigger Post</strong> untuk mengetes proses Auto Pilot secara manual saat itu juga</div>
-    </div>
-  </div>
-</div>
 
 <!-- Edit AutoPilot Modal -->
 <div id="editAutoPilotModal" style="display: none !important; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 2000; backdrop-filter: blur(4px);">
@@ -157,6 +145,22 @@
     </form>
   </div>
 </div>
+
+<style>
+  .card-panduan { grid-column: 1 / -1; width: 100%; }
+  #add-autopilot-card,
+  #autopilot-list-card {
+    margin-bottom: 20px;
+  }
+  
+  .autopilot-card {
+    margin-bottom: 16px;
+  }
+  
+  .autopilot-card:last-child {
+    margin-bottom: 0;
+  }
+</style>
 
 <script>
 function openEditModal(button) {

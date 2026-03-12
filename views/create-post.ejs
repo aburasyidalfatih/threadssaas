@@ -69,6 +69,13 @@
 </div>
 
 <div id="post-result" class="alert" style="display:none"></div>
+<style>
+  .card-panduan { grid-column: 1 / -1; width: 100%; }
+  .card { margin-bottom: 20px !important; }
+  .card:last-child { margin-bottom: 0 !important; }
+  .two-column { margin-bottom: 20px !important; }
+  .two-column .card { margin-bottom: 0 !important; }
+</style>
 ` }) %>
 
 <script>
@@ -313,16 +320,4 @@ function closeStatusModal() {
 }
 </style>
 
-<div class="card" id="create-post-info-card" style="margin-top: 24px;">
-  <div class="card-header"><h3>ℹ️ Panduan Buat Postingan</h3></div>
-  <div class="card-body">
-    <div class="info-steps">
-      <div class="info-step"><span class="step-num">1</span> Pilih <strong>akun Threads</strong> yang berstatus aktif di Pengaturan Akun</div>
-      <div class="info-step"><span class="step-num">2</span> Masukkan <strong>Topik/Tema</strong> bebas (misal: "Tips jadi content creator")</div>
-      <div class="info-step"><span class="step-num">3</span> AI akan men-generate postingan utama beserta <strong>Komentar Lanjutan</strong> (Thread)</div>
-      <div class="info-step"><span class="step-num">4</span> Anda bebas men-<strong>Review & Edit</strong> draf tersebut sebelum di-publikasikan</div>
-      <div class="info-step"><span class="step-num">5</span> Terakhir, pilih <strong>Post Sekarang</strong>, simpan <strong>Draft</strong>, atau <strong>Jadwalkan</strong></div>
-    </div>
-  </div>
-</div>
 
