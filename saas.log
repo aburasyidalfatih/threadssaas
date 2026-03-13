@@ -1,0 +1,8 @@
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  override existing env vars with { override: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T03:15:05.854Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.

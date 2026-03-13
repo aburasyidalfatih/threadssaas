@@ -1,0 +1,461 @@
+{{#> layouts/main page="queue"}}
+
+<div class="queue-stats-dashboard">
+  <div class="stat-card-queue">
+    <div class="stat-icon">📦</div>
+    <div class="stat-info">
+      <div class="stat-value">{{globalStats.totalQueued}}</div>
+      <div class="stat-label">Total Antrian</div>
+    </div>
+  </div>
+  <div class="stat-card-queue stat-success">
+    <div class="stat-icon">✅</div>
+    <div class="stat-info">
+      <div class="stat-value">{{globalStats.totalUsed}}</div>
+      <div class="stat-label">Terpakai</div>
+    </div>
+  </div>
+  <div class="stat-card-queue stat-info">
+    <div class="stat-icon">👥</div>
+    <div class="stat-info">
+      <div class="stat-value">{{globalStats.activeQueues}}/{{globalStats.totalAccounts}}</div>
+      <div class="stat-label">Akun Aktif</div>
+    </div>
+  </div>
+</div>
+
+<div class="queue-tabs">
+  <button class="queue-tab active" onclick="switchTab('generate')">🤖 Generate</button>
+  <button class="queue-tab" onclick="switchTab('list')">📋 Antrian ({{globalStats.totalQueued}})</button>
+  <button class="queue-tab" onclick="switchTab('settings')">⚙️ Pengaturan</button>
+</div>
+
+<div id="tab-generate" class="tab-content active">
+  <div class="card">
+    <div class="card-header">
+      <h3>🤖 Generate Konten Otomatis</h3>
+    </div>
+    <div class="card-body">
+      {{#unless accounts.length}}
+      <div class="empty-state-enhanced">
+        <div class="empty-icon">👥</div>
+        <div class="empty-title">Belum Ada Akun</div>
+        <div class="empty-desc">Tambahkan akun Threads terlebih dahulu</div>
+        <a href="/accounts" class="btn btn-primary" style="margin-top:16px">+ Tambah Akun</a>
+      </div>
+      {{else}}
+      <div class="form-group" style="margin-bottom:20px">
+        <label>Pilih Akun Threads</label>
+        <select id="gen-account-select" class="form-select" onchange="updateGenerateForm(this.value)">
+          <option value="">— Pilih Akun —</option>
+          {{#each accounts}}
+          <option value="{{id}}" data-username="{{username}}" data-theme="{{theme}}">
+            @{{username}} ({{#with (lookup ../queueStats id)}}{{queued}}{{else}}0{{/with}} antrian)
+          </option>
+          {{/each}}
+        </select>
+      </div>
+      
+      <div id="generate-form-container" style="display:none">
+        <div class="account-info-box" id="account-info" style="margin-bottom:20px"></div>
+        
+        <form id="generate-form" class="form-stack">
+          <div class="form-row" style="gap:16px;margin-bottom:20px">
+            <div class="form-group">
+              <label for="gen-topic">📝 Topik Konten</label>
+              <input type="text" id="gen-topic" placeholder="Contoh: Tips produktivitas" required>
+            </div>
+            <div class="form-group" style="flex:1">
+              <label>💬 Jumlah Komentar</label>
+              <select id="gen-comment-count" class="form-select">
+                <option value="2">2 komentar</option>
+                <option value="3" selected>3 komentar</option>
+                <option value="4">4 komentar</option>
+                <option value="5">5 komentar</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex:1">
+              <label>📦 Jumlah Konten</label>
+              <select id="gen-count" class="form-select">
+                <option value="3">3 konten</option>
+                <option value="5">5 konten</option>
+                <option value="10" selected>10 konten</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-glow">
+              <span class="btn-loader" id="generate-queue-loader" style="display:none"></span>
+              🤖 Generate Sekarang
+            </button>
+          </div>
+        </form>
+      </div>
+      {{/unless}}
+    </div>
+  </div>
+</div>
+
+<div id="tab-list" class="tab-content">
+  <div class="card">
+    <div class="card-header">
+      <h3>📋 Daftar Antrian ({{queueItems.length}} total)</h3>
+      <div class="queue-controls">
+        <input type="text" id="searchQueue" placeholder="🔍 Cari topik..." class="search-input">
+        <select id="filterAccount" class="form-select" style="width:200px">
+          <option value="all">Semua Akun</option>
+          {{#each accounts}}
+          <option value="{{id}}">@{{username}} ({{#with (lookup ../queueStats id)}}{{queued}}{{else}}0{{/with}})</option>
+          {{/each}}
+        </select>
+        <select id="sortQueue" class="form-select" style="width:150px">
+          <option value="newest">Terbaru</option>
+          <option value="oldest">Terlama</option>
+          <option value="topic">Topik A-Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-body">
+      {{#if queueItems.length}}
+      <div class="bulk-actions-bar">
+        <input type="checkbox" id="select-all-queue" onchange="toggleSelectAllQueue(this)">
+        <span id="selected-count">0 dipilih</span>
+        <div class="bulk-actions">
+          <button class="btn btn-sm btn-outline" onclick="bulkDeleteQueue()" disabled id="bulk-delete-btn">
+            🗑️ Hapus Terpilih
+          </button>
+          <button class="btn btn-sm btn-outline" onclick="bulkPostQueue()" disabled id="bulk-post-btn">
+            🚀 Post Terpilih
+          </button>
+        </div>
+      </div>
+      
+      <div class="queue-list" id="queue-list">
+        {{#each queueItems}}
+        <div class="queue-item" data-id="{{id}}" data-account="{{account_id}}" data-topic="{{topic}}">
+          <div class="queue-item-header">
+            <input type="checkbox" class="queue-checkbox" onchange="updateBulkActions()">
+            <div class="queue-avatar">
+              <div class="avatar-placeholder">{{substring account_username 0 1}}</div>
+            </div>
+            <div class="queue-info">
+              <div class="queue-account">@{{account_username}}</div>
+              <div class="queue-topic">{{topic}}</div>
+              <div class="queue-meta">
+                <span class="queue-date">{{formatDate created_at}}</span>
+                <span class="queue-status">⏳ Menunggu</span>
+              </div>
+            </div>
+            <div class="queue-actions">
+              <button class="btn-action btn-preview" onclick="togglePreview('{{id}}')">
+                <span class="action-icon">👁️</span>
+                Preview
+              </button>
+              <button class="btn-action btn-post" onclick="postSingleQueue('{{id}}')">
+                <span class="action-icon">🚀</span>
+                Post
+              </button>
+              <button class="btn-action btn-delete" onclick="deleteQueue('{{id}}')">
+                <span class="action-icon">🗑️</span>
+                Hapus
+              </button>
+            </div>
+          </div>
+          
+          <div class="queue-content" id="content-{{id}}" style="display:none">
+            <div class="content-preview">
+              {{content_main}}
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{else}}
+      <div class="empty-state-enhanced">
+        <div class="empty-icon">📝</div>
+        <div class="empty-title">Antrian Kosong</div>
+        <div class="empty-desc">Generate konten untuk mengisi antrian</div>
+        <button class="btn btn-primary" onclick="switchTab('generate')" style="margin-top:16px">
+          🤖 Generate Konten
+        </button>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+<div id="tab-settings" class="tab-content">
+  <div class="card">
+    <div class="card-header">
+      <h3>⚙️ Pengaturan Queue</h3>
+    </div>
+    <div class="card-body">
+      <div class="settings-grid">
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">🕐 Interval Posting</div>
+            <div class="setting-desc">Jeda waktu antar posting otomatis</div>
+          </div>
+          <select class="setting-control">
+            <option value="30">30 menit</option>
+            <option value="60" selected>1 jam</option>
+            <option value="120">2 jam</option>
+            <option value="240">4 jam</option>
+          </select>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">📅 Jadwal Aktif</div>
+            <div class="setting-desc">Waktu queue akan diproses</div>
+          </div>
+          <select class="setting-control">
+            <option value="24h" selected>24 Jam</option>
+            <option value="business">Jam Kerja (9-17)</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">🔄 Auto Refill</div>
+            <div class="setting-desc">Isi ulang queue otomatis saat kosong</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" class="setting-control">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="settings-actions">
+        <button class="btn btn-primary">💾 Simpan Pengaturan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(tabName) {
+  // Update tab buttons
+  document.querySelectorAll('.queue-tab').forEach(tab => tab.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  // Update tab content
+  document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+  document.getElementById('tab-' + tabName).classList.add('active');
+}
+
+function updateGenerateForm(accountId) {
+  const container = document.getElementById('generate-form-container');
+  const accountInfo = document.getElementById('account-info');
+  
+  if (accountId) {
+    const select = document.getElementById('gen-account-select');
+    const option = select.options[select.selectedIndex];
+    const username = option.dataset.username;
+    const theme = option.dataset.theme || 'Belum diatur';
+    
+    accountInfo.innerHTML = `
+      <div class="account-info-content">
+        <div class="account-info-item">
+          <span class="info-label">Akun:</span>
+          <span class="info-value">@${username}</span>
+        </div>
+        <div class="account-info-item">
+          <span class="info-label">Tema:</span>
+          <span class="info-value">${theme}</span>
+        </div>
+      </div>
+    `;
+    
+    container.style.display = 'block';
+  } else {
+    container.style.display = 'none';
+  }
+}
+
+document.getElementById('generate-form')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const accountId = document.getElementById('gen-account-select').value;
+  const topic = document.getElementById('gen-topic').value;
+  const count = document.getElementById('gen-count').value;
+  const commentCount = document.getElementById('gen-comment-count').value;
+  
+  if (!accountId || !topic) {
+    alert('Pilih akun dan isi topik terlebih dahulu');
+    return;
+  }
+  
+  const loader = document.getElementById('generate-queue-loader');
+  const btn = this.querySelector('button[type="submit"]');
+  
+  btn.disabled = true;
+  loader.style.display = 'inline-block';
+  
+  try {
+    const response = await fetch('/posts/queue/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        account_id: accountId,
+        topic: topic,
+        count: count,
+        comment_count: commentCount
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      alert(data.message);
+      location.reload();
+    } else {
+      alert(data.error || 'Gagal menambahkan ke queue');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Terjadi kesalahan');
+  } finally {
+    btn.disabled = false;
+    loader.style.display = 'none';
+  }
+});
+
+function togglePreview(queueId) {
+  const content = document.getElementById('content-' + queueId);
+  if (content.style.display === 'none') {
+    content.style.display = 'block';
+  } else {
+    content.style.display = 'none';
+  }
+}
+
+function toggleSelectAllQueue(checkbox) {
+  const checkboxes = document.querySelectorAll('.queue-checkbox');
+  checkboxes.forEach(cb => cb.checked = checkbox.checked);
+  updateBulkActions();
+}
+
+function updateBulkActions() {
+  const checkboxes = document.querySelectorAll('.queue-checkbox:checked');
+  const count = checkboxes.length;
+  
+  document.getElementById('selected-count').textContent = count + ' dipilih';
+  document.getElementById('bulk-delete-btn').disabled = count === 0;
+  document.getElementById('bulk-post-btn').disabled = count === 0;
+}
+
+function bulkDeleteQueue() {
+  const checkboxes = document.querySelectorAll('.queue-checkbox:checked');
+  if (checkboxes.length === 0) return;
+  
+  if (!confirm(`Hapus ${checkboxes.length} item dari queue?`)) return;
+  
+  // TODO: Implement bulk delete
+  alert('Fitur bulk delete akan segera tersedia');
+}
+
+function bulkPostQueue() {
+  const checkboxes = document.querySelectorAll('.queue-checkbox:checked');
+  if (checkboxes.length === 0) return;
+  
+  if (!confirm(`Post ${checkboxes.length} item sekarang?`)) return;
+  
+  // TODO: Implement bulk post
+  alert('Fitur bulk post akan segera tersedia');
+}
+
+function postSingleQueue(queueId) {
+  if (!confirm('Post item ini sekarang?')) return;
+  
+  // TODO: Implement single post
+  alert('Fitur post single akan segera tersedia');
+}
+
+// Search and filter functionality
+document.getElementById('searchQueue')?.addEventListener('input', function() {
+  filterQueue();
+});
+
+document.getElementById('filterAccount')?.addEventListener('change', function() {
+  filterQueue();
+});
+
+document.getElementById('sortQueue')?.addEventListener('change', function() {
+  sortQueue();
+});
+
+function filterQueue() {
+  const searchTerm = document.getElementById('searchQueue').value.toLowerCase();
+  const selectedAccount = document.getElementById('filterAccount').value;
+  const queueItems = document.querySelectorAll('.queue-item');
+  
+  queueItems.forEach(item => {
+    const topic = item.dataset.topic.toLowerCase();
+    const accountId = item.dataset.account;
+    
+    const matchesSearch = topic.includes(searchTerm);
+    const matchesAccount = selectedAccount === 'all' || accountId === selectedAccount;
+    
+    if (matchesSearch && matchesAccount) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function sortQueue() {
+  const sortBy = document.getElementById('sortQueue').value;
+  const queueList = document.getElementById('queue-list');
+  const items = Array.from(queueList.querySelectorAll('.queue-item'));
+  
+  items.sort((a, b) => {
+    switch (sortBy) {
+      case 'oldest':
+        return new Date(a.querySelector('.queue-date').textContent) - new Date(b.querySelector('.queue-date').textContent);
+      case 'topic':
+        return a.dataset.topic.localeCompare(b.dataset.topic);
+      case 'newest':
+      default:
+        return new Date(b.querySelector('.queue-date').textContent) - new Date(a.querySelector('.queue-date').textContent);
+    }
+  });
+  
+  items.forEach(item => queueList.appendChild(item));
+}
+
+function deleteQueue(queueId) {
+  if (!confirm('Hapus item dari queue?')) return;
+  
+  fetch(`/posts/queue/${queueId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      document.querySelector(`[data-id="${queueId}"]`).remove();
+      location.reload();
+    } else {
+      alert(data.error || 'Gagal menghapus queue item');
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Terjadi kesalahan');
+  });
+}
+
+function clearAllQueue() {
+  if (!confirm('Hapus semua item dari queue?')) return;
+  
+  // TODO: Implement clear all queue
+  alert('Fitur hapus semua akan segera tersedia');
+}
+</script>
+
+{{/layouts/main}}

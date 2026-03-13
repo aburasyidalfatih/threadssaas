@@ -1,0 +1,145 @@
+{{#> layouts/main page="dashboard"}}
+
+{{#if expiringTokens.length}}
+<div class="alert alert-error" style="margin-bottom:20px;display:flex;align-items:center;gap:12px">
+  <span style="font-size:24px">⚠️</span>
+  <div>
+    <strong>Token Kadaluarsa!</strong> 
+    {{#each expiringTokens}}@{{username}}{{#unless @last}}, {{/unless}}{{/each}} 
+    perlu refresh. 
+    <a href="/accounts" style="color:#fff;text-decoration:underline;font-weight:600">Refresh Sekarang →</a>
+  </div>
+</div>
+{{/if}}
+
+<div class="quick-actions">
+  <a href="/posts/create" class="quick-action-btn">
+    <span class="qa-icon">✍️</span>
+    <span class="qa-label">Buat Post</span>
+  </a>
+  <a href="/queue" class="quick-action-btn">
+    <span class="qa-icon">📝</span>
+    <span class="qa-label">Content Queue</span>
+  </a>
+  <a href="/autopilot" class="quick-action-btn">
+    <span class="qa-icon">🚀</span>
+    <span class="qa-label">Auto Pilot</span>
+  </a>
+  <a href="/accounts" class="quick-action-btn">
+    <span class="qa-icon">👥</span>
+    <span class="qa-label">Kelola Akun</span>
+  </a>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card stat-primary">
+    <div class="stat-icon">👥</div>
+    <div class="stat-info">
+      <div class="stat-value">{{stats.activeAccounts}}<span class="stat-total">/{{stats.totalAccounts}}</span></div>
+      <div class="stat-label">Akun Aktif</div>
+    </div>
+  </div>
+  <div class="stat-card stat-success">
+    <div class="stat-icon">✅</div>
+    <div class="stat-info">
+      <div class="stat-value">{{stats.postsToday}}</div>
+      <div class="stat-label">Post Hari Ini</div>
+    </div>
+  </div>
+  <div class="stat-card stat-warning">
+    <div class="stat-icon">📊</div>
+    <div class="stat-info">
+      <div class="stat-value">{{stats.queueCount}}<span class="stat-divider">/</span>0</div>
+      <div class="stat-label">Queue / Gagal</div>
+    </div>
+  </div>
+  <div class="stat-card stat-autopilot">
+    <div class="stat-icon">🚀</div>
+    <div class="stat-info">
+      <div class="stat-value">{{stats.activeAutopilots}}{{#if (gt stats.activeAutopilots 0)}}<span class="status-indicator"></span>{{/if}}</div>
+      <div class="stat-label">AutoPilot {{#if (gt stats.activeAutopilots 0)}}Running{{else}}Inactive{{/if}}</div>
+    </div>
+  </div>
+</div>
+
+<!-- SaaS Plan Status -->
+{{#if user}}
+<div class="stats-secondary">
+  <div class="stat-mini">
+    <div class="stat-mini-top">
+      <span class="stat-mini-icon">💎</span>
+      <span class="stat-mini-value">{{uppercase user.plan}}</span>
+    </div>
+    <span class="stat-mini-label">Current Plan</span>
+  </div>
+  <div class="stat-mini">
+    <div class="stat-mini-top">
+      <span class="stat-mini-icon">👥</span>
+      <span class="stat-mini-value">{{user.usage.accounts_used}}/{{user.limits.max_accounts}}</span>
+    </div>
+    <span class="stat-mini-label">Accounts Used</span>
+  </div>
+  <div class="stat-mini">
+    <div class="stat-mini-top">
+      <span class="stat-mini-icon">📝</span>
+      <span class="stat-mini-value">{{user.usage.posts_this_month}}/{{#if (eq user.limits.max_posts_per_month -1)}}∞{{else}}{{user.limits.max_posts_per_month}}{{/if}}</span>
+    </div>
+    <span class="stat-mini-label">Posts This Month</span>
+  </div>
+</div>
+{{/if}}
+
+<div class="dashboard-grid">
+  <div class="card">
+    <div class="card-header">
+      <h3>📝 Postingan Terbaru</h3>
+      <a href="/posts/history" class="btn-link">Lihat Semua →</a>
+    </div>
+    <div class="card-body">
+      {{#if recentPosts.length}}
+      <div class="activity-list">
+        {{#each recentPosts}}
+        <div class="activity-item">
+          <div class="activity-badge badge-{{#if success}}success{{else}}error{{/if}}">{{#if success}}success{{else}}failed{{/if}}</div>
+          <div class="activity-content">
+            <div class="activity-title">{{truncate content 50}}</div>
+            <div class="activity-meta">
+              <span class="activity-account">@{{account_username}}</span>
+              <span class="activity-type badge-type-post">post</span>
+              <span class="activity-time">{{formatDate created_at}}</span>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{else}}
+      <div class="empty-state-enhanced">
+        <div class="empty-icon">📝</div>
+        <div class="empty-title">Belum Ada Postingan</div>
+        <div class="empty-desc">Mulai buat konten pertama Anda sekarang</div>
+        <a href="/posts/create" class="btn btn-primary" style="margin-top:16px">+ Buat Post Pertama</a>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+
+  {{#unless (eq user.plan 'agency')}}
+  <div class="card">
+    <div class="card-header">
+      <h3>🚀 Upgrade Plan</h3>
+    </div>
+    <div class="card-body">
+      <div class="upgrade-promo">
+        <div class="upgrade-icon">💎</div>
+        <div class="upgrade-content">
+          <div class="upgrade-title">Unlock More Features</div>
+          <div class="upgrade-desc">Get more accounts, unlimited posts, and premium support</div>
+          <a href="/billing" class="btn btn-primary" style="margin-top:12px">View Plans</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/unless}}
+</div>
+
+{{/layouts/main}}

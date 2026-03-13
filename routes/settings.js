@@ -1,86 +1,128 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database');
+const { Database } = require('../config/database');
 
 // Settings page
-router.get('/', (req, res) => {
-  const settings = {};
-  const rows = db.prepare('SELECT key, value FROM settings').all();
-  rows.forEach(row => { settings[row.key] = row.value; });
+router.get('/', async (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect('/login');
+  }
 
-  const accounts = db.prepare('SELECT * FROM accounts').all();
-  const autoReplyConfigs = db.prepare(`
-    SELECT arc.*, a.username
-    FROM auto_reply_config arc
-    JOIN accounts a ON a.id = arc.account_id
-  `).all();
+  try {
+    const userId = req.session.userId;
 
-  res.render('settings', {
-    page: 'settings',
-    settings,
-    accounts,
-    autoReplyConfigs
-  });
+    // Get user
+    const user = await Database.get(`
+      SELECT id, email, name, plan, status
+      FROM users
+      WHERE id = $1
+    `, [userId]);
+
+    if (!user) {
+      return res.redirect('/login');
+    }
+
+    // Get user settings
+    const settingsRows = await Database.all(`
+      SELECT key, value FROM user_settings WHERE user_id = $1
+    `, [userId]) || [];
+
+    const settings = {};
+    settingsRows.forEach(row => { 
+      settings[row.key] = row.value; 
+    });
+
+    // Default values if not set
+    const defaultSettings = {
+      gemini_api_key: '',
+      gemini_model: 'gemini-2.5-flash',
+      default_comment_count: '3',
+      post_delay_seconds: '30',
+      prompt_organic: '',
+      prompt_affiliate: '',
+      prompt_reply: '',
+      threads_app_id: '',
+      threads_app_secret: ''
+    };
+
+    // Merge with defaults
+    Object.keys(defaultSettings).forEach(key => {
+      if (!settings[key]) {
+        settings[key] = defaultSettings[key];
+      }
+    });
+
+    res.render('settings/index', {
+      user,
+      settings,
+      page: 'settings'
+    });
+
+  } catch (error) {
+    console.error('Settings page error:', error);
+    res.redirect('/dashboard?error=' + encodeURIComponent('Gagal memuat halaman pengaturan'));
+  }
 });
 
 // Save settings
-router.post('/save', (req, res) => {
-  const { gemini_api_key, default_comment_count, post_delay_seconds, auto_reply_style, gemini_model, prompt_organic, prompt_affiliate, prompt_reply, threads_app_id, threads_app_secret } = req.body;
-
-  const updateSetting = db.prepare("UPDATE settings SET value = ?, updated_at = datetime('now') WHERE key = ?");
-  const insertSetting = db.prepare("INSERT OR IGNORE INTO settings (key, value) VALUES (?, '')");
-
-  if (gemini_api_key !== undefined) updateSetting.run(gemini_api_key, 'gemini_api_key');
-  if (default_comment_count) updateSetting.run(default_comment_count, 'default_comment_count');
-  if (post_delay_seconds) updateSetting.run(post_delay_seconds, 'post_delay_seconds');
-  if (auto_reply_style) updateSetting.run(auto_reply_style, 'auto_reply_style');
-  if (gemini_model) updateSetting.run(gemini_model, 'gemini_model');
-  if (threads_app_id !== undefined) updateSetting.run(threads_app_id, 'threads_app_id');
-  if (threads_app_secret !== undefined) updateSetting.run(threads_app_secret, 'threads_app_secret');
-  
-  // Save custom prompts
-  if (prompt_organic !== undefined) {
-    insertSetting.run('prompt_organic');
-    updateSetting.run(prompt_organic, 'prompt_organic');
-  }
-  if (prompt_affiliate !== undefined) {
-    insertSetting.run('prompt_affiliate');
-    updateSetting.run(prompt_affiliate, 'prompt_affiliate');
-  }
-  if (prompt_reply !== undefined) {
-    insertSetting.run('prompt_reply');
-    updateSetting.run(prompt_reply, 'prompt_reply');
+router.post('/save', async (req, res) => {
+  if (!req.session.userId) {
+    return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  res.redirect('/settings?success=Pengaturan+berhasil+disimpan');
-});
+  try {
+    const userId = req.session.userId;
+    console.log('Saving settings for user ID:', userId);
+    
+    const {
+      gemini_api_key,
+      gemini_model,
+      default_comment_count,
+      post_delay_seconds,
+      prompt_organic,
+      prompt_affiliate,
+      prompt_reply,
+      threads_app_id,
+      threads_app_secret
+    } = req.body;
 
-// Update auto-reply config
-router.post('/auto-reply/:accountId', (req, res) => {
-  const { is_enabled, check_interval_minutes, reply_style, max_replies_per_check } = req.body;
-  const accountId = req.params.accountId;
+    console.log('Settings data:', req.body);
 
-  db.prepare(`
-    INSERT INTO auto_reply_config (account_id, is_enabled, check_interval_minutes, reply_style, max_replies_per_check)
-    VALUES (?, ?, ?, ?, ?)
-    ON CONFLICT(account_id) DO UPDATE SET
-      is_enabled = ?,
-      check_interval_minutes = ?,
-      reply_style = ?,
-      max_replies_per_check = ?
-  `).run(
-    accountId,
-    is_enabled ? 1 : 0,
-    parseInt(check_interval_minutes || '5', 10),
-    reply_style || 'friendly',
-    parseInt(max_replies_per_check || '5', 10),
-    is_enabled ? 1 : 0,
-    parseInt(check_interval_minutes || '5', 10),
-    reply_style || 'friendly',
-    parseInt(max_replies_per_check || '5', 10)
-  );
+    // Update or insert settings
+    const updateSetting = async (key, value) => {
+      if (value !== undefined) {
+        console.log(`Updating setting: ${key} = ${value}`);
+        try {
+          const result = await Database.query(`
+            INSERT INTO user_settings (user_id, key, value, updated_at)
+            VALUES ($1, $2, $3, NOW())
+            ON CONFLICT (user_id, key)
+            DO UPDATE SET value = $3, updated_at = NOW()
+          `, [userId, key, value]);
+          console.log('Query result:', result);
+        } catch (error) {
+          console.error('Query error:', error);
+          throw error;
+        }
+      }
+    };
 
-  res.redirect('/settings');
+    await updateSetting('gemini_api_key', gemini_api_key);
+    await updateSetting('gemini_model', gemini_model);
+    await updateSetting('default_comment_count', default_comment_count);
+    await updateSetting('post_delay_seconds', post_delay_seconds);
+    await updateSetting('prompt_organic', prompt_organic);
+    await updateSetting('prompt_affiliate', prompt_affiliate);
+    await updateSetting('prompt_reply', prompt_reply);
+    await updateSetting('threads_app_id', threads_app_id);
+    await updateSetting('threads_app_secret', threads_app_secret);
+
+    res.json({ success: true, message: 'Pengaturan berhasil disimpan' });
+
+  } catch (error) {
+    console.error('Save settings error:', error);
+    res.status(500).json({ error: 'Gagal menyimpan pengaturan' });
+  }
 });
 
 module.exports = router;

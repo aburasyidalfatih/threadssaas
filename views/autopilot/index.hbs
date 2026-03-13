@@ -1,0 +1,259 @@
+{{#> layouts/main page="autopilot"}}
+
+<!-- Add Autopilot Config -->
+<div class="card" id="add-autopilot-card">
+  <div class="card-header">
+    <h3>🚀 Tambah Konfigurasi Auto Pilot</h3>
+  </div>
+  <div class="card-body">
+    <form id="autopilot-form" class="form-stack">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ap-account">Akun Threads</label>
+          <select id="ap-account" name="account_id" required onchange="showAccountTheme(this.value)">
+            <option value="">— Pilih Akun —</option>
+            {{#each accounts}}
+            <option value="{{id}}" data-theme="{{theme}}">
+              @{{username}} {{#if access_token}}✅{{else}}❌ belum connect{{/if}}
+            </option>
+            {{/each}}
+          </select>
+          {{#unless accounts.length}}
+          <small class="form-hint">Belum ada akun. <a href="/accounts">Tambah akun</a> dulu.</small>
+          {{/unless}}
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <label class="toggle-switch" style="margin-top:6px">
+            <input type="checkbox" name="is_enabled" value="1" checked>
+            <span class="toggle-slider"></span>
+            <span class="toggle-label">Aktif</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group" id="account-theme-display" style="display:none;">
+        <label>🎯 Tema Akun</label>
+        <div class="theme-display-box" style="background:var(--bg-input);padding:12px;border-radius:8px;margin-bottom:8px;">
+          <div id="selected-theme" style="font-weight:600;margin-bottom:4px;"></div>
+          <div id="selected-theme-desc" style="color:var(--text-secondary);font-size:14px;"></div>
+        </div>
+        <small class="form-hint">Tema diatur di halaman <a href="/accounts">Pengaturan Akun</a></small>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ap-posting-hours">Jadwal Posting (Jam)</label>
+          <input type="text" id="ap-posting-hours" name="posting_hours" value="08,12,16,20" placeholder="00,02,04,14,22" required>
+          <small class="form-hint">Pisahkan dengan koma. Contoh: <code>00,02,04,14,22</code> = posting jam 00:00, 02:00, 04:00, 14:00, 22:00</small>
+        </div>
+        <div class="form-group">
+          <label for="ap-comment-count">Komentar Lanjutan per Post</label>
+          <select id="ap-comment-count" name="comment_count">
+            <option value="2">2 komentar</option>
+            <option value="3" selected>3 komentar</option>
+            <option value="4">4 komentar</option>
+            <option value="5">5 komentar</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btn-right-container">
+        <button type="submit" class="btn btn-primary btn-glow" id="btn-save-autopilot">
+          <span class="btn-loader" id="autopilot-loader" style="display:none"></span>
+          💾 Simpan Konfigurasi
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Autopilot Configurations List -->
+<div class="card" id="autopilot-list-card">
+  <div class="card-header">
+    <h3>🤖 Akun Auto Pilot Aktif ({{autopilots.length}})</h3>
+  </div>
+  <div class="card-body">
+    {{#if autopilots.length}}
+    <div class="autopilot-list">
+      {{#each autopilots}}
+      <div class="autopilot-card {{#if is_enabled}}autopilot-active{{else}}autopilot-inactive{{/if}}">
+        <div class="autopilot-header">
+          <div class="autopilot-account">
+            <span class="autopilot-username">@{{account_username}}</span>
+            <span class="badge {{#if is_enabled}}badge-success{{else}}badge-muted{{/if}}">
+              {{#if is_enabled}}🟢 Aktif{{else}}⏸️ Nonaktif{{/if}}
+            </span>
+            <span class="badge badge-success">Connected</span>
+          </div>
+          <div class="autopilot-theme">
+            <span class="theme-badge">🎯 Default Theme</span>
+          </div>
+        </div>
+        
+        <div class="autopilot-stats-row" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+          <div class="autopilot-stats" style="margin-bottom:0; flex:1;">
+            <div class="ap-stat">
+              <span class="ap-stat-value">4x</span>
+              <span class="ap-stat-label">Post/Hari</span>
+            </div>
+            <div class="ap-stat">
+              <span class="ap-stat-value">{{comment_count}}</span>
+              <span class="ap-stat-label">Komentar</span>
+            </div>
+            <div class="ap-stat">
+              <span class="ap-stat-value">{{posting_hours}}</span>
+              <span class="ap-stat-label">Jadwal (Jam)</span>
+            </div>
+            <div class="ap-stat">
+              <span class="ap-stat-value">0/{{max_posts_per_day}}</span>
+              <span class="ap-stat-label">Hari Ini</span>
+            </div>
+            <div class="ap-stat">
+              <span class="ap-stat-value">0</span>
+              <span class="ap-stat-label">Total Post</span>
+            </div>
+          </div>
+          
+          <div class="autopilot-actions" style="margin-top:0; display:flex; gap:8px; align-items:center;">
+            <button type="button" class="btn btn-sm btn-primary" onclick="triggerAutopilot('{{id}}', '@{{account_username}}')">
+              ⚡ Trigger
+            </button>
+            <button type="button" class="btn btn-sm btn-info" onclick="editAutopilot('{{id}}')">
+              ✏️ Edit
+            </button>
+            <label class="toggle-switch" style="margin:0">
+              <input type="checkbox" class="ap-toggle" name="is_enabled" value="1" {{#if is_enabled}}checked{{/if}} onchange="toggleAutopilot('{{id}}', {{is_enabled}})">
+              <span class="toggle-slider"></span>
+              <span class="toggle-label" style="font-size:12px">{{#if is_enabled}}Aktif{{else}}Pause{{/if}}</span>
+            </label>
+            <button type="button" class="btn btn-sm btn-outline" onclick="resetAutopilot('{{id}}', '@{{account_username}}')">
+              🔄 Reset
+            </button>
+            <button type="button" class="btn btn-sm btn-danger" onclick="deleteAutopilot('{{id}}', '@{{account_username}}')">
+              🗑️
+            </button>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <p class="empty-state">Belum ada konfigurasi autopilot. Tambahkan di form di atas.</p>
+    {{/if}}
+  </div>
+</div>
+
+<script>
+function showAccountTheme(accountId) {
+  const select = document.getElementById('ap-account');
+  const themeDiv = document.getElementById('account-theme-display');
+  const themeTitle = document.getElementById('selected-theme');
+  const themeDesc = document.getElementById('selected-theme-desc');
+  
+  if (accountId) {
+    const option = select.options[select.selectedIndex];
+    const theme = option.dataset.theme || 'Belum diatur';
+    
+    themeTitle.textContent = theme;
+    themeDesc.textContent = theme === 'Belum diatur' ? 'Atur tema di halaman pengaturan akun' : 'AI akan generate konten sesuai tema ini';
+    themeDiv.style.display = 'block';
+  } else {
+    themeDiv.style.display = 'none';
+  }
+}
+
+document.getElementById('autopilot-form')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData);
+  
+  const loader = document.getElementById('autopilot-loader');
+  const btn = this.querySelector('button[type="submit"]');
+  
+  btn.disabled = true;
+  loader.style.display = 'inline-block';
+  
+  try {
+    const response = await fetch('/autopilot/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      alert(result.message);
+      location.reload();
+    } else {
+      alert(result.error || 'Gagal menyimpan konfigurasi');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Terjadi kesalahan');
+  } finally {
+    btn.disabled = false;
+    loader.style.display = 'none';
+  }
+});
+
+function triggerAutopilot(autopilotId, username) {
+  if (!confirm(`Trigger post sekarang untuk ${username}?`)) return;
+  alert('Fitur trigger akan segera tersedia');
+}
+
+function toggleAutopilot(autopilotId, currentStatus) {
+  const action = currentStatus ? 'nonaktifkan' : 'aktifkan';
+  
+  fetch(`/autopilot/toggle/${autopilotId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      location.reload();
+    } else {
+      alert(data.error || 'Gagal mengubah status');
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Terjadi kesalahan');
+  });
+}
+
+function editAutopilot(autopilotId) {
+  alert('Fitur edit akan segera tersedia');
+}
+
+function resetAutopilot(autopilotId, username) {
+  if (!confirm(`Reset riwayat topik ${username}?`)) return;
+  alert('Fitur reset akan segera tersedia');
+}
+
+function deleteAutopilot(autopilotId, username) {
+  if (!confirm(`Hapus autopilot ${username}?`)) return;
+  
+  fetch(`/autopilot/${autopilotId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      location.reload();
+    } else {
+      alert(data.error || 'Gagal menghapus konfigurasi');
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Terjadi kesalahan');
+  });
+}
+</script>
+
+{{/layouts/main}}

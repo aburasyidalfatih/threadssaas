@@ -1,0 +1,24 @@
+/* Minimal SaaS additions - no conflicts */
+.input-with-action {
+  position: relative;
+}
+
+.input-with-action input {
+  padding-right: 45px !important;
+}
+
+.input-with-action .btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.input-with-action .btn:hover {
+  color: var(--text-primary);
+}

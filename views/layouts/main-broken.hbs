@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="cf-disable-rocket-loader" content="true">
+  <title>ThreadsBot SaaS — Auto Posting & Affiliate</title>
+  <meta name="description" content="Dashboard untuk otomasi posting Threads dengan AI content generation">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style-original.css">
+  <link rel="stylesheet" href="/css/mobile-improvements.css">
+  <link rel="stylesheet" href="/css/saas-minimal.css">
+</head>
+<body{{#if hideNavbar}} class="auth-page"{{/if}}>
+  {{#unless hideNavbar}}
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">🤖</span>
+        <span class="logo-text">ThreadsBot</span>
+      </div>
+    </div>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="/" class="nav-link {{#if (eq page 'dashboard')}}active{{/if}}" id="nav-dashboard">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/accounts" class="nav-link {{#if (eq page 'accounts')}}active{{/if}}" id="nav-accounts">
+          <span class="nav-icon">👥</span>
+          <span class="nav-label">Akun</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/posts/create" class="nav-link {{#if (eq page 'create-post')}}active{{/if}}" id="nav-create-post">
+          <span class="nav-icon">✍️</span>
+          <span class="nav-label">Buat Post</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/queue" class="nav-link {{#if (eq page 'queue')}}active{{/if}}" id="nav-queue">
+          <span class="nav-icon">📝</span>
+          <span class="nav-label">Content Queue</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/autopilot" class="nav-link {{#if (eq page 'autopilot')}}active{{/if}}" id="nav-autopilot">
+          <span class="nav-icon">🚀</span>
+          <span class="nav-label">Auto Pilot</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/product" class="nav-link {{#if (eq page 'product')}}active{{/if}}" id="nav-product">
+          <span class="nav-icon">🛍️</span>
+          <span class="nav-label">Product</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/posts/history" class="nav-link {{#if (eq page 'history')}}active{{/if}}" id="nav-history">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">Riwayat</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/settings" class="nav-link {{#if (eq page 'settings')}}active{{/if}}" id="nav-settings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">Pengaturan</span>
+        </a>
+      </li>
+      {{#if user}}
+      <li class="nav-item">
+        <a href="/profile" class="nav-link {{#if (eq page 'profile')}}active{{/if}}" id="nav-profile">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label">Profil</span>
+        </a>
+      </li>
+      {{/if}}
+    </ul>
+    <div class="sidebar-footer">
+      <div class="app-version">v2.0.0 SaaS</div>
+    </div>
+  </nav>
+      </li>
+      <li class="nav-item">
+        <a href="/settings" class="nav-link {{#if (eq page 'settings')}}active{{/if}}" id="nav-settings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">Pengaturan</span>
+        </a>
+      </li>
+      {{#if user}}
+      <li class="nav-item">
+        <a href="/profile" class="nav-link {{#if (eq page 'profile')}}active{{/if}}" id="nav-profile">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label">Profil</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/billing" class="nav-link {{#if (eq page 'billing')}}active{{/if}}" id="nav-billing">
+          <span class="nav-icon">💳</span>
+          <span class="nav-label">Billing</span>
+        </a>
+      </li>
+      {{/if}}
+    </ul>
+    <div class="sidebar-footer">
+      <div class="app-version">v2.0.0 SaaS</div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="topbar">
+      <button class="menu-toggle" id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+      <h1 class="page-title" id="page-title">
+        {{#if (eq page 'dashboard')}}Dashboard{{/if}}
+        {{#if (eq page 'accounts')}}Manajemen Akun{{/if}}
+        {{#if (eq page 'create-post')}}Buat Postingan{{/if}}
+        {{#if (eq page 'affiliate')}}Product{{/if}}
+        {{#if (eq page 'autopilot')}}Auto Pilot{{/if}}
+        {{#if (eq page 'queue')}}Content Queue{{/if}}
+        {{#if (eq page 'history')}}Riwayat Postingan{{/if}}
+        {{#if (eq page 'settings')}}Pengaturan{{/if}}
+        {{#if (eq page 'profile')}}Profil Pengguna{{/if}}
+        {{#if (eq page 'billing')}}Billing & Plans{{/if}}
+      </h1>
+      <div class="topbar-right">
+        {{#if user}}
+        <div class="user-header">
+          <span class="user-greeting">Halo, <strong>{{user.name}}</strong></span>
+          <span class="plan-indicator">{{uppercase user.plan}}</span>
+          <a href="/logout" class="logout-btn">
+            <span class="logout-icon">🚪</span>
+            <span class="logout-text">Logout</span>
+          </a>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+
+    {{#if error}}
+    <div class="alert alert-error" id="alert-error">
+      ⚠️ {{error}}
+    </div>
+    {{/if}}
+    {{#if success}}
+    <div class="alert alert-success" id="alert-success">
+      ✅ {{success}}
+    </div>
+    {{/if}}
+
+    <div class="content-area">
+      {{{body}}}
+    </div>
+  </main>
+  {{/unless}}
+
+  {{#if hideNavbar}}
+  <div class="auth-container">
+    {{{body}}}
+  </div>
+  {{/if}}
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+{{#> layouts/main page="create-post"}}
+
+<!-- SaaS Usage Info -->
+<div class="usage-info-card">
+  <div class="usage-info">
+    <span class="usage-text">Posts bulan ini: <strong>{{user.usage.posts_this_month}}/{{#if (eq user.limits.max_posts_per_month -1)}}∞{{else}}{{user.limits.max_posts_per_month}}{{/if}}</strong></span>
+    {{#unless (eq user.limits.max_posts_per_month -1)}}
+    <div class="usage-bar">
+      <div class="usage-fill" style="width: {{percentage user.usage.posts_this_month user.limits.max_posts_per_month}}%"></div>
+    </div>
+    {{/unless}}
+    {{#unless canCreatePost}}
+    <div class="usage-limit-warning">
+      ⚠️ Limit posting tercapai. <a href="/billing">Upgrade plan</a> untuk posting lebih banyak.
+    </div>
+    {{/unless}}
+  </div>
+</div>
+
+{{#if canCreatePost}}
+<div class="card" id="create-post-card">
+  <div class="card-header">
+    <h3>✍️ Buat Postingan Threads</h3>
+  </div>
+  <div class="card-body">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="post-account">Akun Threads</label>
+        <select id="post-account" required onchange="showAccountTheme()">
+          <option value="">— Pilih Akun —</option>
+          {{#each accounts}}
+          <option value="{{id}}" data-theme="{{theme}}">@{{username}}</option>
+          {{/each}}
+        </select>
+        {{#unless accounts.length}}
+        <small class="form-hint">Belum ada akun aktif. <a href="/accounts">Tambah akun</a></small>
+        {{/unless}}
+      </div>
+      <div class="form-group" id="account-theme" style="display:none">
+        <label>🎯 Tema Akun</label>
+        <div class="theme-display" id="theme-display">-</div>
+        <small class="form-hint">Tema diatur di halaman <a href="/accounts">Pengaturan Akun</a></small>
+      </div>
+      <div class="form-group">
+        <label for="post-topic">📝 Topik / Ide Konten</label>
+        <input type="text" id="post-topic" placeholder="Contoh: Tips produktivitas, cara menghemat uang, dll" required>
+      </div>
+      <div class="form-group">
+        <label for="post-comment-count">💬 Jumlah Komentar</label>
+        <select id="post-comment-count">
+          <option value="1">1 Komentar</option>
+          <option value="2">2 Komentar</option>
+          <option value="3" selected>3 Komentar</option>
+          <option value="4">4 Komentar</option>
+          <option value="5">5 Komentar</option>
+        </select>
+      </div>
+      <div class="btn-right-container" style="display: flex; justify-content: flex-end; width: 100%; margin-top: 16px;">
+        <button type="button" class="btn btn-primary btn-glow" id="btn-generate" style="margin-left: auto;">
+          <span class="btn-loader" id="generate-loader" style="display:none"></span>
+          🤖 Generate dengan AI
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="preview-card" style="display: none;">
+  <div class="card-header">
+    <h3>👁️ Preview Konten</h3>
+    <button class="btn btn-sm btn-outline" id="btn-regenerate">🔄 Regenerate</button>
+  </div>
+  <div class="card-body">
+    <div class="preview-content">
+      <div class="preview-main-post">
+        <div class="preview-header">
+          <div class="preview-avatar">
+            <div class="avatar-placeholder" id="preview-avatar">A</div>
+          </div>
+          <div class="preview-user">
+            <div class="preview-username" id="preview-username">@username</div>
+            <div class="preview-time">Sekarang</div>
+          </div>
+        </div>
+        <div class="preview-text" id="preview-main-text">
+          Konten utama akan muncul di sini...
+        </div>
+      </div>
+      
+      <div class="preview-comments" id="preview-comments">
+        <!-- Comments will be inserted here -->
+      </div>
+    </div>
+    
+    <div class="preview-actions">
+      <div class="form-group">
+        <label for="schedule-type">📅 Jadwal Posting</label>
+        <select id="schedule-type">
+          <option value="now">Posting Sekarang</option>
+          <option value="queue">Tambah ke Queue</option>
+          <option value="schedule">Jadwalkan</option>
+        </select>
+      </div>
+      
+      <div class="btn-group">
+        <button type="button" class="btn btn-outline" id="btn-edit">✏️ Edit</button>
+        <button type="button" class="btn btn-success btn-glow" id="btn-publish">
+          <span class="btn-loader" id="publish-loader" style="display:none"></span>
+          🚀 Publikasikan
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{{else}}
+<div class="card">
+  <div class="card-body">
+    <div class="empty-state-enhanced">
+      <div class="empty-icon">📝</div>
+      <div class="empty-title">Limit Posting Tercapai</div>
+      <div class="empty-desc">Anda telah mencapai limit {{user.limits.max_posts_per_month}} posts per bulan</div>
+      <a href="/billing" class="btn btn-primary" style="margin-top:16px">🚀 Upgrade Plan</a>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+<script>
+let generatedContent = null;
+
+function showAccountTheme() {
+  const select = document.getElementById('post-account');
+  const themeDiv = document.getElementById('account-theme');
+  const themeDisplay = document.getElementById('theme-display');
+  
+  if (select.value) {
+    const option = select.options[select.selectedIndex];
+    const theme = option.dataset.theme || 'Belum diatur';
+    themeDisplay.textContent = theme;
+    themeDiv.style.display = 'block';
+  } else {
+    themeDiv.style.display = 'none';
+  }
+}
+
+document.getElementById('btn-generate')?.addEventListener('click', async function() {
+  const accountId = document.getElementById('post-account').value;
+  const topic = document.getElementById('post-topic').value;
+  const commentCount = document.getElementById('post-comment-count').value;
+  
+  if (!accountId || !topic) {
+    alert('Pilih akun dan isi topik terlebih dahulu');
+    return;
+  }
+  
+  const loader = document.getElementById('generate-loader');
+  const btn = this;
+  
+  btn.disabled = true;
+  loader.style.display = 'inline-block';
+  
+  try {
+    const response = await fetch('/posts/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        account_id: accountId,
+        topic: topic,
+        comment_count: commentCount
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      generatedContent = data.content;
+      showPreview(data.content, data.account);
+    } else {
+      alert(data.error || 'Gagal generate konten');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Terjadi kesalahan');
+  } finally {
+    btn.disabled = false;
+    loader.style.display = 'none';
+  }
+});
+
+function showPreview(content, account) {
+  // Update preview
+  document.getElementById('preview-username').textContent = '@' + account.username;
+  document.getElementById('preview-avatar').textContent = account.username.charAt(0).toUpperCase();
+  document.getElementById('preview-main-text').textContent = content.main_post;
+  
+  // Show comments
+  const commentsDiv = document.getElementById('preview-comments');
+  commentsDiv.innerHTML = '';
+  
+  content.comments.forEach((comment, index) => {
+    const commentDiv = document.createElement('div');
+    commentDiv.className = 'preview-comment';
+    commentDiv.innerHTML = `
+      <div class="preview-header">
+        <div class="preview-avatar">
+          <div class="avatar-placeholder">${account.username.charAt(0).toUpperCase()}</div>
+        </div>
+        <div class="preview-user">
+          <div class="preview-username">@${account.username}</div>
+          <div class="preview-time">Sekarang</div>
+        </div>
+      </div>
+      <div class="preview-text">${comment}</div>
+    `;
+    commentsDiv.appendChild(commentDiv);
+  });
+  
+  // Show preview card
+  document.getElementById('preview-card').style.display = 'block';
+  document.getElementById('preview-card').scrollIntoView({ behavior: 'smooth' });
+}
+
+document.getElementById('btn-regenerate')?.addEventListener('click', function() {
+  document.getElementById('btn-generate').click();
+});
+
+document.getElementById('btn-edit')?.addEventListener('click', function() {
+  document.getElementById('create-post-card').scrollIntoView({ behavior: 'smooth' });
+});
+
+document.getElementById('btn-publish')?.addEventListener('click', async function() {
+  if (!generatedContent) {
+    alert('Generate konten terlebih dahulu');
+    return;
+  }
+  
+  const accountId = document.getElementById('post-account').value;
+  const topic = document.getElementById('post-topic').value;
+  const scheduleType = document.getElementById('schedule-type').value;
+  
+  const loader = document.getElementById('publish-loader');
+  const btn = this;
+  
+  btn.disabled = true;
+  loader.style.display = 'inline-block';
+  
+  try {
+    const response = await fetch('/posts/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        account_id: accountId,
+        topic: topic,
+        main_post: generatedContent.main_post,
+        comments: generatedContent.comments,
+        schedule_type: scheduleType
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      alert('Post berhasil dipublikasikan!');
+      window.location.href = '/posts/history';
+    } else {
+      alert(data.error || 'Gagal mempublikasikan post');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Terjadi kesalahan');
+  } finally {
+    btn.disabled = false;
+    loader.style.display = 'none';
+  }
+});
+</script>
+
+{{/layouts/main}}

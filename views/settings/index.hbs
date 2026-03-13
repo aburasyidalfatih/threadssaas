@@ -1,0 +1,177 @@
+{{#> layouts/main page="settings"}}
+
+<div class="settings-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; align-items: start;">
+  <div class="card">
+    <div class="card-header">
+      <h3>🔗 Pengaturan Threads API</h3>
+    </div>
+    <div class="card-body">
+      <form id="threads-settings-form" class="form-stack">
+        <div class="form-group">
+          <label for="threads_app_id">Threads App ID</label>
+          <input type="text" id="threads_app_id" name="threads_app_id" value="{{settings.threads_app_id}}" placeholder="Masukkan Meta App ID">
+          <small class="form-hint">App ID dari Meta for Developers untuk semua akun</small>
+        </div>
+        <div class="form-group">
+          <label for="threads_app_secret">Threads App Secret</label>
+          <div class="input-with-action">
+            <input type="password" id="threads_app_secret" name="threads_app_secret" value="{{settings.threads_app_secret}}" placeholder="Masukkan Meta App Secret">
+            <button type="button" class="btn btn-ghost" onclick="togglePasswordVisibility('threads_app_secret')">👁️</button>
+          </div>
+          <small class="form-hint">App Secret dari Meta for Developers untuk semua akun</small>
+        </div>
+        <div class="btn-right-container">
+          <button type="submit" class="btn btn-primary">💾 Simpan Pengaturan Threads</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>🤖 Pengaturan AI (Gemini)</h3>
+    </div>
+    <div class="card-body">
+      <form id="ai-settings-form" class="form-stack">
+        <div class="form-group">
+          <label for="gemini_api_key">Gemini API Key</label>
+          <div class="input-with-action">
+            <input type="password" id="gemini_api_key" name="gemini_api_key" value="{{settings.gemini_api_key}}" placeholder="AIzaSy...">
+            <button type="button" class="btn btn-ghost" onclick="togglePasswordVisibility('gemini_api_key')">👁️</button>
+          </div>
+          <small class="form-hint">Dapatkan di <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com</a></small>
+        </div>
+        <div class="form-group">
+          <label for="gemini_model">Model Gemini</label>
+          <select id="gemini_model" name="gemini_model">
+            <option value="gemini-2.5-flash" {{#if (eq settings.gemini_model 'gemini-2.5-flash')}}selected{{/if}}>Gemini 2.5 Flash (Default/Fast)</option>
+            <option value="gemini-2.5-pro" {{#if (eq settings.gemini_model 'gemini-2.5-pro')}}selected{{/if}}>Gemini 2.5 Pro (Best Quality)</option>
+            <option value="gemini-2.0-flash" {{#if (eq settings.gemini_model 'gemini-2.0-flash')}}selected{{/if}}>Gemini 2.0 Flash (Legacy Fast)</option>
+          </select>
+        </div>
+        <div class="btn-right-container">
+          <button type="submit" class="btn btn-primary">💾 Simpan Pengaturan AI</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3>⚙️ Pengaturan Umum</h3>
+  </div>
+  <div class="card-body">
+    <form id="general-settings-form" class="form-stack">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="default_comment_count">Default Jumlah Komentar</label>
+          <select id="default_comment_count" name="default_comment_count">
+            <option value="2" {{#if (eq settings.default_comment_count '2')}}selected{{/if}}>2 komentar</option>
+            <option value="3" {{#if (eq settings.default_comment_count '3')}}selected{{/if}}>3 komentar</option>
+            <option value="4" {{#if (eq settings.default_comment_count '4')}}selected{{/if}}>4 komentar</option>
+            <option value="5" {{#if (eq settings.default_comment_count '5')}}selected{{/if}}>5 komentar</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="post_delay_seconds">Delay Antar Post (detik)</label>
+          <input type="number" id="post_delay_seconds" name="post_delay_seconds" value="{{settings.post_delay_seconds}}" min="10" max="300" placeholder="30">
+          <small class="form-hint">Jeda waktu antar posting untuk menghindari spam</small>
+        </div>
+      </div>
+      <div class="btn-right-container">
+        <button type="submit" class="btn btn-primary">💾 Simpan Pengaturan Umum</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3>✍️ Custom Prompts</h3>
+  </div>
+  <div class="card-body">
+    <form id="prompts-form" class="form-stack">
+      <div class="form-group">
+        <label for="prompt_organic">Prompt untuk Konten Organik</label>
+        <textarea id="prompt_organic" name="prompt_organic" rows="6" placeholder="Kosongkan untuk menggunakan prompt default">{{settings.prompt_organic}}</textarea>
+        <small class="form-hint">Gunakan placeholder: {topic}, {comment_count}, {theme_description}</small>
+      </div>
+      <div class="form-group">
+        <label for="prompt_affiliate">Prompt untuk Konten Affiliate</label>
+        <textarea id="prompt_affiliate" name="prompt_affiliate" rows="6" placeholder="Kosongkan untuk menggunakan prompt default">{{settings.prompt_affiliate}}</textarea>
+        <small class="form-hint">Gunakan placeholder: {product_name}, {description}, {affiliate_link}, {comment_count}</small>
+      </div>
+      <div class="form-group">
+        <label for="prompt_reply">Prompt untuk Auto Reply</label>
+        <textarea id="prompt_reply" name="prompt_reply" rows="4" placeholder="Kosongkan untuk menggunakan prompt default">{{settings.prompt_reply}}</textarea>
+        <small class="form-hint">Gunakan placeholder: {post_context}, {comment}, {style}</small>
+      </div>
+      <div class="btn-right-container">
+        <button type="button" class="btn btn-outline" onclick="resetPrompts()">🔄 Reset ke Default</button>
+        <button type="submit" class="btn btn-primary">💾 Simpan Custom Prompts</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function togglePasswordVisibility(inputId) {
+  const input = document.getElementById(inputId);
+  const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+  input.setAttribute('type', type);
+}
+
+function resetPrompts() {
+  if (!confirm('Reset semua custom prompts ke default?')) return;
+  
+  document.getElementById('prompt_organic').value = '';
+  document.getElementById('prompt_affiliate').value = '';
+  document.getElementById('prompt_reply').value = '';
+  
+  alert('Prompts direset. Klik "Simpan Custom Prompts" untuk menyimpan.');
+}
+
+// Handle form submissions
+document.getElementById('threads-settings-form')?.addEventListener('submit', handleFormSubmit);
+document.getElementById('ai-settings-form')?.addEventListener('submit', handleFormSubmit);
+document.getElementById('general-settings-form')?.addEventListener('submit', handleFormSubmit);
+document.getElementById('prompts-form')?.addEventListener('submit', handleFormSubmit);
+
+async function handleFormSubmit(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+  
+  const btn = e.target.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  
+  btn.disabled = true;
+  btn.textContent = '💾 Menyimpan...';
+  
+  try {
+    const response = await fetch('/settings/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      alert(result.message);
+    } else {
+      alert(result.error || 'Gagal menyimpan pengaturan');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Terjadi kesalahan');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
+}
+</script>
+
+{{/layouts/main}}

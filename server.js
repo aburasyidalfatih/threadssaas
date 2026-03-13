@@ -5,37 +5,79 @@ process.env.TZ = 'Asia/Jakarta';
 
 const express = require('express');
 const session = require('express-session');
-const SQLiteStore = require('connect-sqlite3')(session);
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5009;
 
-// Initialize database
-const db = require('./config/database');
-const { checkAuth } = require('./middleware/auth');
+// Initialize database connections
+const { Database, Cache, RedisSessionStore, testConnections } = require('./config/database');
+
+// Test database connections on startup
+testConnections().then(success => {
+  if (!success) {
+    console.error('Failed to connect to databases. Exiting...');
+    process.exit(1);
+  }
+});
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Redis session store (temporarily disabled)
 app.use(session({
-  store: new SQLiteStore({
-    db: 'sessions.db',
-    dir: './data'
-  }),
-  secret: process.env.SESSION_SECRET || 'threadsbot-secret',
+  secret: process.env.SESSION_SECRET || 'threadsbot-saas-secret',
   resave: false,
   saveUninitialized: false,
   cookie: { 
     maxAge: 24 * 60 * 60 * 1000,
     httpOnly: true,
-    secure: false
+    secure: process.env.NODE_ENV === 'production'
   }
 }));
 
-// View engine
-app.set('view engine', 'ejs');
+// View engine - Handlebars
+const { engine } = require('express-handlebars');
+
+app.engine('hbs', engine({
+  defaultLayout: 'main',
+  extname: '.hbs',
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  partialsDir: path.join(__dirname, 'views/partials'),
+  helpers: {
+    uppercase: (str) => str ? str.toUpperCase() : '',
+    eq: (a, b) => a === b,
+    gt: (a, b) => a > b,
+    percentage: (used, total) => total > 0 ? Math.round((used / total) * 100) : 0,
+    formatDate: (date) => new Date(date).toLocaleDateString('id-ID'),
+    truncate: (str, length) => str && str.length > length ? str.substring(0, length) + '...' : str,
+    substring: (str, start, end) => str ? str.substring(start, end).toUpperCase() : '',
+    lookup: (obj, key) => obj && obj[key] ? obj[key] : { queued: 0 },
+    parseJSON: (str) => {
+      try {
+        return JSON.parse(str || '[]');
+      } catch (e) {
+        return [];
+      }
+    },
+    json: (obj) => JSON.stringify(obj),
+    range: (start, end) => {
+      const result = [];
+      for (let i = start; i <= end; i++) {
+        result.push(i);
+      }
+      return result;
+    },
+    add: (a, b) => a + b,
+    subtract: (a, b) => a - b,
+    lt: (a, b) => a < b,
+    add: (a, b) => a + b,
+    percentage: (current, total) => Math.round((current / total) * 100)
+  }
+}));
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Flash messages middleware
@@ -49,7 +91,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Auth check middleware
+// Temporary auth check (will be replaced with proper SaaS auth)
 app.use((req, res, next) => {
   const publicPaths = ['/login', '/register', '/logout'];
   const publicPrefixes = ['/login', '/register', '/product/api', '/product/generate-variations', '/product/schedule-variations', '/product/save-variations', '/product/schedule-variation', '/product/variations', '/product/cancel-schedule'];
@@ -57,30 +99,54 @@ app.use((req, res, next) => {
   if (publicPaths.includes(req.path) || publicPrefixes.some(prefix => req.path.startsWith(prefix))) {
     return next();
   }
-  if (!req.session.userId) {
-    return res.redirect('/login');
-  }
+  
+  // Let routes handle their own auth check
   next();
 });
 
-// Routes
-app.use('/', require('./routes/auth'));
-app.use('/', require('./routes/dashboard'));
+// Routes (SaaS version) - Specific routes first
+app.use('/autopilot', require('./routes/autopilot'));
 app.use('/accounts', require('./routes/accounts'));
 app.use('/posts', require('./routes/posts'));
-app.use('/product', require('./routes/affiliate'));
-app.use('/affiliate', require('./routes/affiliate'));
-app.use('/autopilot', require('./routes/autopilot'));
-app.use('/queue', require('./routes/queue'));
+app.use('/product', require('./routes/product'));
 app.use('/settings', require('./routes/settings'));
-app.use('/', require('./routes/api'));
+
+// Auth and dashboard routes last (catch-all)
+app.use('/', require('./routes/auth-saas'));
+app.use('/', require('./routes/dashboard'));
+
+// Route aliases for compatibility
+app.get('/queue', (req, res) => res.redirect('/posts/queue'));
+// app.use('/posts', require('./routes/posts'));
+// app.use('/product', require('./routes/affiliate'));
+// app.use('/affiliate', require('./routes/affiliate'));
+// app.use('/autopilot', require('./routes/autopilot'));
+// app.use('/queue', require('./routes/queue'));
+// app.use('/settings', require('./routes/settings'));
+// app.use('/', require('./routes/api'));
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).render('layout', {
-    page: '404',
-    body: '<div class="empty-state" style="padding:60px 20px"><h2 style="font-size:48px;margin-bottom:12px">404</h2><p>Halaman tidak ditemukan. <a href="/">Kembali ke Dashboard</a></p></div>'
-  });
+  res.status(404).send(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>404 - Not Found</title>
+      <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 60px; background: #0f0f23; color: #e8e8f0; }
+        h1 { font-size: 48px; margin-bottom: 12px; }
+        p { margin-bottom: 20px; }
+        a { color: #7c6aff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+      </style>
+    </head>
+    <body>
+      <h1>404</h1>
+      <p>Halaman tidak ditemukan.</p>
+      <p><a href="/">Kembali ke Dashboard</a></p>
+    </body>
+    </html>
+  `);
 });
 
 // Global error handler
@@ -89,19 +155,20 @@ app.use((err, req, res, next) => {
   res.status(500).redirect('/?error=' + encodeURIComponent('Terjadi kesalahan server'));
 });
 
-// Start scheduler
+// Start scheduler (will be updated for SaaS)
 const SchedulerService = require('./services/scheduler');
 
 const server = app.listen(PORT, () => {
-  console.log(`🤖 ThreadsBot running at http://localhost:${PORT}`);
-  SchedulerService.init();
+  console.log(`🚀 ThreadsBot SaaS running at http://localhost:${PORT}`);
+  console.log(`🌐 Public URL: https://threadssaas.kelasmaster.id`);
+  // TODO: Update scheduler for PostgreSQL
+  // SchedulerService.init();
 });
 
 // Graceful shutdown
 const shutdown = () => {
   console.log('\n🛑 Shutting down gracefully...');
   server.close(() => {
-    db.close();
     console.log('✅ Server closed.');
     process.exit(0);
   });

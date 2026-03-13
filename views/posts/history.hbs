@@ -1,0 +1,161 @@
+{{#> layouts/main page="history"}}
+
+<div class="card" id="history-card">
+  <div class="card-header">
+    <h3>📋 Riwayat Postingan ({{totalPosts}} total)</h3>
+    {{#if (gt totalPages 1)}}
+    <span class="badge badge-scheduled">Halaman {{currentPage}}/{{totalPages}}</span>
+    {{/if}}
+  </div>
+  <div class="card-body">
+    {{#unless posts.length}}
+    <div class="empty-state-enhanced">
+      <div class="empty-icon">📝</div>
+      <div class="empty-title">Belum Ada Postingan</div>
+      <div class="empty-desc">Mulai buat konten pertama Anda</div>
+      <a href="/posts/create" class="btn btn-primary" style="margin-top:16px">+ Buat Post Pertama</a>
+    </div>
+    {{else}}
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Topik</th>
+            <th>Tipe</th>
+            <th>Akun</th>
+            <th>Status</th>
+            <th>Komentar</th>
+            <th>Waktu Posting</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each posts}}
+          <tr>
+            <td>
+              <div class="topic-cell">
+                {{#if topic}}{{topic}}{{else if content_main}}{{truncate content_main 50}}{{else}}-{{/if}}
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-type-{{type}}">{{#if type}}{{type}}{{else}}organic{{/if}}</span>
+            </td>
+            <td>@{{#if account_username}}{{account_username}}{{else}}unknown{{/if}}</td>
+            <td>
+              <span class="badge badge-{{status}}">{{status}}</span>
+            </td>
+            <td>{{#if comment_count}}{{comment_count}}{{else}}0{{/if}}</td>
+            <td class="time-cell">
+              {{#if posted_at_wib}}{{posted_at_wib}}{{else}}{{created_at_wib}}{{/if}}
+            </td>
+            <td class="action-buttons">
+              {{#if (eq status 'failed')}}
+              <form action="/posts/retry/{{id}}" method="POST" style="display:inline">
+                <button type="submit" class="btn btn-sm btn-primary">🔄 Retry</button>
+              </form>
+              {{/if}}
+              <button class="btn btn-sm btn-ghost" onclick="showDetail({{id}})">👁️</button>
+              <form action="/posts/delete/{{id}}" method="POST" style="display:inline" onsubmit="return confirm('Hapus post ini?')">
+                <button type="submit" class="btn btn-sm btn-danger">🗑️</button>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/unless}}
+  </div>
+  
+  {{#if (gt totalPages 1)}}
+  <div class="card-footer" style="justify-content:center;gap:8px">
+    {{#if (gt currentPage 1)}}
+    <a href="/posts/history?page={{subtract currentPage 1}}" class="btn btn-sm btn-outline">← Sebelumnya</a>
+    {{/if}}
+    
+    {{#each (range 1 totalPages)}}
+    <a href="/posts/history?page={{this}}" class="btn btn-sm {{#if (eq this ../currentPage)}}btn-primary{{else}}btn-outline{{/if}}">{{this}}</a>
+    {{/each}}
+    
+    {{#if (lt currentPage totalPages)}}
+    <a href="/posts/history?page={{add currentPage 1}}" class="btn btn-sm btn-outline">Selanjutnya →</a>
+    {{/if}}
+  </div>
+  {{/if}}
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="detail-modal" style="display:none" onclick="if(event.target===this)this.style.display='none'">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>📝 Detail Postingan</h3>
+      <button class="btn btn-ghost" onclick="document.getElementById('detail-modal').style.display='none'">✕</button>
+    </div>
+    <div class="modal-body" id="detail-body"></div>
+  </div>
+</div>
+
+<script>
+const postsData = {{{json posts}}};
+
+function showDetail(postId) {
+  const post = postsData.find(p => p.id === postId);
+  if (!post) return;
+  
+  const modal = document.getElementById('detail-modal');
+  const body = document.getElementById('detail-body');
+  
+  let comments = '';
+  try {
+    const commentsData = JSON.parse(post.content_comments || '[]');
+    comments = commentsData.map((comment, i) => `
+      <div class="comment-item">
+        <strong>Komentar ${i + 1}:</strong>
+        <p>${comment}</p>
+      </div>
+    `).join('');
+  } catch (e) {
+    comments = '<p>Tidak ada komentar</p>';
+  }
+  
+  body.innerHTML = `
+    <div class="detail-section">
+      <h4>📝 Konten Utama</h4>
+      <div class="content-box">${post.content_main || 'Tidak ada konten'}</div>
+    </div>
+    
+    <div class="detail-section">
+      <h4>💬 Komentar Lanjutan</h4>
+      <div class="comments-list">${comments}</div>
+    </div>
+    
+    <div class="detail-section">
+      <h4>ℹ️ Informasi</h4>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Akun:</span>
+          <span class="info-value">@${post.account_username || 'unknown'}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Status:</span>
+          <span class="info-value badge badge-${post.status}">${post.status}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Dibuat:</span>
+          <span class="info-value">${post.created_at_wib}</span>
+        </div>
+        ${post.posted_at_wib ? `
+        <div class="info-item">
+          <span class="info-label">Diposting:</span>
+          <span class="info-value">${post.posted_at_wib}</span>
+        </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+  
+  modal.style.display = 'flex';
+}
+</script>
+
+{{/layouts/main}}

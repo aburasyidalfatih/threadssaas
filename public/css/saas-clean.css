@@ -1,0 +1,164 @@
+:root {
+  /* Colors */
+  --bg-primary: #0f0f23;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #16213e;
+  --bg-card: #1a1a2e;
+  --bg-input: #16213e;
+  
+  --text-primary: #e8e8f0;
+  --text-secondary: #a0a0b0;
+  --text-muted: #6b7280;
+  
+  --accent-primary: #7c6aff;
+  --accent-secondary: #9333ea;
+  
+  --success-color: #22c55e;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  
+  --border-color: #374151;
+  --border-muted: #2d3748;
+  
+  /* Layout */
+  --radius: 8px;
+  --radius-sm: 6px;
+  --radius-lg: 12px;
+  
+  /* Animation */
+  --transition: all 0.2s ease;
+}
+
+/* SaaS Specific Additions Only */
+.plan-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.plan-badge.plan-starter {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.plan-badge.plan-pro {
+  background: rgba(124, 106, 255, 0.15);
+  color: var(--accent-primary);
+}
+
+.plan-badge.plan-agency {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+/* Settings Page Specific */
+.input-with-action {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.input-with-action input {
+  flex: 1;
+  padding-right: 45px;
+}
+
+.input-with-action .btn {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  width: 40px;
+  padding: 0;
+  font-size: 14px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-with-action .btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+/* Professional Toggle Switch */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.toggle-switch input { 
+  display: none; 
+}
+
+.toggle-slider {
+  width: 44px;
+  height: 24px;
+  background: var(--bg-tertiary);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.toggle-slider::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: var(--text-secondary);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background: var(--accent-primary);
+}
+
+.toggle-switch input:checked + .toggle-slider::after {
+  left: 23px;
+  background: white;
+}
+
+.toggle-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Autopilot Specific */
+.autopilot-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+}
+
+.autopilot-card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 12px rgba(124, 106, 255, 0.1);
+}
+
+.autopilot-card.autopilot-active {
+  border-color: var(--success-color);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(34, 197, 94, 0.05) 100%);
+}
+
+.autopilot-card.autopilot-inactive {
+  opacity: 0.7;
+  border-color: var(--border-muted);
+}

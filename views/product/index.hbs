@@ -1,0 +1,319 @@
+{{#> layouts/main page="affiliate"}}
+
+<div id="product-stats" class="product-stats">
+  <div class="stat-card-product">
+    <div class="stat-icon">🛍️</div>
+    <div class="stat-info">
+      <div class="stat-value">{{stats.totalProducts}}</div>
+      <div class="stat-label">Total Produk</div>
+    </div>
+  </div>
+  <div class="stat-card-product stat-success">
+    <div class="stat-icon">📝</div>
+    <div class="stat-info">
+      <div class="stat-value">{{stats.totalVariations}}</div>
+      <div class="stat-label">Variasi Konten</div>
+    </div>
+  </div>
+  <div class="stat-card-product stat-info">
+    <div class="stat-icon">👥</div>
+    <div class="stat-info">
+      <div class="stat-value">{{stats.activeAccounts}}</div>
+      <div class="stat-label">Akun Aktif</div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Product Form -->
+<div class="card" style="margin-bottom: 24px;">
+  <div class="card-header">
+    <h3>➕ Tambah Produk Baru</h3>
+  </div>
+  <div class="card-body">
+    <form action="/product/add" method="POST">
+      <div class="product-form-grid">
+        <div class="form-group">
+          <label>Nama Produk</label>
+          <input type="text" name="product_name" placeholder="Contoh: Headphone Bluetooth XYZ" required>
+          <small class="form-hint">Nama produk yang akan dipromosikan</small>
+        </div>
+        <div class="form-group">
+          <label>Link Affiliate</label>
+          <input type="url" name="affiliate_link" placeholder="https://..." required>
+          <small class="form-hint">Link affiliate dari Shopee/Tokopedia</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Deskripsi Produk</label>
+        <textarea name="description" rows="3" placeholder="Jelaskan benefit dan keunggulan produk..." required></textarea>
+        <small class="form-hint">Jelaskan benefit dan keunggulan produk secara detail</small>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">➕ Tambah Produk</button>
+    </form>
+  </div>
+</div>
+
+<!-- Products List -->
+<div class="card" style="margin-bottom: 24px;">
+  <div class="card-header">
+    <h3>📦 Daftar Produk (<span id="product-count">{{products.length}}</span>)</h3>
+  </div>
+  <div class="card-body">
+    <div id="products-container">
+      {{#if products.length}}
+      <div class="products-grid">
+        {{#each products}}
+        <div class="product-card" data-id="{{id}}">
+          <div class="product-card-header">
+            <h4 class="product-card-title">{{product_name}}</h4>
+            <div class="product-card-actions">
+              <button class="btn-icon btn-generate" onclick="openGenerateModal('{{id}}', '{{product_name}}')" title="Generate Konten">
+                🤖
+              </button>
+              <button class="btn-icon btn-edit" onclick="editProduct('{{id}}')" title="Edit">
+                ✏️
+              </button>
+              <button class="btn-icon btn-delete" onclick="deleteProduct('{{id}}', '{{product_name}}')" title="Hapus">
+                🗑️
+              </button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-description">{{truncate description 120}}</p>
+            <div class="product-link">
+              <a href="{{affiliate_link}}" target="_blank" class="affiliate-link">
+                🔗 {{truncate affiliate_link 50}}
+              </a>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <span class="product-date">{{formatDate created_at}}</span>
+            <span class="product-status active">Aktif</span>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{else}}
+      <div class="empty-state-enhanced">
+        <div class="empty-icon">🛍️</div>
+        <div class="empty-title">Belum Ada Produk</div>
+        <div class="empty-desc">Tambahkan produk pertama untuk mulai promosi affiliate</div>
+        <button class="btn btn-primary" onclick="document.querySelector('input[name=product_name]').focus()" style="margin-top:16px">
+          + Tambah Produk Pertama
+        </button>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+<!-- Scheduled Content -->
+<div class="card">
+  <div class="card-header">
+    <h3>📅 Konten Terjadwal (<span id="scheduled-count">0</span>)</h3>
+  </div>
+  <div class="card-body">
+    <div id="scheduled-container">
+      <div class="empty-state">
+        <p>Belum ada konten terjadwal</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Generate Modal -->
+<div id="generateModal" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeGenerateModal()">
+  <div class="modal-content" style="max-width:900px">
+    <div class="modal-header">
+      <h3>🎨 Generate Konten</h3>
+      <button class="btn btn-ghost" onclick="closeGenerateModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="generate-form" class="form-stack">
+        <div class="form-group">
+          <label>Produk: <strong id="modal-product-name"></strong></label>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Jumlah Komentar: <span id="comment-count-display">3</span></label>
+            <input type="range" id="comment-count" min="2" max="5" value="3" oninput="document.getElementById('comment-count-display').textContent=this.value">
+          </div>
+          <div class="form-group">
+            <label>Jumlah Variasi</label>
+            <select id="variation-count">
+              <option value="3">3 variasi</option>
+              <option value="5" selected>5 variasi</option>
+              <option value="8">8 variasi</option>
+              <option value="10">10 variasi</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-glow" onclick="generateVariations()">🤖 Generate Konten</button>
+      </div>
+      
+      <div id="generate-progress" style="display:none">
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <p id="progress-text">Memproses...</p>
+        </div>
+      </div>
+      
+      <div id="variations-result" style="display:none">
+        <div class="variations-header">
+          <h4>📝 Variasi yang Dihasilkan</h4>
+          <div class="variations-actions">
+            <button class="btn btn-outline btn-sm" onclick="regenerateVariations()">🔄 Generate Ulang</button>
+            <button class="btn btn-success btn-sm" onclick="scheduleAllVariations()">📅 Jadwalkan Semua</button>
+          </div>
+        </div>
+        <div class="variations-grid" id="variations-grid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentProductId = null;
+let generatedVariations = [];
+
+function openGenerateModal(productId, productName) {
+  currentProductId = productId;
+  document.getElementById('modal-product-name').textContent = productName;
+  document.getElementById('generateModal').style.display = 'flex';
+  resetGenerateModal();
+}
+
+function closeGenerateModal() {
+  document.getElementById('generateModal').style.display = 'none';
+  resetGenerateModal();
+}
+
+function resetGenerateModal() {
+  document.getElementById('generate-form').style.display = 'block';
+  document.getElementById('generate-progress').style.display = 'none';
+  document.getElementById('variations-result').style.display = 'none';
+  generatedVariations = [];
+}
+
+async function generateVariations() {
+  if (!currentProductId) return;
+  
+  const variationCount = document.getElementById('variation-count').value;
+  const commentCount = document.getElementById('comment-count').value;
+  
+  // Show progress
+  document.getElementById('generate-form').style.display = 'none';
+  document.getElementById('generate-progress').style.display = 'block';
+  
+  // Simulate progress
+  let progress = 0;
+  const progressInterval = setInterval(() => {
+    progress += 10;
+    document.getElementById('progress-fill').style.width = progress + '%';
+    document.getElementById('progress-text').textContent = `Generating... ${progress}%`;
+    
+    if (progress >= 90) {
+      clearInterval(progressInterval);
+    }
+  }, 200);
+  
+  try {
+    const response = await fetch('/product/generate-variations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        product_id: currentProductId,
+        variation_count: variationCount,
+        comment_count: commentCount
+      })
+    });
+    
+    const data = await response.json();
+    
+    clearInterval(progressInterval);
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('progress-text').textContent = 'Selesai!';
+    
+    setTimeout(() => {
+      if (data.success) {
+        generatedVariations = data.variations;
+        showVariationsResult(data.variations);
+      } else {
+        alert(data.error || 'Gagal generate variasi');
+        resetGenerateModal();
+      }
+    }, 500);
+    
+  } catch (error) {
+    clearInterval(progressInterval);
+    console.error(error);
+    alert('Terjadi kesalahan');
+    resetGenerateModal();
+  }
+}
+
+function showVariationsResult(variations) {
+  const variationsGrid = document.getElementById('variations-grid');
+  
+  variationsGrid.innerHTML = variations.map((variation, index) => `
+    <div class="variation-card">
+      <div class="variation-header">
+        <span class="variation-number">Variasi ${index + 1}</span>
+        <div class="variation-actions">
+          <button class="btn-icon" onclick="editVariation(${index})" title="Edit">✏️</button>
+          <button class="btn-icon" onclick="scheduleVariation(${index})" title="Jadwalkan">📅</button>
+        </div>
+      </div>
+      <div class="variation-content">${variation.content}</div>
+    </div>
+  `).join('');
+  
+  document.getElementById('generate-progress').style.display = 'none';
+  document.getElementById('variations-result').style.display = 'block';
+}
+
+function regenerateVariations() {
+  resetGenerateModal();
+}
+
+function editVariation(index) {
+  alert('Fitur edit variasi akan segera tersedia');
+}
+
+function scheduleVariation(index) {
+  alert('Fitur jadwal variasi akan segera tersedia');
+}
+
+function scheduleAllVariations() {
+  alert('Fitur jadwal semua variasi akan segera tersedia');
+}
+
+function editProduct(productId) {
+  alert('Fitur edit produk akan segera tersedia');
+}
+
+function deleteProduct(productId, productName) {
+  if (!confirm(`Hapus produk "${productName}"?`)) return;
+  
+  fetch(`/product/${productId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      location.reload();
+    } else {
+      alert(data.error || 'Gagal menghapus produk');
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Terjadi kesalahan');
+  });
+}
+</script>
+
+{{/layouts/main}}

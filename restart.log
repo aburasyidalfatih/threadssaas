@@ -1,0 +1,1782 @@
+Fri Mar 13 10:53:11 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T03:53:11.529Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 10:56:18 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 10:56:23 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T03:56:23.694Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 10:58:53 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 10:58:58 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T03:58:59.097Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:00:49 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:00:54 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:00:54.935Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:02:33 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:02:38 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:02:38.801Z
+✅ Redis connected: true
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Dashboard error: ReferenceError: Cannot access 'accounts' before initialization
+    at /home/ubuntu/threadsbot-saas/routes/dashboard.js:18:22
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:04:00 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:04:05 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:04:05.662Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:06:46 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:06:51 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:06:51.690Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:07:50 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:07:55 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:07:55.640Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:09:24 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:09:29 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:09:29.526Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:10:56 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:11:01 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:11:02.120Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:11:48 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:11:53 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:11:53.360Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:12:52 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:12:57 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:12:58.173Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:14:35 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:14:40 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  override existing env vars with { override: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:14:41.111Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:18:32 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:18:37 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:18:37.517Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:21:00 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:21:05 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:21:06.064Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:23:39 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:23:44 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:23:44.825Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:24:48 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:24:53 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:24:53.450Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:25:36 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:25:41 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:25:41.510Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:27:26 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:27:31 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:27:31.627Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:30:37 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:30:42 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:30:42.966Z
+✅ Redis connected: true
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:31:33 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:31:38 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:31:39.030Z
+✅ Redis connected: true
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Closing database connections...
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:33:54 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:33:59 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:34:00.174Z
+✅ Redis connected: true
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:35:12 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:35:17 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:35:18.276Z
+✅ Redis connected: true
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:25:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:36:16 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:36:21 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:36:21.585Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:36:37 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:36:42 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:36:43.322Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:36:55 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:37:00 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:37:00.995Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:37:37 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:37:42 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:37:43.300Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:38:06 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:38:11 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:38:12.012Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:40:11 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:40:16 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:40:17.196Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:42:15 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:42:20 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:42:20.671Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 11:44:38 AM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 11:44:43 AM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  override existing env vars with { override: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T04:44:43.388Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+/home/ubuntu/threadsbot-saas/start.sh: line 9: 3317903 Hangup                  node server.js
+Fri Mar 13 12:10:08 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 12:10:13 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T05:10:14.111Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+AUTOPILOT ROUTE HIT!
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:27:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 01:53:30 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 01:53:35 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T06:53:36.247Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+AUTOPILOT ROUTE HIT!
+Getting user for ID: 2
+Autopilot page error: error: column u.max_accounts does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.get (/home/ubuntu/threadsbot-saas/config/database.js:40:20)
+    at async AuthService.getUserById (/home/ubuntu/threadsbot-saas/services/auth.js:78:18)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:17:18 {
+  length: 112,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '83',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3713',
+  routine: 'errorMissingColumn'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 01:54:01 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 01:54:06 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T06:54:07.335Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Getting user for ID: 2
+User retrieved: {
+  id: 2,
+  email: 'test@example.com',
+  name: 'Test User',
+  plan: 'starter',
+  status: 'active',
+  max_accounts: 3,
+  max_posts_per_month: 500,
+  max_queue_items: 50,
+  features: { affiliate: true, analytics: false, auto_reply: true },
+  usage: { posts_used: 0, accounts_used: 0 }
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:29:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 01:54:22 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 01:54:27 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T06:54:28.406Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Getting user for ID: 2
+User retrieved: {
+  id: 2,
+  email: 'test@example.com',
+  name: 'Test User',
+  plan: 'starter',
+  status: 'active',
+  max_accounts: 3,
+  max_posts_per_month: 500,
+  max_queue_items: 50
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:44:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 01:55:11 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 01:55:16 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T06:55:16.699Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Session userId: 2
+Using user ID: 1
+User retrieved: {
+  id: 1,
+  email: 'andriko484@gmail.com',
+  name: 'andriko',
+  plan: 'starter',
+  status: 'active',
+  max_accounts: 3,
+  max_posts_per_month: 500,
+  max_queue_items: 50
+}
+Autopilot page error: error: relation "autopilot_configs" does not exist
+    at /home/ubuntu/threadsbot-saas/node_modules/pg/lib/client.js:631:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Database.query (/home/ubuntu/threadsbot-saas/config/database.js:31:22)
+    at async Database.all (/home/ubuntu/threadsbot-saas/config/database.js:46:20)
+    at async /home/ubuntu/threadsbot-saas/routes/autopilot.js:48:24 {
+  length: 116,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '64',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1449',
+  routine: 'parserOpenTable'
+}
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 01:55:41 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 01:55:46 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T06:55:46.943Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 01:58:07 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 01:58:12 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  override existing env vars with { override: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T06:58:13.153Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+[Error] Error: Parse error on line 97:
+...ing_hours.split ',').length 0}}x</span>
+-----------------------^
+Expecting 'CLOSE_RAW_BLOCK', 'CLOSE', 'CLOSE_UNESCAPED', 'OPEN_SEXPR', 'CLOSE_SEXPR', 'ID', 'OPEN_BLOCK_PARAMS', 'STRING', 'NUMBER', 'BOOLEAN', 'UNDEFINED', 'NULL', 'DATA', got 'SEP'
+    at Parser.parseError (/home/ubuntu/threadsbot-saas/node_modules/handlebars/dist/cjs/handlebars/compiler/parser.js:267:19)
+    at Parser.parse (/home/ubuntu/threadsbot-saas/node_modules/handlebars/dist/cjs/handlebars/compiler/parser.js:336:30)
+    at parseWithoutProcessing (/home/ubuntu/threadsbot-saas/node_modules/handlebars/dist/cjs/handlebars/compiler/base.js:46:33)
+    at HandlebarsEnvironment.parse (/home/ubuntu/threadsbot-saas/node_modules/handlebars/dist/cjs/handlebars/compiler/base.js:52:13)
+    at compileInput (/home/ubuntu/threadsbot-saas/node_modules/handlebars/dist/cjs/handlebars/compiler/compiler.js:508:19)
+    at ret (/home/ubuntu/threadsbot-saas/node_modules/handlebars/dist/cjs/handlebars/compiler/compiler.js:517:18)
+    at ExpressHandlebars._renderTemplate (/home/ubuntu/threadsbot-saas/node_modules/express-handlebars/dist/express-handlebars.js:252:16)
+    at ExpressHandlebars.<anonymous> (/home/ubuntu/threadsbot-saas/node_modules/express-handlebars/dist/express-handlebars.js:156:31)
+    at Generator.next (<anonymous>)
+    at fulfilled (/home/ubuntu/threadsbot-saas/node_modules/express-handlebars/dist/express-handlebars.js:10:58)
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 01:58:57 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 01:59:02 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  override existing env vars with { override: true }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T06:59:02.671Z
+✅ Redis connected: true
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 02:08:37 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 02:08:42 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T07:08:42.684Z
+✅ Redis connected: true
+
+🛑 Shutting down gracefully...
+✅ Server closed.
+Fri Mar 13 02:09:12 PM WIB 2026: ThreadsBot SaaS crashed, restarting in 5 seconds...
+Fri Mar 13 02:09:17 PM WIB 2026: Starting ThreadsBot SaaS...
+[dotenv@17.3.1] injecting env (15) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+🚀 ThreadsBot SaaS running at http://localhost:5009
+🌐 Public URL: https://threadssaas.kelasmaster.id
+✅ PostgreSQL connected: 2026-03-13T07:09:18.132Z
+✅ Redis connected: true
+Saving settings for user ID: 2
+Settings data: { gemini_api_key: 'test_key_debug', gemini_model: 'gemini-2.5-flash' }
+Updating setting: gemini_api_key = test_key_debug
+Updating setting: gemini_model = gemini-2.5-flash
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }
+AUTOPILOT ROUTE HIT!
+Rendering autopilot page with: { user: 'andriko484@gmail.com', accounts: 0 }

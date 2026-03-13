@@ -478,3 +478,8 @@ Fri Mar 13 09:00:01 AM WIB 2026: ✅ ThreadsBot is running
 Fri Mar 13 09:00:01 AM WIB 2026: ✅ Port 5008 is listening
 Fri Mar 13 09:00:01 AM WIB 2026: ✅ Database exists (589824 bytes)
 
+=== Health Check Fri Mar 13 09:15:01 AM WIB 2026 ===
+Fri Mar 13 09:15:01 AM WIB 2026: ✅ ThreadsBot is running
+Fri Mar 13 09:15:01 AM WIB 2026: ✅ Port 5008 is listening
+Fri Mar 13 09:15:01 AM WIB 2026: ✅ Database exists (589824 bytes)
+

@@ -1,0 +1,107 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <h1>👤 Profil Pengguna</h1>
+  </div>
+
+  <div class="profile-card">
+    <div class="profile-info">
+      <div class="info-item">
+        <label>Nama Lengkap</label>
+        <div class="info-value">{{user.name}}</div>
+      </div>
+
+      <div class="info-item">
+        <label>Email</label>
+        <div class="info-value">{{user.email}}</div>
+      </div>
+
+      <div class="info-item">
+        <label>Plan</label>
+        <div class="info-value">
+          <span class="plan-badge">🚀 {{uppercase user.plan}}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <label>Bergabung</label>
+        <div class="info-value">{{user.created_at}}</div>
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      <a href="/" class="btn btn-outline">Kembali ke Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<style>
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.profile-header h1 {
+  color: var(--text-primary);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.profile-info {
+  margin-bottom: 32px;
+}
+
+.info-item {
+  margin-bottom: 24px;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-item label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 16px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.plan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.profile-actions {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+</style>

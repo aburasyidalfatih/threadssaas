@@ -1,0 +1,253 @@
+{{#> layouts/main page="accounts"}}
+
+<div class="accounts-stats">
+  <div class="stat-mini-account">
+    <span class="stat-mini-icon">👥</span>
+    <div>
+      <div class="stat-mini-value">{{stats.total}}</div>
+      <div class="stat-mini-label">Total Akun</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-success">
+    <span class="stat-mini-icon">✅</span>
+    <div>
+      <div class="stat-mini-value">{{stats.active}}</div>
+      <div class="stat-mini-label">Active</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-muted">
+    <span class="stat-mini-icon">⏸️</span>
+    <div>
+      <div class="stat-mini-value">{{stats.inactive}}</div>
+      <div class="stat-mini-label">Inactive</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-warning">
+    <span class="stat-mini-icon">⚠️</span>
+    <div>
+      <div class="stat-mini-value">{{stats.expiringSoon}}</div>
+      <div class="stat-mini-label">Expiring Soon</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-danger">
+    <span class="stat-mini-icon">❌</span>
+    <div>
+      <div class="stat-mini-value">{{stats.expired}}</div>
+      <div class="stat-mini-label">Expired</div>
+    </div>
+  </div>
+</div>
+
+<!-- SaaS Usage Info -->
+<div class="usage-info-card">
+  <div class="usage-info">
+    <span class="usage-text">Akun digunakan: <strong>{{user.usage.accounts_used}}/{{user.limits.max_accounts}}</strong></span>
+    <div class="usage-bar">
+      <div class="usage-fill" style="width: {{percentage user.usage.accounts_used user.limits.max_accounts}}%"></div>
+    </div>
+    {{#unless canAddMore}}
+    <div class="usage-limit-warning">
+      ⚠️ Limit akun tercapai. <a href="/billing">Upgrade plan</a> untuk menambah akun.
+    </div>
+    {{/unless}}
+  </div>
+</div>
+
+{{#if canAddMore}}
+<div class="card" id="add-account-card">
+  <div class="card-header">
+    <h3>➕ Tambah Akun Threads</h3>
+  </div>
+  <div class="card-body">
+    <div style="margin-bottom: 24px; display: flex; gap: 12px;">
+      <label style="flex: 1; padding: 16px; background: rgba(124, 106, 255, 0.1); border: 2px solid rgba(124, 106, 255, 0.3); border-radius: 8px; cursor: pointer; display: flex; align-items: flex-start; gap: 12px; transition: all 0.3s;">
+        <input type="radio" name="auth_method" value="oauth" checked onchange="toggleAuthMethod('oauth')" style="margin-top: 3px;"> 
+        <div>
+          <div style="font-weight: 600; color: #7c6aff; font-size: 14px; margin-bottom: 4px;">🔐 OAuth (Recommended)</div>
+          <div style="color: rgba(152, 152, 176, 0.7); font-size: 12px;">Koneksi aman via Meta</div>
+        </div>
+      </label>
+      <label style="flex: 1; padding: 16px; background: rgba(152, 152, 176, 0.05); border: 2px solid rgba(152, 152, 176, 0.2); border-radius: 8px; cursor: pointer; display: flex; align-items: flex-start; gap: 12px; transition: all 0.3s;">
+        <input type="radio" name="auth_method" value="manual" onchange="toggleAuthMethod('manual')" style="margin-top: 3px;"> 
+        <div>
+          <div style="font-weight: 600; color: rgba(152, 152, 176, 0.8); font-size: 14px; margin-bottom: 4px;">🔑 Manual Token</div>
+          <div style="color: rgba(152, 152, 176, 0.5); font-size: 12px;">Input token manual</div>
+        </div>
+      </label>
+    </div>
+
+    <div id="oauth-method">
+      <div class="form-note">
+        <div class="note-icon">💡</div>
+        <div class="note-content">
+          <strong>Cara menambah akun:</strong>
+          <ol>
+            <li>Klik tombol "Connect with Threads" di bawah</li>
+            <li>Login dengan akun Threads Anda</li>
+            <li>Berikan izin akses ke aplikasi</li>
+            <li>Akun akan otomatis ditambahkan</li>
+          </ol>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="connectThreadsAccount()">
+        <span class="btn-icon">🔗</span>
+        Connect with Threads
+      </button>
+    </div>
+
+    <div id="manual-method" style="display: none;">
+      <form id="manual-account-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="manual_username">Username</label>
+            <input type="text" id="manual_username" name="username" placeholder="@username" required>
+          </div>
+          <div class="form-group">
+            <label for="manual_user_id">User ID</label>
+            <input type="text" id="manual_user_id" name="user_id" placeholder="1234567890" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="manual_token">Access Token</label>
+          <textarea id="manual_token" name="access_token" placeholder="Paste your access token here..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <span class="btn-icon">➕</span>
+          Tambah Akun
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+<div class="card">
+  <div class="card-header">
+    <h3>👥 Daftar Akun ({{accounts.length}})</h3>
+  </div>
+  <div class="card-body">
+    {{#if accounts.length}}
+    <div class="accounts-list">
+      {{#each accounts}}
+      <div class="account-item {{#if is_expired}}expired{{else if is_expiring_soon}}expiring{{else if is_connected}}active{{else}}inactive{{/if}}">
+        <div class="account-avatar">
+          <div class="avatar-placeholder">{{substring username 0 1}}</div>
+        </div>
+        <div class="account-info">
+          <div class="account-username">@{{username}}</div>
+          <div class="account-meta">
+            <span class="account-id">ID: {{threads_user_id}}</span>
+            {{#if token_expires_at}}
+            <span class="account-expires">Expires: {{formatDate token_expires_at}}</span>
+            {{/if}}
+          </div>
+        </div>
+        <div class="account-status">
+          {{#if is_expired}}
+          <span class="status-badge status-expired">Expired</span>
+          {{else if is_expiring_soon}}
+          <span class="status-badge status-expiring">Expiring Soon</span>
+          {{else if is_connected}}
+          <span class="status-badge status-active">Active</span>
+          {{else}}
+          <span class="status-badge status-inactive">Inactive</span>
+          {{/if}}
+        </div>
+        <div class="account-actions">
+          {{#if is_expired}}
+          <button class="btn-action btn-refresh" onclick="refreshAccount('{{id}}')">
+            <span class="action-icon">🔄</span>
+            Refresh
+          </button>
+          {{/if}}
+          <button class="btn-action btn-delete" onclick="deleteAccount('{{id}}', '@{{username}}')">
+            <span class="action-icon">🗑️</span>
+            Delete
+          </button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <div class="empty-state-enhanced">
+      <div class="empty-icon">👥</div>
+      <div class="empty-title">Belum Ada Akun</div>
+      <div class="empty-desc">Tambahkan akun Threads pertama Anda untuk mulai posting</div>
+      {{#if canAddMore}}
+      <button class="btn btn-primary" onclick="document.getElementById('add-account-card').scrollIntoView()" style="margin-top:16px">
+        + Tambah Akun Pertama
+      </button>
+      {{/if}}
+    </div>
+    {{/if}}
+  </div>
+</div>
+
+<script>
+function toggleAuthMethod(method) {
+  const oauthMethod = document.getElementById('oauth-method');
+  const manualMethod = document.getElementById('manual-method');
+  
+  if (method === 'oauth') {
+    oauthMethod.style.display = 'block';
+    manualMethod.style.display = 'none';
+  } else {
+    oauthMethod.style.display = 'none';
+    manualMethod.style.display = 'block';
+  }
+}
+
+function connectThreadsAccount() {
+  // TODO: Implement OAuth flow
+  alert('OAuth integration coming soon! Use manual method for now.');
+}
+
+function deleteAccount(accountId, username) {
+  if (!confirm(`Hapus akun ${username}?`)) return;
+  
+  fetch(`/accounts/${accountId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      location.reload();
+    } else {
+      alert(data.error || 'Gagal menghapus akun');
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Terjadi kesalahan');
+  });
+}
+
+// Manual form submit
+document.getElementById('manual-account-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData);
+  
+  fetch('/accounts/add', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      location.reload();
+    } else {
+      alert(data.error || 'Gagal menambahkan akun');
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Terjadi kesalahan');
+  });
+});
+</script>
+
+{{/layouts/main}}
