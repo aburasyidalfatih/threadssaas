@@ -44,7 +44,7 @@ router.get('/callback/threads', async (req, res) => {
         updated_at = datetime('now')
       WHERE id = ?
     `).run(
-      tokenData.user_id,
+      String(tokenData.user_id),
       longLivedData.access_token,
       expiresAt,
       accountId

@@ -8,7 +8,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="ap-account">Akun Threads</label>
-          <select id="ap-account" name="account_id" required>
+          <select id="ap-account" name="account_id" required onchange="showAccountTheme(this.value)">
             <option value="">— Pilih Akun —</option>
             ${accounts.map(acc => '<option value="' + acc.id + '">@' + acc.username + (acc.access_token ? ' ✅' : ' ❌ belum connect') + '</option>').join('')}
           </select>
@@ -24,15 +24,13 @@
         </div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="ap-theme">Tema / Niche Akun</label>
-          <input type="text" id="ap-theme" name="theme" placeholder="Contoh: Parenting, Tips Pernikahan, Motivasi Bisnis" required>
+      <div class="form-group" id="account-theme-display" style="display:none;">
+        <label>🎯 Tema Akun</label>
+        <div class="theme-display-box" style="background:var(--bg-input);padding:12px;border-radius:8px;margin-bottom:8px;">
+          <div id="selected-theme" style="font-weight:600;margin-bottom:4px;"></div>
+          <div id="selected-theme-desc" style="color:var(--text-secondary);font-size:14px;"></div>
         </div>
-        <div class="form-group">
-          <label for="ap-theme-desc">Deskripsi Tema (opsional)</label>
-          <input type="text" id="ap-theme-desc" name="theme_description" placeholder="Contoh: Tips merawat anak usia 0-5 tahun, gaya bahasa santai">
-        </div>
+        <small class="form-hint">Tema diatur di halaman <a href="/accounts">Pengaturan Akun</a></small>
       </div>
 
       <div class="form-row">
@@ -163,6 +161,30 @@
 </style>
 
 <script>
+const accountsData = ${JSON.stringify(accounts)};
+
+function showAccountTheme(accountId) {
+  const display = document.getElementById('account-theme-display');
+  const themeEl = document.getElementById('selected-theme');
+  const themeDescEl = document.getElementById('selected-theme-desc');
+  
+  if (!accountId) {
+    display.style.display = 'none';
+    return;
+  }
+  
+  const account = accountsData.find(acc => acc.id == accountId);
+  if (account && account.theme) {
+    themeEl.textContent = account.theme;
+    themeDescEl.textContent = account.theme_description || 'Tidak ada deskripsi';
+    display.style.display = 'block';
+  } else {
+    themeEl.textContent = 'Tema belum diatur';
+    themeDescEl.textContent = 'Silakan atur tema di halaman Pengaturan Akun';
+    display.style.display = 'block';
+  }
+}
+
 function openEditModal(button) {
   const modal = document.getElementById('editAutoPilotModal');
   if (!modal) {

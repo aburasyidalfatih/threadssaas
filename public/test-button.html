@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Generate Button</title>
+</head>
+<body>
+  <h1>Test Generate Button</h1>
+  <button id="test-btn" onclick="window.testFunc && window.testFunc()">Click Me</button>
+  
+  <script data-cfasync="false">
+    console.log('Script loaded');
+    
+    window.testFunc = function() {
+      console.log('testFunc called');
+      alert('Button works!');
+    };
+    
+    console.log('testFunc exposed to window:', typeof window.testFunc);
+  </script>
+</body>
+</html>

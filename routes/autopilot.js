@@ -19,13 +19,19 @@ router.get('/', (req, res) => {
 
 // Save/Update autopilot config
 router.post('/save', (req, res) => {
-  const { account_id, is_enabled, theme, theme_description, posting_hours, comment_count } = req.body;
+  const { account_id, is_enabled, posting_hours, comment_count } = req.body;
 
   try {
+    // Get theme from accounts table instead of form input
+    const account = db.prepare('SELECT theme, theme_description FROM accounts WHERE id = ?').get(account_id);
+    if (!account || !account.theme) {
+      return res.redirect('/autopilot?error=Akun+tidak+ditemukan+atau+tema+belum+diatur.+Silakan+atur+tema+di+halaman+Pengaturan+Akun');
+    }
+
     AutoPilotService.saveConfig(account_id, {
       is_enabled,
-      theme,
-      theme_description,
+      theme: account.theme,
+      theme_description: account.theme_description,
       posting_hours,
       comment_count
     });

@@ -7,13 +7,13 @@
   <div class="card-body">
     ${posts.length === 0 ? '<p class="empty-state">Belum ada postingan. <a href="/posts/create">Buat sekarang!</a></p>' : ''}
     <div class="table-wrapper">
-      ${posts.length > 0 ? '<table class="data-table"><thead><tr><th>Topik</th><th>Tipe</th><th>Akun</th><th>Status</th><th>Komentar</th><th>Dibuat</th><th>Aksi</th></tr></thead><tbody>' + posts.map(post => '<tr>' +
-        '<td><div class="topic-cell">' + (post.topic || '-') + '</div></td>' +
+      ${posts.length > 0 ? '<table class="data-table"><thead><tr><th>Topik</th><th>Tipe</th><th>Akun</th><th>Status</th><th>Komentar</th><th>Waktu Posting</th><th>Aksi</th></tr></thead><tbody>' + posts.map(post => '<tr>' +
+        '<td><div class="topic-cell">' + (post.topic || (post.content_main ? post.content_main.substring(0, 50) + '...' : '-')) + '</div></td>' +
         '<td><span class="badge badge-type-' + post.type + '">' + post.type + '</span></td>' +
         '<td>@' + (post.account_username || 'unknown') + '</td>' +
         '<td><span class="badge badge-' + post.status + '">' + post.status + '</span></td>' +
         '<td>' + (post.comment_count || 0) + '</td>' +
-        '<td class="time-cell">' + post.created_at + '</td>' +
+        '<td class="time-cell">' + (post.posted_at_wib || post.created_at_wib) + '</td>' +
         '<td class="action-buttons">' +
           (post.status === 'failed' ? '<form action="/posts/retry/' + post.id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm btn-primary">🔄 Retry</button></form>' : '') +
           '<button class="btn btn-sm btn-ghost" onclick="showDetail(' + post.id + ')">👁️</button>' +

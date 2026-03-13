@@ -1,41 +1,58 @@
 <%- include('layout', { body: `
-<div class="card" id="gemini-settings-card">
-  <div class="card-header">
-    <h3>🤖 Pengaturan AI (Gemini)</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; align-items: start;">
+  <div class="card" style="height: 100%;">
+    <div class="card-header">
+      <h3>🔗 Pengaturan Threads API</h3>
+    </div>
+    <div class="card-body">
+      <form action="/settings/save" method="POST" class="form-stack">
+        <div class="form-group">
+          <label for="threads_app_id">Threads App ID</label>
+          <input type="text" id="threads_app_id" name="threads_app_id" value="${settings.threads_app_id || ''}" placeholder="Meta App ID">
+          <small class="form-hint">App ID dari Meta for Developers untuk semua akun</small>
+        </div>
+        <div class="form-group">
+          <label for="threads_app_secret">Threads App Secret</label>
+          <div class="input-with-action">
+            <input type="password" id="threads_app_secret" name="threads_app_secret" value="${settings.threads_app_secret || ''}" placeholder="Meta App Secret">
+            <button type="button" class="btn btn-sm btn-ghost" onclick="togglePasswordVisibility('threads_app_secret')">👁️</button>
+          </div>
+          <small class="form-hint">App Secret dari Meta for Developers untuk semua akun</small>
+        </div>
+        <div class="btn-right-container" style="margin-top: auto;">
+          <button type="submit" class="btn btn-primary">💾 Simpan Pengaturan Threads</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="card-body">
-    <form action="/settings/save" method="POST" class="form-stack">
-      <div class="form-group">
-        <label for="gemini_api_key">Gemini API Key</label>
-        <div class="input-with-action">
-          <input type="password" id="gemini_api_key" name="gemini_api_key" value="${settings.gemini_api_key || ''}" placeholder="AIzaSy...">
-          <button type="button" class="btn btn-sm btn-ghost" onclick="togglePasswordVisibility('gemini_api_key')">👁️</button>
-        </div>
-        <small class="form-hint">Dapatkan di <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com</a></small>
-      </div>
-      <div class="form-group">
-        <label for="gemini_model">Model Gemini</label>
-        <select id="gemini_model" name="gemini_model">
-          <option value="gemini-2.5-flash" ${settings.gemini_model === 'gemini-2.5-flash' ? 'selected' : ''}>Gemini 2.5 Flash (Default/Fast)</option>
-          <option value="gemini-2.5-pro" ${settings.gemini_model === 'gemini-2.5-pro' ? 'selected' : ''}>Gemini 2.5 Pro (Best Quality)</option>
-          <option value="gemini-2.0-flash" ${settings.gemini_model === 'gemini-2.0-flash' ? 'selected' : ''}>Gemini 2.0 Flash (Legacy Fast)</option>
-        </select>
-      </div>
-      <div class="form-row">
+
+  <div class="card" style="height: 100%;">
+    <div class="card-header">
+      <h3>🤖 Pengaturan AI (Gemini)</h3>
+    </div>
+    <div class="card-body">
+      <form action="/settings/save" method="POST" class="form-stack">
         <div class="form-group">
-          <label for="default_comment_count">Default Jumlah Komentar</label>
-          <input type="number" id="default_comment_count" name="default_comment_count" value="${settings.default_comment_count || 3}" min="1" max="10">
+          <label for="gemini_api_key">Gemini API Key</label>
+          <div class="input-with-action">
+            <input type="password" id="gemini_api_key" name="gemini_api_key" value="${settings.gemini_api_key || ''}" placeholder="AIzaSy...">
+            <button type="button" class="btn btn-sm btn-ghost" onclick="togglePasswordVisibility('gemini_api_key')">👁️</button>
+          </div>
+          <small class="form-hint">Dapatkan di <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com</a></small>
         </div>
         <div class="form-group">
-          <label for="post_delay_seconds">Delay Antar Post (detik)</label>
-          <input type="number" id="post_delay_seconds" name="post_delay_seconds" value="${settings.post_delay_seconds || 30}" min="10" max="300">
-          <small class="form-hint">Minimal 10 detik untuk menghindari rate limit</small>
+          <label for="gemini_model">Model Gemini</label>
+          <select id="gemini_model" name="gemini_model">
+            <option value="gemini-2.5-flash" ${settings.gemini_model === 'gemini-2.5-flash' ? 'selected' : ''}>Gemini 2.5 Flash (Default/Fast)</option>
+            <option value="gemini-2.5-pro" ${settings.gemini_model === 'gemini-2.5-pro' ? 'selected' : ''}>Gemini 2.5 Pro (Best Quality)</option>
+            <option value="gemini-2.0-flash" ${settings.gemini_model === 'gemini-2.0-flash' ? 'selected' : ''}>Gemini 2.0 Flash (Legacy Fast)</option>
+          </select>
         </div>
-      </div>
-      <div class="btn-right-container">
-        <button type="submit" class="btn btn-primary" id="btn-save-settings">💾 Simpan Pengaturan</button>
-      </div>
-    </form>
+        <div class="btn-right-container" style="margin-top: auto;">
+          <button type="submit" class="btn btn-primary" id="btn-save-settings">💾 Simpan Pengaturan</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 

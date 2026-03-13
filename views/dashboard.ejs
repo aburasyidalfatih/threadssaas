@@ -1,83 +1,98 @@
 <%- include('layout', { body: `
+${expiringTokens.length > 0 ? '<div class="alert alert-error" style="margin-bottom:20px;display:flex;align-items:center;gap:12px"><span style="font-size:24px">⚠️</span><div><strong>Token Kadaluarsa!</strong> ' + expiringTokens.map(t => '@' + t.username).join(', ') + ' perlu refresh. <a href="/accounts" style="color:#fff;text-decoration:underline;font-weight:600">Refresh Sekarang →</a></div></div>' : ''}
+
+<div class="quick-actions">
+  <a href="/posts/create" class="quick-action-btn">
+    <span class="qa-icon">✍️</span>
+    <span class="qa-label">Buat Post</span>
+  </a>
+  <a href="/queue" class="quick-action-btn">
+    <span class="qa-icon">📝</span>
+    <span class="qa-label">Content Queue</span>
+  </a>
+  <a href="/autopilot" class="quick-action-btn">
+    <span class="qa-icon">🚀</span>
+    <span class="qa-label">Auto Pilot</span>
+  </a>
+  <a href="/accounts" class="quick-action-btn">
+    <span class="qa-icon">👥</span>
+    <span class="qa-label">Kelola Akun</span>
+  </a>
+</div>
+
 <div class="stats-grid">
-  <div class="stat-card" id="stat-accounts">
+  <div class="stat-card stat-primary" id="stat-accounts">
     <div class="stat-icon">👥</div>
     <div class="stat-info">
-      <div class="stat-value">${stats.activeAccounts}/${stats.totalAccounts}</div>
+      <div class="stat-value">${stats.activeAccounts}<span class="stat-total">/${stats.totalAccounts}</span></div>
       <div class="stat-label">Akun Aktif</div>
     </div>
   </div>
   <div class="stat-card stat-success" id="stat-posts">
-    <div class="stat-icon">📝</div>
+    <div class="stat-icon">✅</div>
     <div class="stat-info">
       <div class="stat-value">${stats.donePosts}</div>
       <div class="stat-label">Post Berhasil</div>
     </div>
   </div>
-  <div class="stat-card stat-warning" id="stat-pending">
-    <div class="stat-icon">⏳</div>
+  <div class="stat-card stat-warning" id="stat-status">
+    <div class="stat-icon">📊</div>
     <div class="stat-info">
-      <div class="stat-value">${stats.pendingPosts}</div>
-      <div class="stat-label">Menunggu</div>
+      <div class="stat-value">${stats.pendingPosts}<span class="stat-divider">/</span>${stats.failedPosts}</div>
+      <div class="stat-label">Pending / Gagal</div>
     </div>
   </div>
-  <div class="stat-card stat-danger" id="stat-failed">
-    <div class="stat-icon">❌</div>
-    <div class="stat-info">
-      <div class="stat-value">${stats.failedPosts}</div>
-      <div class="stat-label">Gagal</div>
-    </div>
-  </div>
-  <div class="stat-card stat-info" id="stat-replies">
-    <div class="stat-icon">💬</div>
-    <div class="stat-info">
-      <div class="stat-value">${stats.totalReplies}</div>
-      <div class="stat-label">Auto Reply</div>
-    </div>
-  </div>
-  <div class="stat-card stat-affiliate" id="stat-products">
-    <div class="stat-icon">🛍️</div>
-    <div class="stat-info">
-      <div class="stat-value">${stats.totalProducts}</div>
-      <div class="stat-label">Produk Affiliate</div>
-    </div>
-  </div>
-  <div class="stat-card stat-success" id="stat-autopilot">
+  <div class="stat-card stat-autopilot" id="stat-autopilot">
     <div class="stat-icon">🚀</div>
     <div class="stat-info">
-      <div class="stat-value">${stats.activeAutopilot}</div>
-      <div class="stat-label">AutoPilot Aktif</div>
-    </div>
-  </div>
-  <div class="stat-card stat-info" id="stat-autopilot-today">
-    <div class="stat-icon">🤖</div>
-    <div class="stat-info">
-      <div class="stat-value">${stats.autopilotPostsToday}</div>
-      <div class="stat-label">AutoPilot Hari Ini</div>
+      <div class="stat-value">${stats.activeAutopilot}${stats.activeAutopilot > 0 ? '<span class="status-indicator"></span>' : ''}</div>
+      <div class="stat-label">AutoPilot ${stats.activeAutopilot > 0 ? 'Running' : 'Inactive'}</div>
     </div>
   </div>
 </div>
 
-${expiringTokens.length > 0 ? '<div class="alert alert-error" style="margin-bottom:20px">⚠️ <strong>Token expiring soon!</strong> ' + expiringTokens.map(t => '@' + t.username + ' (exp: ' + t.token_expires_at + ')').join(', ') + '. <a href="/accounts">Refresh token</a>.</div>' : ''}
+<div class="stats-secondary">
+  <div class="stat-mini">
+    <div class="stat-mini-top">
+      <span class="stat-mini-icon">💬</span>
+      <span class="stat-mini-value">${stats.totalReplies}</span>
+    </div>
+    <span class="stat-mini-label">Auto Replies</span>
+  </div>
+  <div class="stat-mini">
+    <div class="stat-mini-top">
+      <span class="stat-mini-icon">🛍️</span>
+      <span class="stat-mini-value">${stats.totalProducts}</span>
+    </div>
+    <span class="stat-mini-label">Products</span>
+  </div>
+  <div class="stat-mini">
+    <div class="stat-mini-top">
+      <span class="stat-mini-icon">🤖</span>
+      <span class="stat-mini-value">${stats.autopilotPostsToday}</span>
+    </div>
+    <span class="stat-mini-label">AutoPilot Hari Ini</span>
+  </div>
+</div>
 
 <div class="dashboard-grid">
   <div class="card" id="recent-posts-card">
     <div class="card-header">
       <h3>📝 Postingan Terbaru</h3>
-      <a href="/posts/create" class="btn btn-sm btn-primary">+ Buat Post</a>
+      <a href="/posts/history" class="btn-link">Lihat Semua →</a>
     </div>
     <div class="card-body">
-      ${recentPosts.length === 0 ? '<p class="empty-state">Belum ada postingan. <a href="/posts/create">Buat sekarang!</a></p>' : ''}
+      ${recentPosts.length === 0 ? '<div class="empty-state-enhanced"><div class="empty-icon">📝</div><div class="empty-title">Belum Ada Postingan</div><div class="empty-desc">Mulai buat konten pertama Anda sekarang</div><a href="/posts/create" class="btn btn-primary" style="margin-top:16px">+ Buat Post Pertama</a></div>' : ''}
       <div class="activity-list">
         ${recentPosts.map(post => `
-          <div class="activity-item">
+          <div class="activity-item" onclick="window.location.href='/posts/history'">
             <div class="activity-badge badge-${post.status}">${post.status}</div>
             <div class="activity-content">
               <div class="activity-title">${post.topic || 'Tanpa topik'}</div>
               <div class="activity-meta">
                 <span class="activity-account">@${post.account_username || 'unknown'}</span>
                 <span class="activity-type badge-type-${post.type}">${post.type}</span>
-                <span class="activity-time">${post.created_at}</span>
+                <span class="activity-time">${new Date(post.created_at).toLocaleString('id-ID', {day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'})}</span>
               </div>
             </div>
           </div>
@@ -89,18 +104,19 @@ ${expiringTokens.length > 0 ? '<div class="alert alert-error" style="margin-bott
   <div class="card" id="recent-replies-card">
     <div class="card-header">
       <h3>💬 Auto Reply Terbaru</h3>
+      <a href="/settings" class="btn-link">Pengaturan →</a>
     </div>
     <div class="card-body">
-      ${recentReplies.length === 0 ? '<p class="empty-state">Belum ada auto-reply.</p>' : ''}
+      ${recentReplies.length === 0 ? '<div class="empty-state-enhanced"><div class="empty-icon">💬</div><div class="empty-title">Belum Ada Auto Reply</div><div class="empty-desc">Aktifkan auto reply untuk merespons komentar otomatis</div><a href="/settings" class="btn btn-primary" style="margin-top:16px">Aktifkan Auto Reply</a></div>' : ''}
       <div class="activity-list">
         ${recentReplies.map(reply => `
           <div class="activity-item">
-            <div class="activity-badge badge-done">replied</div>
+            <div class="activity-badge badge-done">✓</div>
             <div class="activity-content">
-              <div class="activity-title">"${(reply.reply_content || '').substring(0, 80)}..."</div>
+              <div class="activity-title">"${(reply.reply_content || '').substring(0, 60)}..."</div>
               <div class="activity-meta">
                 <span>→ @${reply.original_commenter || 'unknown'}</span>
-                <span class="activity-time">${reply.replied_at}</span>
+                <span class="activity-time">${new Date(reply.replied_at).toLocaleString('id-ID', {day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'})}</span>
               </div>
             </div>
           </div>

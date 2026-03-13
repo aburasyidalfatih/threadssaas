@@ -1,6 +1,11 @@
 require('dotenv').config();
+
+// Set timezone to Asia/Jakarta (WIB)
+process.env.TZ = 'Asia/Jakarta';
+
 const express = require('express');
 const session = require('express-session');
+const SQLiteStore = require('connect-sqlite3')(session);
 const path = require('path');
 
 const app = express();
@@ -15,10 +20,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
+  store: new SQLiteStore({
+    db: 'sessions.db',
+    dir: './data'
+  }),
   secret: process.env.SESSION_SECRET || 'threadsbot-secret',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 24 * 60 * 60 * 1000 }
+  cookie: { 
+    maxAge: 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    secure: false
+  }
 }));
 
 // View engine
@@ -38,7 +51,10 @@ app.use((req, res, next) => {
 
 // Auth check middleware
 app.use((req, res, next) => {
-  if (req.path === '/login' || req.path === '/register' || req.path === '/logout' || req.path.startsWith('/login') || req.path.startsWith('/register')) {
+  const publicPaths = ['/login', '/register', '/logout'];
+  const publicPrefixes = ['/login', '/register', '/product/api', '/product/generate-variations', '/product/schedule-variations', '/product/save-variations', '/product/schedule-variation', '/product/variations', '/product/cancel-schedule'];
+  
+  if (publicPaths.includes(req.path) || publicPrefixes.some(prefix => req.path.startsWith(prefix))) {
     return next();
   }
   if (!req.session.userId) {

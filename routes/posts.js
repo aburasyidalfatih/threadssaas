@@ -8,20 +8,31 @@ const SchedulerService = require('../services/scheduler');
 router.get('/create', (req, res) => {
   const accounts = db.prepare("SELECT * FROM accounts WHERE is_active = 1").all();
   const defaultCommentCount = db.prepare("SELECT value FROM settings WHERE key = 'default_comment_count'").get();
+  
   res.render('create-post', {
     page: 'create-post',
     accounts,
-    defaultCommentCount: parseInt(defaultCommentCount?.value || '3', 10)
+    defaultCommentCount: parseInt(defaultCommentCount?.value || '3', 10),
+    user: req.session.userId ? { id: req.session.userId, name: req.session.userName, email: req.session.userEmail } : null
   });
 });
 
 // Generate content via AI
 router.post('/generate', async (req, res) => {
-  const { topic, theme_description, comment_count } = req.body;
+  const { topic, comment_count } = req.body;
+  
+  console.log('[Generate] Request:', { topic, comment_count, userId: req.session.userId });
+  
   try {
-    const content = await GeminiService.generatePostContent(topic, parseInt(comment_count || '3', 10), theme_description);
+    if (!topic || !topic.trim()) {
+      return res.json({ success: false, error: 'Topic tidak boleh kosong' });
+    }
+    
+    const content = await GeminiService.generatePostContent(topic, parseInt(comment_count || '3', 10));
+    console.log('[Generate] Success:', { topic, contentLength: JSON.stringify(content).length });
     res.json({ success: true, content });
   } catch (error) {
+    console.error('[Generate] Error:', error.message);
     res.json({ success: false, error: error.message });
   }
 });
@@ -114,7 +125,9 @@ router.get('/history', (req, res) => {
   const totalPages = Math.ceil(totalPosts / perPage);
 
   const posts = db.prepare(`
-    SELECT p.*, a.username as account_username
+    SELECT p.*, a.username as account_username,
+           datetime(p.posted_at, '+7 hours') as posted_at_wib,
+           datetime(p.created_at, '+7 hours') as created_at_wib
     FROM posts p
     LEFT JOIN accounts a ON a.id = p.account_id
     ORDER BY p.created_at DESC

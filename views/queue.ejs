@@ -1,218 +1,769 @@
 <%- include('layout', { body: `
-<div class="card" id="queue-generate-card">
-  <div class="card-header">
-    <h3>📝 Generate Antrian Konten</h3>
+<div class="queue-stats-dashboard">
+  <div class="stat-card-queue">
+    <div class="stat-icon">📦</div>
+    <div class="stat-info">
+      <div class="stat-value">${globalStats.totalQueued}</div>
+      <div class="stat-label">Total Antrian</div>
+    </div>
   </div>
-  <div class="card-body">
-    ${accounts.length === 0 ? '<p class="empty-state">Belum ada akun. <a href="/accounts">Tambah akun</a> dulu.</p>' : ''}
-    ${accounts.length > 0 ? 
-      '<div class="form-group" style="margin-bottom: 24px;">' +
-        '<label for="queue-account-select" style="margin-bottom:8px; display:block;">Pilih Akun Threads</label>' +
-        '<select id="queue-account-select" required onchange="showQueueCard(this.value)">' +
-          '<option value="">— Pilih Akun —</option>' +
-          accounts.map(acc => '<option value="' + acc.id + '">@' + acc.username + '</option>').join('') +
-        '</select>' +
-      '</div>' +
-      '<div class="queue-form-wrapper">' +
-      accounts.map(acc =>
-        '<div class="queue-account-card" id="queue-card-' + acc.id + '" style="display:none">' +
-            '<div class="queue-card-top">' +
-              '<div class="queue-user-info">' +
-                '<div class="queue-avatar">👤</div>' +
-                '<div>' +
-                  '<div class="autopilot-username" style="font-size:16px">@' + acc.username + '</div>' +
-                  '<div class="form-hint">Threads Account</div>' +
-                '</div>' +
-              '</div>' +
-              '<div class="queue-stats-bar">' +
-                '<div class="queue-stat-pill"><span class="queue-stat-num">' + (queueStats[acc.id]?.queued || 0) + '</span> ⏳ Antrian</div>' +
-                '<div class="queue-stat-pill used"><span class="queue-stat-num">' + (queueStats[acc.id]?.used || 0) + '</span> ✅ Terpakai</div>' +
-              '</div>' +
-            '</div>' +
-            '<div class="queue-divider"></div>' +
-            '<form action="/queue/settings/' + acc.id + '" method="POST" class="queue-settings-form form-stack">' +
-              '<div class="form-row">' +
-                '<div class="form-group queue-config-box">' +
-                  '<label class="config-label">⚡ Status Auto Post</label>' +
-                  '<label class="toggle-switch">' +
-                    '<input type="checkbox" class="queue-toggle" name="is_enabled" value="1" ' + (queueConfigs[acc.id]?.is_enabled ? 'checked' : '') + '>' +
-                    '<span class="toggle-slider"></span>' +
-                    '<span class="toggle-label">' + (queueConfigs[acc.id]?.is_enabled ? 'Aktif' : 'Nonaktif') + '</span>' +
-                  '</label>' +
-                  '<div class="form-hint" style="margin-top:8px">Aktifkan untuk auto post.</div>' +
-                '</div>' +
-                '<div class="form-group queue-config-box">' +
-                  '<label class="config-label">⏰ Jam Posting</label>' +
-                  '<input type="text" name="schedule_hours" value="' + (queueConfigs[acc.id]?.schedule_hours || '08,12,16,20') + '" placeholder="08,12,18" required>' +
-                  '<div class="form-hint" style="margin-top:8px">Format 24 jam dipisahkan koma.</div>' +
-                '</div>' +
-              '</div>' +
-              '<div class="btn-right-container" style="margin-top:8px">' +
-                '<button type="submit" class="btn btn-primary">💾 Simpan Pengaturan</button>' +
-              '</div>' +
-            '</form>' +
-            '<div class="queue-divider"></div>' +
-            '<form action="/queue/generate/' + acc.id + '" method="POST" class="queue-form form-stack">' +
-            '<div class="form-group">' +
-              '<label>🎯 Tema / Niche</label>' +
-              '<input type="text" name="theme" placeholder="Contoh: Parenting, Tips Bisnis, Motivasi, Kesehatan" required>' +
-            '</div>' +
-            '<div class="form-group">' +
-              '<label>📋 Deskripsi Tema (opsional)</label>' +
-              '<input type="text" name="theme_description" placeholder="Detail gaya bahasa, target audience, tone, dll">' +
-            '</div>' +
-            '<div class="form-row">' +
-              '<div class="form-group">' +
-                '<label>💬 Komentar</label>' +
-                '<select name="comment_count"><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option></select>' +
-              '</div>' +
-              '<div class="form-group">' +
-                '<label>📦 Jumlah</label>' +
-                '<select name="count"><option value="3">3 konten</option><option value="5" selected>5 konten</option><option value="10">10 konten</option><option value="15">15 konten</option><option value="20">20 konten</option></select>' +
-              '</div>' +
-            '</div>' +
-            '<div class="btn-right-container">' +
-              '<button type="submit" class="btn btn-primary btn-glow">🤖 Generate Queue</button>' +
-            '</div>' +
-          '</form>' +
-          ((queueStats[acc.id]?.used || 0) > 0 ? '<form action="/queue/cleanup/' + acc.id + '" method="POST" style="margin-top:12px"><button type="submit" class="btn btn-sm btn-outline" style="width:100%">🧹 Cleanup Konten Terpakai</button></form>' : '') +
-        '</div>'
-      ).join('') +
-    '</div>' : ''}
+  <div class="stat-card-queue stat-success">
+    <div class="stat-icon">✅</div>
+    <div class="stat-info">
+      <div class="stat-value">${globalStats.totalUsed}</div>
+      <div class="stat-label">Terpakai</div>
+    </div>
+  </div>
+  <div class="stat-card-queue stat-info">
+    <div class="stat-icon">👥</div>
+    <div class="stat-info">
+      <div class="stat-value">${globalStats.activeQueues}/${globalStats.totalAccounts}</div>
+      <div class="stat-label">Akun Aktif</div>
+    </div>
   </div>
 </div>
 
-<div class="card" id="queue-items-card">
-  <div class="card-header">
-    <h3>📋 Antrian Konten (<span id="queue-header-count">${queueItems.length}</span> menunggu)</h3>
+<div class="queue-tabs">
+  <button class="queue-tab active" onclick="switchTab('generate')">🤖 Generate</button>
+  <button class="queue-tab" onclick="switchTab('list')">📋 Antrian (${globalStats.totalQueued})</button>
+  <button class="queue-tab" onclick="switchTab('settings')">⚙️ Pengaturan</button>
+</div>
+
+<div id="tab-generate" class="tab-content active">
+  <div class="card">
+    <div class="card-header">
+      <h3>🤖 Generate Konten Otomatis</h3>
+    </div>
+    <div class="card-body">
+      ${accounts.length === 0 ? '<div class="empty-state-enhanced"><div class="empty-icon">👥</div><div class="empty-title">Belum Ada Akun</div><div class="empty-desc">Tambahkan akun Threads terlebih dahulu</div><a href="/accounts" class="btn btn-primary" style="margin-top:16px">+ Tambah Akun</a></div>' : ''}
+      ${accounts.length > 0 ? 
+        '<div class="form-group" style="margin-bottom:20px">' +
+          '<label>Pilih Akun Threads</label>' +
+          '<select id="gen-account-select" class="form-select" onchange="updateGenerateForm(this.value)">' +
+            '<option value="">— Pilih Akun —</option>' +
+            accounts.map(acc => '<option value="' + acc.id + '">@' + acc.username + ' (' + (queueStats[acc.id]?.queued || 0) + ' antrian)</option>').join('') +
+          '</select>' +
+        '</div>' +
+        '<div id="generate-form-container" style="display:none">' +
+          '<div class="account-info-box" id="account-info" style="margin-bottom:20px"></div>' +
+          '<form id="generate-form" method="POST" class="form-stack">' +
+            '<div class="form-row" style="gap:16px;margin-bottom:20px">' +
+              '<div class="form-group" style="flex:1">' +
+                '<label>💬 Jumlah Komentar</label>' +
+                '<select name="comment_count" class="form-select">' +
+                  '<option value="2">2 komentar</option>' +
+                  '<option value="3" selected>3 komentar</option>' +
+                  '<option value="4">4 komentar</option>' +
+                  '<option value="5">5 komentar</option>' +
+                '</select>' +
+              '</div>' +
+              '<div class="form-group" style="flex:1">' +
+                '<label>📦 Jumlah Konten</label>' +
+                '<select name="count" class="form-select">' +
+                  '<option value="3">3 konten</option>' +
+                  '<option value="5">5 konten</option>' +
+                  '<option value="10" selected>10 konten</option>' +
+                '</select>' +
+              '</div>' +
+            '</div>' +
+            '<div class="form-actions">' +
+              '<button type="submit" class="btn btn-primary btn-glow">🤖 Generate Sekarang</button>' +
+            '</div>' +
+          '</form>' +
+        '</div>' : ''}
+    </div>
   </div>
-  <div class="card-body">
-    <p class="empty-state" id="queue-empty-state" style="${queueItems.length === 0 ? 'display:block' : 'display:none'}">Antrian konten kosong untuk akun ini.</p>
-    <div class="queue-items-list">
-      ${queueItems.map((item, index) =>
-        '<div class="queue-item" data-account-id="' + item.account_id + '">' +
-          '<div class="queue-item-header">' +
-            '<div class="queue-item-meta">' +
-              '<span class="queue-num">#' + (index + 1) + '</span>' +
-              '<span class="autopilot-username">@' + item.username + '</span>' +
-              '<span class="badge badge-scheduled">queued</span>' +
+</div>
+
+<div id="tab-list" class="tab-content">
+  <div class="card">
+    <div class="card-header">
+      <h3>📋 Daftar Antrian (${globalStats.totalQueued} total)</h3>
+      <div class="queue-controls">
+        <input type="text" id="searchQueue" placeholder="🔍 Cari topik..." class="search-input">
+        <select id="filterAccount" class="form-select" style="width:200px">
+          <option value="all">Semua Akun</option>
+          ${accounts.map(acc => '<option value="' + acc.id + '">@' + acc.username + ' (' + (queueStats[acc.id]?.queued || 0) + ')</option>').join('')}
+        </select>
+        <select id="sortQueue" class="form-select" style="width:150px">
+          <option value="newest">Terbaru</option>
+          <option value="oldest">Terlama</option>
+          <option value="topic">Topik A-Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-body">
+      ${queueItems.length === 0 ? '<div class="empty-state-enhanced"><div class="empty-icon">📝</div><div class="empty-title">Antrian Kosong</div><div class="empty-desc">Generate konten untuk mengisi antrian</div></div>' : ''}
+      ${queueItems.length > 0 ? 
+        '<div class="bulk-actions-bar">' +
+          '<input type="checkbox" id="select-all-queue" onchange="toggleSelectAllQueue(this)">' +
+          '<span id="selected-count">0 dipilih</span>' +
+          '<div class="bulk-buttons">' +
+            '<button class="btn btn-sm btn-success" onclick="bulkPostQueue()" id="bulk-post-btn" disabled>📤 Post Terpilih</button>' +
+            '<button class="btn btn-sm btn-danger" onclick="bulkDeleteQueue()" id="bulk-delete-btn" disabled>🗑️ Hapus Terpilih</button>' +
+          '</div>' +
+        '</div>' : ''}
+      <div class="queue-items-grid" id="queueItemsGrid">
+        ${queueItems.filter(q => q.status === 'queued').map((item, index) =>
+          '<div class="queue-item-card" data-id="' + item.id + '" data-account="' + item.account_id + '" data-topic="' + (item.topic || '').toLowerCase() + '" data-date="' + item.created_at + '">' +
+            '<div class="queue-item-header">' +
+              '<input type="checkbox" class="queue-item-checkbox" value="' + item.id + '" onchange="updateBulkButtons()">' +
+              '<span class="queue-badge">#' + (index + 1) + '</span>' +
+              '<span class="queue-username">@' + item.username + '</span>' +
+            '</div>' +
+            '<div class="queue-item-topic">' + item.topic + '</div>' +
+            '<div class="queue-item-preview">' + (item.content_main || '').substring(0, 150) + '...</div>' +
+            '<div class="queue-item-footer">' +
+              '<span class="queue-meta">💬 ' + item.comment_count + '</span>' +
+              '<span class="queue-meta">🕐 ' + new Date(item.created_at).toLocaleDateString('id-ID', {day: 'numeric', month: 'short'}) + '</span>' +
             '</div>' +
             '<div class="queue-item-actions">' +
-              '<button class="btn btn-sm btn-ghost" onclick="editQueueItem(' + item.id + ')">✏️ Edit</button>' +
-              '<form action="/queue/delete/' + item.id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm btn-danger">🗑️</button></form>' +
+              '<button class="btn btn-sm btn-ghost" onclick="previewQueue(' + item.id + ')">👁️</button>' +
+              '<button class="btn btn-sm btn-ghost" onclick="editQueue(' + item.id + ')">✏️</button>' +
+              '<button class="btn btn-sm btn-success" onclick="postQueueNow(' + item.id + ', ' + item.account_id + ')">📤</button>' +
+              '<button class="btn btn-sm btn-danger" onclick="deleteQueue(' + item.id + ')">🗑️</button>' +
             '</div>' +
+          '</div>'
+        ).join('')}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-settings" class="tab-content">
+  <div class="card">
+    <div class="card-header">
+      <h3>⚙️ Pengaturan Jadwal Auto Post</h3>
+    </div>
+    <div class="card-body">
+      ${accounts.map(acc => 
+        '<div class="settings-account-card-compact">' +
+          '<div class="settings-compact-header">' +
+            '<div class="settings-compact-user">' +
+              '<span class="settings-compact-avatar">👤</span>' +
+              '<div>' +
+                '<div class="settings-compact-username">@' + acc.username + '</div>' +
+                '<div class="settings-compact-meta">' + (acc.theme || 'Tema belum diatur') + ' • ' + (queueStats[acc.id]?.queued || 0) + ' antrian • ' + nextPostingTimes[acc.id] + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<span class="settings-compact-status ' + (queueConfigs[acc.id]?.is_enabled ? 'status-active' : 'status-inactive') + '">' + (queueConfigs[acc.id]?.is_enabled ? '● Aktif' : '○ Nonaktif') + '</span>' +
           '</div>' +
-          '<div class="queue-item-topic"><strong>' + item.topic + '</strong></div>' +
-          '<div class="queue-item-preview">' + (item.content_main || '').substring(0, 200) + '...</div>' +
-          '<div class="queue-item-footer">' +
-            '<span class="form-hint">💬 ' + item.comment_count + ' komentar</span>' +
-            '<span class="form-hint">🕐 ' + item.created_at + '</span>' +
-          '</div>' +
+          '<form action="/queue/settings/' + acc.id + '" method="POST" class="settings-compact-form">' +
+            '<div class="settings-compact-controls">' +
+              '<label class="toggle-switch-compact">' +
+                '<input type="checkbox" name="is_enabled" value="1" ' + (queueConfigs[acc.id]?.is_enabled ? 'checked' : '') + '>' +
+                '<span class="toggle-slider-compact"></span>' +
+              '</label>' +
+              '<input type="text" name="schedule_hours" value="' + (queueConfigs[acc.id]?.schedule_hours || '08,12,16,20') + '" placeholder="08,12,16,20" class="settings-compact-input">' +
+              '<button type="submit" class="btn btn-sm btn-primary">💾</button>' +
+            '</div>' +
+          '</form>' +
         '</div>'
       ).join('')}
     </div>
   </div>
 </div>
 
-
-<div class="modal-overlay" id="edit-modal" style="display:none" onclick="if(event.target===this)this.style.display='none'">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3>✏️ Edit Konten Antrian</h3>
-      <button class="btn btn-ghost" onclick="document.getElementById('edit-modal').style.display='none'">✕</button>
-    </div>
-    <div class="modal-body">
-      <form action="" method="POST" id="edit-form" class="form-stack">
-        <div class="form-group">
-          <label>Topik</label>
-          <div id="edit-topic" style="font-weight:600;padding:8px 0"></div>
-        </div>
-        <div class="form-group">
-          <label>Postingan Utama</label>
-          <textarea name="content_main" id="edit-main" rows="4" style="width:100%"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Komentar Lanjutan (JSON array)</label>
-          <textarea name="content_comments" id="edit-comments" rows="6" style="width:100%"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">💾 Simpan Perubahan</button>
-      </form>
-    </div>
-  </div>
-</div>
 <style>
-  .card-panduan { grid-column: 1 / -1; width: 100%; }
-  .card { margin-bottom: 20px !important; }
-  .card:last-child { margin-bottom: 0 !important; }
-  .two-column { margin-bottom: 20px !important; }
-  .two-column .card { margin-bottom: 0 !important; }
+.queue-stats-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card-queue {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: var(--transition);
+}
+.stat-card-queue:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+}
+.queue-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border-color);
+}
+.queue-tab {
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: var(--transition);
+}
+.queue-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+.queue-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+.queue-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.search-input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 13px;
+  width: 250px;
+}
+.bulk-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+}
+.bulk-buttons {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+.queue-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+.queue-item-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: var(--transition);
+}
+.queue-item-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.queue-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.queue-badge {
+  background: var(--accent-primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.queue-username {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.queue-item-topic {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.queue-item-preview {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.queue-item-footer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+}
+.queue-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.queue-item-actions {
+  display: flex;
+  gap: 6px;
+}
+.account-info-box {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+.settings-account-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+.settings-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.settings-avatar {
+  font-size: 32px;
+}
+.settings-username {
+  font-weight: 600;
+  font-size: 16px;
+}
+.settings-theme {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.settings-stats {
+  display: flex;
+  gap: 16px;
+}
+.settings-stat {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.toggle-label-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.toggle-checkbox {
+  transform: scale(1.2);
+}
+.settings-account-card-compact {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: var(--transition);
+}
+.settings-account-card-compact:hover {
+  border-color: var(--border-glow);
+}
+.settings-compact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.settings-compact-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+.settings-compact-avatar {
+  font-size: 24px;
+}
+.settings-compact-username {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+.settings-compact-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.settings-compact-status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+.status-active {
+  color: var(--accent-success);
+  background: rgba(45, 212, 160, 0.1);
+}
+.status-inactive {
+  color: var(--text-muted);
+  background: var(--bg-card);
+}
+.settings-compact-form {
+  margin: 0;
+}
+.settings-compact-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.toggle-switch-compact {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.toggle-switch-compact input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle-slider-compact {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: 0.3s;
+  border-radius: 24px;
+}
+.toggle-slider-compact:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-muted);
+  transition: 0.3s;
+  border-radius: 50%;
+}
+.toggle-switch-compact input:checked + .toggle-slider-compact {
+  background-color: var(--accent-success);
+  border-color: var(--accent-success);
+}
+.toggle-switch-compact input:checked + .toggle-slider-compact:before {
+  transform: translateX(20px);
+  background-color: white;
+}
+.settings-compact-input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+}
+.settings-compact-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+.modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s ease;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-primary);
+}
+.modal-body {
+  padding: 24px;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 </style>
-` }) %>
 
 <script>
-async function editQueueItem(id) {
-  try {
-    const res = await fetch('/queue/api/' + id);
-    const data = await res.json();
-    if (!data.success) return alert('Item not found');
+const accountsData = ${JSON.stringify(accounts.map(a => ({id: a.id, username: a.username, theme: a.theme, queued: queueStats[a.id]?.queued || 0, lastGen: queueStats[a.id]?.lastGenerated})))};
 
-    document.getElementById('edit-topic').textContent = data.item.topic;
-    document.getElementById('edit-main').value = data.item.content_main;
-    document.getElementById('edit-comments').value = JSON.stringify(data.item.comments, null, 2);
-    document.getElementById('edit-form').action = '/queue/edit/' + id;
-    document.getElementById('edit-modal').style.display = 'flex';
-  } catch (e) {
-    alert('Error: ' + e.message);
-  }
-}
-</script>
-
-<script>
-function showQueueCard(accountId) {
-  // Hide all cards
-  document.querySelectorAll('.queue-account-card').forEach(card => {
-    card.style.display = 'none';
-  });
+function switchTab(tab) {
+  document.querySelectorAll('.queue-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
   
-  // Show selected card
-  if (accountId) {
-    const activeCard = document.getElementById('queue-card-' + accountId);
-    if (activeCard) {
-      activeCard.style.display = 'block';
-    }
-  }
-
-  // Filter Queue Items list
-  let visibleCount = 0;
-  document.querySelectorAll('.queue-item').forEach(item => {
-    // If accountId matches, clear the display style to restore layout rules, otherwise hide
-    if (item.getAttribute('data-account-id') === accountId) {
-      item.style.display = '';
-      visibleCount++;
-    } else {
-      item.style.display = 'none';
-    }
-  });
-
-  // Update empty state visibility
-  const emptyState = document.getElementById('queue-empty-state');
-  if (emptyState) {
-    emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-  }
-
-  // Update counter in header
-  const headerCount = document.getElementById('queue-header-count');
-  if (headerCount) {
-    headerCount.textContent = visibleCount;
-  }
+  event.target.classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
 }
 
-// Auto-select first account on load
+function updateGenerateForm(accountId) {
+  const container = document.getElementById('generate-form-container');
+  const infoBox = document.getElementById('account-info');
+  const form = document.getElementById('generate-form');
+  
+  if (!accountId) {
+    container.style.display = 'none';
+    return;
+  }
+  
+  const account = accountsData.find(a => a.id == accountId);
+  if (!account) return;
+  
+  infoBox.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center"><div><strong>@' + account.username + '</strong><br><small>' + (account.theme || 'Tema belum diatur') + '</small></div><div><span style="color:var(--accent-primary);font-weight:600">' + account.queued + '</span> antrian tersedia</div></div>';
+  
+  form.action = '/queue/generate/' + accountId;
+  container.style.display = 'block';
+}
+
+function toggleSelectAllQueue(checkbox) {
+  document.querySelectorAll('.queue-item-checkbox').forEach(cb => {
+    if (cb.closest('.queue-item-card').style.display !== 'none') {
+      cb.checked = checkbox.checked;
+    }
+  });
+  updateBulkButtons();
+}
+
+function updateBulkButtons() {
+  const checked = document.querySelectorAll('.queue-item-checkbox:checked').length;
+  document.getElementById('selected-count').textContent = checked + ' dipilih';
+  document.getElementById('bulk-post-btn').disabled = checked === 0;
+  document.getElementById('bulk-delete-btn').disabled = checked === 0;
+}
+
+function bulkPostQueue() {
+  const ids = Array.from(document.querySelectorAll('.queue-item-checkbox:checked')).map(cb => cb.value);
+  if (ids.length === 0) return;
+  
+  if (!confirm('Post ' + ids.length + ' konten sekarang?')) return;
+  
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = '/queue/bulk-post';
+  ids.forEach(id => {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'ids[]';
+    input.value = id;
+    form.appendChild(input);
+  });
+  document.body.appendChild(form);
+  form.submit();
+}
+
+function bulkDeleteQueue() {
+  const ids = Array.from(document.querySelectorAll('.queue-item-checkbox:checked')).map(cb => cb.value);
+  if (ids.length === 0) return;
+  
+  if (!confirm('Hapus ' + ids.length + ' item dari antrian?')) return;
+  
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = '/queue/delete-multiple';
+  ids.forEach(id => {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'ids[]';
+    input.value = id;
+    form.appendChild(input);
+  });
+  document.body.appendChild(form);
+  form.submit();
+}
+
+// Search and filter
 document.addEventListener('DOMContentLoaded', () => {
-  const select = document.getElementById('queue-account-select');
-  if (select && select.options.length > 1) {
-    select.selectedIndex = 1;
-    showQueueCard(select.value);
+  const searchInput = document.getElementById('searchQueue');
+  const filterAccount = document.getElementById('filterAccount');
+  const sortQueue = document.getElementById('sortQueue');
+  
+  if (searchInput && filterAccount && sortQueue) {
+    function filterAndSort() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const accountFilter = filterAccount.value;
+      const sortBy = sortQueue.value;
+      
+      const grid = document.getElementById('queueItemsGrid');
+      const items = Array.from(grid.querySelectorAll('.queue-item-card'));
+      
+      // Filter items
+      let visibleItems = items.filter(item => {
+        const topic = item.getAttribute('data-topic');
+        const account = item.getAttribute('data-account');
+        
+        let show = topic.includes(searchTerm);
+        if (show && accountFilter !== 'all') {
+          show = account === accountFilter;
+        }
+        
+        item.style.display = show ? 'block' : 'none';
+        return show;
+      });
+      
+      // Sort visible items
+      visibleItems.sort((a, b) => {
+        if (sortBy === 'newest') {
+          return new Date(b.getAttribute('data-date')) - new Date(a.getAttribute('data-date'));
+        } else if (sortBy === 'oldest') {
+          return new Date(a.getAttribute('data-date')) - new Date(b.getAttribute('data-date'));
+        } else if (sortBy === 'topic') {
+          return a.getAttribute('data-topic').localeCompare(b.getAttribute('data-topic'));
+        }
+        return 0;
+      });
+      
+      // Re-append in sorted order
+      visibleItems.forEach(item => grid.appendChild(item));
+      
+      // Update counter
+      const headerCount = document.querySelector('#tab-list .card-header h3');
+      if (headerCount) {
+        headerCount.innerHTML = '📋 Daftar Antrian (' + visibleItems.length + ' ditampilkan)';
+      }
+    }
+    
+    searchInput.addEventListener('input', filterAndSort);
+    filterAccount.addEventListener('change', filterAndSort);
+    sortQueue.addEventListener('change', filterAndSort);
   }
 });
+
+function previewQueue(id) {
+  fetch('/queue/api/' + id)
+    .then(r => r.json())
+    .then(data => {
+      if (!data.success) return alert('❌ Item tidak ditemukan');
+      
+      const item = data.item;
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      modal.innerHTML = '<div class="modal-content" style="max-width:600px"><div class="modal-header"><h3>👁️ Preview Konten</h3><button class="btn btn-ghost" onclick="this.closest(\\'.modal-overlay\\').remove()">✕</button></div><div class="modal-body"><div class="form-group"><label>Topik</label><div style="font-weight:600;padding:12px;background:var(--bg-input);border-radius:8px;margin-bottom:16px">' + item.topic + '</div></div><div class="form-group"><label>Postingan Utama</label><div style="background:var(--bg-input);padding:16px;border-radius:8px;white-space:pre-wrap;margin-bottom:16px;line-height:1.5">' + item.content_main + '</div></div><div class="form-group"><label>Komentar Lanjutan (' + item.comments.length + ')</label><div style="background:var(--bg-input);padding:16px;border-radius:8px">' + item.comments.map((c, i) => '<div style="margin-bottom:12px;padding:12px;background:var(--bg-tertiary);border-radius:6px"><strong style="color:var(--accent-primary)">' + (i+1) + '.</strong> ' + c + '</div>').join('') + '</div></div></div></div>';
+      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+      document.body.appendChild(modal);
+    })
+    .catch(err => alert('❌ Error: ' + err.message));
+}
+
+function editQueue(id) {
+  fetch('/queue/api/' + id)
+    .then(r => r.json())
+    .then(data => {
+      if (!data.success) return alert('❌ Item tidak ditemukan');
+      
+      const item = data.item;
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      modal.innerHTML = '<div class="modal-content" style="max-width:600px"><div class="modal-header"><h3>✏️ Edit Konten</h3><button class="btn btn-ghost" onclick="this.closest(\\'.modal-overlay\\').remove()">✕</button></div><div class="modal-body"><form action="/queue/edit/' + id + '" method="POST" class="form-stack"><div class="form-group"><label>Topik</label><div style="font-weight:600;padding:12px;background:var(--bg-input);border-radius:8px;margin-bottom:8px">' + item.topic + '</div></div><div class="form-group"><label>Postingan Utama</label><textarea name="content_main" rows="6" style="width:100%;padding:12px;border-radius:8px;background:var(--bg-input);color:var(--text-primary);border:1px solid var(--border-color);font-family:inherit;font-size:14px">' + item.content_main + '</textarea></div><div class="form-group"><label>Komentar Lanjutan (JSON array)</label><textarea name="content_comments" rows="8" style="width:100%;padding:12px;border-radius:8px;background:var(--bg-input);color:var(--text-primary);border:1px solid var(--border-color);font-family:inherit;font-size:13px">' + JSON.stringify(item.comments, null, 2) + '</textarea><small class="form-hint">Format: ["komentar 1", "komentar 2"]</small></div><button type="submit" class="btn btn-primary">💾 Simpan Perubahan</button></form></div></div>';
+      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+      document.body.appendChild(modal);
+    })
+    .catch(err => alert('❌ Error: ' + err.message));
+}
+
+function postQueueNow(queueId, accountId) {
+  if (!confirm('📤 Post konten ini sekarang?')) return;
+  
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = '⏳';
+  
+  fetch('/queue/api/' + queueId)
+    .then(r => r.json())
+    .then(data => {
+      if (!data.success) {
+        alert('❌ Item tidak ditemukan');
+        btn.disabled = false;
+        btn.textContent = '📤';
+        return;
+      }
+      
+      const item = data.item;
+      const comments = item.comments || [];
+      
+      return fetch('/posts/post-now', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          account_id: accountId,
+          topic: item.topic,
+          content_main: item.content_main,
+          content_comments: comments,
+          comment_count: comments.length
+        })
+      });
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        alert('✅ Posting dimulai!');
+        location.reload();
+      } else {
+        alert('❌ Error: ' + data.error);
+        btn.disabled = false;
+        btn.textContent = '📤';
+      }
+    })
+    .catch(err => {
+      alert('❌ Error: ' + err.message);
+      btn.disabled = false;
+      btn.textContent = '📤';
+    });
+}
+
+function deleteQueue(id) {
+  if (!confirm('🗑️ Hapus item ini dari antrian?')) return;
+  
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = '/queue/delete/' + id;
+  document.body.appendChild(form);
+  form.submit();
+}
 </script>
+` }) %>

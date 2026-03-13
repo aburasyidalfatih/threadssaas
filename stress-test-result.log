@@ -1,0 +1,64 @@
+🚀 STRESS TEST: Triggering concurrent posting from queue...
+
+📱 Found 7 active accounts
+
+📝 Found 7 queue items to post
+
+======================================================================
+Starting concurrent posting...
+
+⏳ Account 2 (@putra_chaniago001): Starting post...
+⏳ Account 3 (@curhat_parenting): Starting post...
+⏳ Account 7 (@bekalpernikahan.id): Starting post...
+⏳ Account 9 (@rumahbintangpyk): Starting post...
+⏳ Account 10 (@presidenonline25): Starting post...
+⏳ Account 13 (@putraaa_minang): Starting post...
+⏳ Account 14 (@akhiandriko): Starting post...
+   ✅ Main post created: 18105353275857860
+   ✅ Main post created: 17928915435221928
+   ✅ Main post created: 18062572781660484
+   ✅ Main post created: 17869234281474856
+   ✅ Main post created: 17929418460230200
+   ✅ Main post created: 17958949454920002
+   ✅ Main post created: 18069776669240421
+   ✅ 5 comments posted
+✅ Account 3 (@curhat_parenting): COMPLETE
+
+   ✅ 5 comments posted
+✅ Account 14 (@akhiandriko): COMPLETE
+
+   ✅ 5 comments posted
+✅ Account 13 (@putraaa_minang): COMPLETE
+
+   ✅ 5 comments posted
+✅ Account 9 (@rumahbintangpyk): COMPLETE
+
+   ✅ 5 comments posted
+✅ Account 10 (@presidenonline25): COMPLETE
+
+   ✅ 5 comments posted
+✅ Account 2 (@putra_chaniago001): COMPLETE
+
+   ✅ 5 comments posted
+✅ Account 7 (@bekalpernikahan.id): COMPLETE
+
+======================================================================
+
+📊 STRESS TEST RESULTS
+
+⏱️  Total time: 71.46 seconds
+✅ Successful: 7/7
+❌ Failed: 0/7
+
+✅ Successful Posts:
+   - @curhat_parenting: Main post 18105353275857860 + 5 comments
+   - @akhiandriko: Main post 17929418460230200 + 5 comments
+   - @putraaa_minang: Main post 17928915435221928 + 5 comments
+   - @rumahbintangpyk: Main post 17958949454920002 + 5 comments
+   - @presidenonline25: Main post 18069776669240421 + 5 comments
+   - @putra_chaniago001: Main post 18062572781660484 + 5 comments
+   - @bekalpernikahan.id: Main post 17869234281474856 + 5 comments
+
+======================================================================
+
+🎯 Throughput: 0.10 posts/second

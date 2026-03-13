@@ -1,0 +1,445 @@
+<%- include('layout', { body: `
+<div class="card" id="create-post-card">
+  <div class="card-header">
+    <h3>✍️ Buat Postingan Threads</h3>
+  </div>
+  <div class="card-body">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="post-account">Akun Threads</label>
+        <select id="post-account" required onchange="window.showAccountTheme && window.showAccountTheme()">
+          <option value="">— Pilih Akun —</option>
+          ${accounts.map(acc => '<option value="' + acc.id + '">@' + acc.username + '</option>').join('')}
+        </select>
+        ${accounts.length === 0 ? '<small class="form-hint">Belum ada akun aktif. <a href="/accounts">Tambah akun</a></small>' : ''}
+      </div>
+      <div class="form-group" id="account-theme" style="display:none">
+        <label>🎯 Tema Akun</label>
+        <div class="theme-display" id="theme-display">-</div>
+        <small class="form-hint">Tema diatur di halaman <a href="/accounts">Pengaturan Akun</a></small>
+      </div>
+      <div class="form-group">
+        <label for="post-topic">Topik / Tema</label>
+        <input type="text" id="post-topic" placeholder="Contoh: Tips produktivitas untuk remote worker" required>
+      </div>
+      <div class="form-group">
+        <label for="post-comment-count">Jumlah Komentar Lanjutan: <span id="comment-count-display">${defaultCommentCount}</span></label>
+        <input type="range" id="post-comment-count" min="2" max="7" value="${defaultCommentCount}" oninput="document.getElementById('comment-count-display').textContent=this.value">
+      </div>
+      <div class="btn-right-container" style="display: flex; justify-content: flex-end; width: 100%; margin-top: 16px;">
+        <button type="button" class="btn btn-primary btn-glow" id="btn-generate" style="margin-left: auto;">
+          <span class="btn-loader" id="generate-loader" style="display:none"></span>
+          🤖 Generate dengan AI
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="preview-card" style="display:none">
+  <div class="card-header">
+    <h3>👁️ Preview Konten</h3>
+    <a href="javascript:void(0)" class="btn btn-sm btn-outline" id="btn-regenerate" style="text-decoration: none;">🔄 Regenerate</a>
+  </div>
+  <div class="card-body">
+    <div class="thread-preview" id="thread-preview">
+      <div class="thread-main" id="preview-main">
+        <div class="thread-avatar">📝</div>
+        <div class="thread-content">
+          <div class="thread-author">@username</div>
+          <div class="thread-text" id="preview-main-text"></div>
+          <textarea class="thread-edit" id="edit-main" style="display:none"></textarea>
+          <button class="btn btn-sm btn-ghost" onclick="toggleEdit('main')">✏️ Edit</button>
+        </div>
+      </div>
+      <div id="preview-comments"></div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-success btn-glow" id="btn-post-now" onclick="postNow()">
+      <span class="btn-loader" id="post-loader" style="display:none"></span>
+      🚀 Post Sekarang
+    </button>
+    <button type="button" class="btn btn-outline" id="btn-save-draft" onclick="saveDraft()">💾 Simpan Draft</button>
+    <div class="schedule-group">
+      <input type="datetime-local" id="schedule-time" class="schedule-input">
+      <button type="button" class="btn btn-info" id="btn-schedule" onclick="schedulePost()">⏰ Jadwalkan</button>
+    </div>
+  </div>
+</div>
+
+<div id="post-result" class="alert" style="display:none"></div>
+<style>
+  .card-panduan { grid-column: 1 / -1; width: 100%; }
+  .card { margin-bottom: 20px !important; }
+  .card:last-child { margin-bottom: 0 !important; }
+  .two-column { margin-bottom: 20px !important; }
+  .two-column .card { margin-bottom: 0 !important; }
+</style>
+` }) %>
+
+<script>
+console.log('Script loaded');
+
+// Account data for theme display
+const accountsData = [
+  ${accounts.map(acc => `{
+    id: ${acc.id},
+    username: "${(acc.username || '').replace(/"/g, '\\"')}",
+    theme: "${(acc.theme || '').replace(/"/g, '\\"')}",
+    theme_description: "${(acc.theme_description || '').replace(/"/g, '\\"')}"
+  }`).join(',\n  ')}
+];
+
+let generatedContent = null;
+
+// Expose functions to window immediately
+window.showAccountTheme = function() {
+  console.log('showAccountTheme called');
+  const accountId = document.getElementById('post-account').value;
+  const themeDiv = document.getElementById('account-theme');
+  const themeDisplay = document.getElementById('theme-display');
+  
+  if (!accountId) {
+    themeDiv.style.display = 'none';
+    return;
+  }
+  
+  const account = accountsData.find(acc => acc.id == accountId);
+  if (account && (account.theme || account.theme_description)) {
+    const themeText = account.theme + (account.theme_description ? ` - ${account.theme_description}` : '');
+    themeDisplay.textContent = themeText;
+    themeDiv.style.display = 'block';
+  } else {
+    themeDiv.style.display = 'none';
+  }
+};
+
+window.generateContent = async function() {
+  console.log('generateContent called');
+  const topic = document.getElementById('post-topic').value;
+  const commentCount = document.getElementById('post-comment-count').value;
+
+// Show account theme when selected
+function showAccountTheme() {
+  const accountId = document.getElementById('post-account').value;
+  const themeDiv = document.getElementById('account-theme');
+  const themeDisplay = document.getElementById('theme-display');
+  
+  if (!accountId) {
+    themeDiv.style.display = 'none';
+    return;
+  }
+  
+  const account = accountsData.find(acc => acc.id == accountId);
+  if (account && (account.theme || account.theme_description)) {
+    const themeText = account.theme + (account.theme_description ? ` - ${account.theme_description}` : '');
+    themeDisplay.textContent = themeText;
+    themeDiv.style.display = 'block';
+  } else {
+    themeDiv.style.display = 'none';
+  }
+}
+}
+
+// DOM Ready
+document.addEventListener('DOMContentLoaded', function() {
+  // Bind generate button
+  const generateBtn = document.getElementById('btn-generate');
+  if (generateBtn) {
+    generateBtn.addEventListener('click', generateContent);
+  }
+  
+  // Bind regenerate button
+  const regenerateBtn = document.getElementById('btn-regenerate');
+  if (regenerateBtn) {
+    regenerateBtn.addEventListener('click', generateContent);
+  }
+  
+  // Bind account dropdown
+  const accountSelect = document.getElementById('post-account');
+  if (accountSelect) {
+    accountSelect.addEventListener('change', showAccountTheme);
+  }
+});
+
+// Expose functions to window for onclick handlers
+window.generateContent = async function() {
+  const topic = document.getElementById('post-topic').value;
+  const commentCount = document.getElementById('post-comment-count').value;
+
+  if (!topic) return alert('Masukkan topik terlebih dahulu');
+
+  const btn = document.getElementById('btn-generate');
+  const loader = document.getElementById('generate-loader');
+  if (btn) {
+    btn.style.opacity = '0.5';
+    btn.style.pointerEvents = 'none';
+  }
+  loader.style.display = 'inline-block';
+
+  try {
+    console.log('Fetching /posts/generate with topic:', topic);
+    const res = await fetch('/posts/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic, comment_count: commentCount })
+    });
+    
+    // Check if redirected to login
+    if (res.url.includes('/login')) {
+      alert('Session expired. Silakan login ulang.');
+      window.location.href = '/login';
+      return;
+    }
+    
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+    
+    const data = await res.json();
+
+    if (!data.success) throw new Error(data.error);
+
+    generatedContent = data.content;
+    renderPreview(data.content);
+    document.getElementById('preview-card').style.display = 'block';
+    document.getElementById('preview-card').scrollIntoView({ behavior: 'smooth' });
+  } catch (err) {
+    console.error('Generate error:', err);
+    alert('Error: ' + err.message);
+  } finally {
+    if (btn) {
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+    }
+    loader.style.display = 'none';
+  }
+};
+
+function renderPreview(content) {
+  document.getElementById('preview-main-text').textContent = content.main_post;
+  document.getElementById('edit-main').value = content.main_post;
+
+  const commentsHtml = content.comments.map((comment, i) => `
+    <div class="thread-reply">
+      <div class="thread-line"></div>
+      <div class="thread-avatar">💬</div>
+      <div class="thread-content">
+        <div class="thread-author">@username <span class="reply-badge">Reply ${i+1}</span></div>
+        <div class="thread-text" id="preview-comment-${i}">${comment}</div>
+        <textarea class="thread-edit" id="edit-comment-${i}" style="display:none">${comment}</textarea>
+        <button class="btn btn-sm btn-ghost" onclick="toggleEdit('comment-${i}')">✏️ Edit</button>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('preview-comments').innerHTML = commentsHtml;
+}
+
+function toggleEdit(id) {
+  const textEl = document.getElementById('preview-' + (id === 'main' ? 'main-text' : id));
+  const editEl = document.getElementById('edit-' + id);
+  
+  if (editEl.style.display === 'none') {
+    editEl.style.display = 'block';
+    textEl.style.display = 'none';
+    editEl.focus();
+  } else {
+    editEl.style.display = 'none';
+    textEl.style.display = 'block';
+    textEl.textContent = editEl.value;
+    
+    // Update generatedContent
+    if (id === 'main') {
+      generatedContent.main_post = editEl.value;
+    } else {
+      const idx = parseInt(id.replace('comment-', ''));
+      generatedContent.comments[idx] = editEl.value;
+    }
+  }
+}
+
+function getPostData() {
+  if (!generatedContent) return null;
+  const accountId = document.getElementById('post-account').value;
+  if (!accountId) { alert('Pilih akun terlebih dahulu'); return null; }
+  
+  return {
+    account_id: accountId,
+    topic: document.getElementById('post-topic').value,
+    content_main: generatedContent.main_post,
+    content_comments: JSON.stringify(generatedContent.comments),
+    comment_count: generatedContent.comments.length
+  };
+}
+
+async function postNow() {
+  const data = getPostData();
+  if (!data) return;
+  if (!confirm('Post sekarang ke Threads?')) return;
+
+  const btn = document.getElementById('btn-post-now');
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/posts/post-now', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    
+    if (result.success) {
+      showResult(true, '✅ Post dimulai! Monitoring status...');
+      // Monitor status setiap 2 detik
+      monitorPostStatus(result.postId);
+    } else {
+      showResult(false, result.error);
+    }
+  } catch (err) {
+    showResult(false, err.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function monitorPostStatus(postId) {
+  let attempts = 0;
+  const maxAttempts = 60; // 2 menit
+  
+  const checkStatus = async () => {
+    try {
+      const res = await fetch(`/posts/status/${postId}`);
+      const result = await res.json();
+      
+      if (result.success) {
+        const status = result.status;
+        
+        if (status === 'done') {
+          showResult(true, `✅ ${result.statusLabel}\n\nPost berhasil diposting ke Threads!`);
+          return;
+        } else if (status === 'failed') {
+          showResult(false, `❌ ${result.statusLabel}\n\nError: ${result.error_log}`);
+          return;
+        } else {
+          // Masih posting, cek lagi
+          attempts++;
+          if (attempts < maxAttempts) {
+            setTimeout(checkStatus, 2000);
+          } else {
+            showResult(false, 'Timeout: Posting memakan waktu terlalu lama');
+          }
+        }
+      }
+    } catch (err) {
+      console.error('Error checking status:', err);
+    }
+  };
+  
+  checkStatus();
+}
+
+async function saveDraft() {
+  const data = getPostData();
+  if (!data) return;
+
+  try {
+    const res = await fetch('/posts/save-draft', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    showResult(result.success, result.success ? 'Draft tersimpan!' : result.error);
+  } catch (err) {
+    showResult(false, err.message);
+  }
+}
+
+async function schedulePost() {
+  const data = getPostData();
+  if (!data) return;
+  
+  const schedTime = document.getElementById('schedule-time').value;
+  if (!schedTime) { alert('Pilih waktu jadwal'); return; }
+  data.scheduled_at = schedTime;
+
+  try {
+    const res = await fetch('/posts/schedule', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    showResult(result.success, result.success ? 'Post dijadwalkan!' : result.error);
+  } catch (err) {
+    showResult(false, err.message);
+  }
+}
+
+function showResult(success, message) {
+  const modal = document.getElementById('status-modal');
+  const icon = document.getElementById('status-icon');
+  const title = document.getElementById('status-title');
+  const text = document.getElementById('status-text');
+  
+  if (success) {
+    icon.textContent = '✅';
+    icon.style.color = '#2dd4a0';
+    title.textContent = 'Berhasil!';
+    title.style.color = '#2dd4a0';
+  } else {
+    icon.textContent = '⚠️';
+    icon.style.color = '#ff4d6a';
+    title.textContent = 'Error!';
+    title.style.color = '#ff4d6a';
+  }
+  
+  text.textContent = message;
+  modal.style.display = 'flex !important';
+}
+
+function closeStatusModal() {
+  document.getElementById('status-modal').style.display = 'none !important';
+}
+
+// Simple event listeners
+setTimeout(function() {
+  const generateBtn = document.getElementById('btn-generate');
+  const regenerateBtn = document.getElementById('btn-regenerate');
+  
+  if (generateBtn) {
+    generateBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.generateContent();
+    });
+  }
+  
+  if (regenerateBtn) {
+    regenerateBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.generateContent();
+    });
+  }
+}, 100);
+</script>
+
+<!-- Status Modal -->
+<div id="status-modal" style="display: none !important; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(4px);">
+  <div style="background: linear-gradient(135deg, #16162a 0%, #1a1a2e 100%); border: 1px solid rgba(124, 106, 255, 0.2); border-radius: 16px; padding: 48px 40px; text-align: center; max-width: 450px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 106, 255, 0.15);">
+    <div id="status-icon" style="font-size: 56px; margin-bottom: 20px; animation: pulse 2s infinite;">✅</div>
+    <h2 id="status-title" style="margin: 0 0 12px 0; color: #e8e8f0; font-size: 24px; font-weight: 700;">Berhasil!</h2>
+    <p id="status-text" style="margin: 0 0 32px 0; color: #9898b0; line-height: 1.6; white-space: pre-wrap; font-size: 14px;"></p>
+    <button onclick="closeStatusModal()" style="background: linear-gradient(135deg, #7c6aff 0%, #ff6b9d 100%); color: white; border: none; padding: 12px 32px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; transition: all 0.25s; box-shadow: 0 0 20px rgba(124, 106, 255, 0.3);" onmouseover="this.style.boxShadow='0 0 30px rgba(124, 106, 255, 0.5)'" onmouseout="this.style.boxShadow='0 0 20px rgba(124, 106, 255, 0.3)'">Tutup</button>
+  </div>
+</div>
+
+<style>
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+</style>
+
+

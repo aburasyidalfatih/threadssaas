@@ -186,17 +186,17 @@ class SchedulerService {
           const hours = config.schedule_hours.split(',').map(h => parseInt(h.trim(), 10));
           if (!hours.includes(currentHour)) continue;
 
-          // Check if already posted in this hour slot
-          const hourStart = new Date(now); hourStart.setMinutes(0,0,0);
-          const hourEnd = new Date(now); hourEnd.setMinutes(59,59,999);
-
+          // Check if already posted in this hour slot (WIB timezone)
           const postedThisHour = db.prepare(`
             SELECT COUNT(*) as c FROM posts 
             WHERE account_id = ? AND type = 'queue'
-            AND created_at >= ? AND created_at <= ?
-          `).get(config.account_id, hourStart.toISOString(), hourEnd.toISOString()).c;
+            AND strftime('%Y-%m-%d %H', posted_at, '+7 hours') = strftime('%Y-%m-%d %H', 'now', '+7 hours')
+          `).get(config.account_id).c;
 
-          if (postedThisHour > 0) continue;
+          if (postedThisHour > 0) {
+            console.log(`[QueueWorker] @${config.username} already posted this hour, skipping...`);
+            continue;
+          }
 
           // Process next queue item
           const queueItem = ContentQueueService.getNextQueued(config.account_id);

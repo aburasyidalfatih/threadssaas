@@ -145,5 +145,7 @@ insertSetting.run('default_comment_count', '3');
 insertSetting.run('post_delay_seconds', '30');
 insertSetting.run('auto_reply_style', 'friendly');
 insertSetting.run('gemini_model', 'gemini-2.0-flash');
+insertSetting.run('threads_app_id', '');
+insertSetting.run('threads_app_secret', '');
 
 module.exports = db;

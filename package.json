@@ -6,12 +6,18 @@
     "start": "node server.js",
     "dev": "node --watch server.js"
   },
-  "keywords": ["threads", "bot", "auto-posting", "affiliate"],
+  "keywords": [
+    "threads",
+    "bot",
+    "auto-posting",
+    "affiliate"
+  ],
   "author": "",
   "license": "ISC",
   "description": "ThreadsBot — Auto Posting & Shopee Affiliate Bot for Threads",
   "dependencies": {
     "better-sqlite3": "^12.6.2",
+    "connect-sqlite3": "^0.9.16",
     "dotenv": "^17.3.1",
     "ejs": "^5.0.1",
     "express": "^5.2.1",

@@ -27,9 +27,9 @@ class AutoReplyService {
    * Check a specific account for new replies on recent posts
    */
   static async checkAccountReplies(config) {
-    // Get recent posts from this account
+    // Get recent posts from this account (last 7 days only)
     const recentPosts = db.prepare(
-      "SELECT * FROM posts WHERE account_id = ? AND status = 'done' AND main_post_thread_id IS NOT NULL ORDER BY posted_at DESC LIMIT 10"
+      "SELECT * FROM posts WHERE account_id = ? AND status = 'done' AND main_post_thread_id IS NOT NULL AND posted_at > datetime('now', '-7 days') ORDER BY posted_at DESC LIMIT 10"
     ).all(config.account_id);
 
     let repliesProcessed = 0;
@@ -65,11 +65,21 @@ class AutoReplyService {
           await ThreadsAPI.sleep(10000);
         }
       } catch (error) {
+        // Skip posts that don't exist, have permission issues, or are too old
+        if (error.message.includes('does not exist') || 
+            error.message.includes('missing permissions') || 
+            error.message.includes('Unsupported get request')) {
+          // Silently skip these posts (don't log to reduce noise)
+          continue;
+        }
         console.error(`[AutoReply] Error processing post ${post.main_post_thread_id}:`, error.message);
       }
     }
 
-    // Update last checked timestamp
+    // Update last checked timestamp and log summary
+    const summary = repliesProcessed > 0 ? `${repliesProcessed} replies processed` : 'no new replies';
+    console.log(`[AutoReply] @${config.username}: ${summary}`);
+    
     db.prepare("UPDATE auto_reply_config SET last_checked_at = datetime('now') WHERE id = ?")
       .run(config.id);
   }

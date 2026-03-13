@@ -7,27 +7,33 @@
     <div class="form-grid">
       <div class="form-group">
         <label for="post-account">Akun Threads</label>
-        <select id="post-account" required>
+        <select id="post-account" required onchange="showAccountTheme()">
           <option value="">— Pilih Akun —</option>
           ${accounts.map(acc => '<option value="' + acc.id + '">@' + acc.username + '</option>').join('')}
         </select>
         ${accounts.length === 0 ? '<small class="form-hint">Belum ada akun aktif. <a href="/accounts">Tambah akun</a></small>' : ''}
       </div>
-      <div class="form-group">
-        <label for="post-topic">Topik / Tema</label>
-        <input type="text" id="post-topic" placeholder="Contoh: Tips produktivitas untuk remote worker" required>
+      <div class="form-group" id="account-theme" style="display:none">
+        <label>🎯 Tema Akun</label>
+        <div class="theme-display" id="theme-display">-</div>
+        <small class="form-hint">Tema diatur di halaman <a href="/accounts">Pengaturan Akun</a></small>
       </div>
       <div class="form-group">
-        <label for="post-theme-desc">📋 Deskripsi Tema (opsional)</label>
-        <input type="text" id="post-theme-desc" placeholder="Detail gaya bahasa, target audience, tone, dll">
-        <small class="form-hint">Tambahan instruksi untuk AI, misal: "Gunakan bahasa formal", "Target audience: mahasiswa", dll</small>
+        <label for="post-topic">📝 Topik / Ide Konten</label>
+        <input type="text" id="post-topic" placeholder="Contoh: Tips produktivitas, cara menghemat uang, dll" required>
       </div>
       <div class="form-group">
-        <label for="post-comment-count">Jumlah Komentar Lanjutan: <span id="comment-count-display">${defaultCommentCount}</span></label>
-        <input type="range" id="post-comment-count" min="2" max="7" value="${defaultCommentCount}" oninput="document.getElementById('comment-count-display').textContent=this.value">
+        <label for="post-comment-count">💬 Jumlah Komentar</label>
+        <select id="post-comment-count">
+          <option value="1">1 Komentar</option>
+          <option value="2">2 Komentar</option>
+          <option value="3" selected>3 Komentar</option>
+          <option value="4">4 Komentar</option>
+          <option value="5">5 Komentar</option>
+        </select>
       </div>
       <div class="btn-right-container" style="display: flex; justify-content: flex-end; width: 100%; margin-top: 16px;">
-        <button type="button" class="btn btn-primary btn-glow" id="btn-generate" onclick="generateContent()" style="margin-left: auto;">
+        <button type="button" class="btn btn-primary btn-glow" id="btn-generate" style="margin-left: auto;">
           <span class="btn-loader" id="generate-loader" style="display:none"></span>
           🤖 Generate dengan AI
         </button>
@@ -36,54 +42,74 @@
   </div>
 </div>
 
-<div class="card" id="preview-card" style="display:none">
+<div class="card" id="preview-card" style="display: none;">
   <div class="card-header">
     <h3>👁️ Preview Konten</h3>
-    <button class="btn btn-sm btn-outline" onclick="generateContent()">🔄 Regenerate</button>
+    <button class="btn btn-sm btn-outline" id="btn-regenerate">🔄 Regenerate</button>
   </div>
   <div class="card-body">
-    <div class="thread-preview" id="thread-preview">
-      <div class="thread-main" id="preview-main">
-        <div class="thread-avatar">📝</div>
-        <div class="thread-content">
-          <div class="thread-author">@username</div>
-          <div class="thread-text" id="preview-main-text"></div>
-          <textarea class="thread-edit" id="edit-main" style="display:none"></textarea>
-          <button class="btn btn-sm btn-ghost" onclick="toggleEdit('main')">✏️ Edit</button>
+    <div class="thread-preview">
+      <div class="thread-post" style="background: linear-gradient(135deg, rgba(124, 106, 255, 0.1) 0%, rgba(255, 107, 157, 0.05) 100%); border: 1px solid rgba(124, 106, 255, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+        <div style="display: flex; gap: 12px;">
+          <div style="font-size: 32px;">📱</div>
+          <div style="flex: 1;">
+            <div style="color: #7c6aff; font-weight: 600; font-size: 14px; margin-bottom: 8px;">@username</div>
+            <div class="thread-text" id="preview-main-text" style="color: #e8e8f0; line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px;"></div>
+            <textarea class="thread-edit" id="edit-main" style="display:none; background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-family: monospace; font-size: 13px;"></textarea>
+            <button class="btn btn-sm btn-ghost" onclick="toggleEdit('main')">✏️ Edit</button>
+          </div>
         </div>
       </div>
       <div id="preview-comments"></div>
     </div>
   </div>
-  <div class="card-footer">
-    <button type="button" class="btn btn-success btn-glow" id="btn-post-now" onclick="postNow()">
-      <span class="btn-loader" id="post-loader" style="display:none"></span>
-      🚀 Post Sekarang
-    </button>
-    <button type="button" class="btn btn-outline" id="btn-save-draft" onclick="saveDraft()">💾 Simpan Draft</button>
-    <div class="schedule-group">
-      <input type="datetime-local" id="schedule-time" class="schedule-input">
-      <button type="button" class="btn btn-info" id="btn-schedule" onclick="schedulePost()">⏰ Jadwalkan</button>
+</div>
+
+<div class="card" id="action-card" style="display: none;">
+  <div class="card-header">
+    <h3>🚀 Pilih Aksi</h3>
+  </div>
+  <div class="card-body">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+      <button type="button" class="btn btn-primary" style="background: linear-gradient(135deg, #2dd4a0 0%, #1dd1a1 100%); border: none; padding: 14px 20px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 20px rgba(45, 212, 160, 0.2);" onmouseover="this.style.boxShadow='0 0 30px rgba(45, 212, 160, 0.4)'" onmouseout="this.style.boxShadow='0 0 20px rgba(45, 212, 160, 0.2)'" onclick="postNow()">📤 Post Sekarang</button>
+      <button type="button" class="btn btn-info" style="background: linear-gradient(135deg, #7c6aff 0%, #6c5ce7 100%); border: none; padding: 14px 20px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 20px rgba(124, 106, 255, 0.2);" onmouseover="this.style.boxShadow='0 0 30px rgba(124, 106, 255, 0.4)'" onmouseout="this.style.boxShadow='0 0 20px rgba(124, 106, 255, 0.2)'" onclick="saveDraft()">💾 Simpan Draft</button>
+      <button type="button" class="btn btn-warning" style="background: linear-gradient(135deg, #ffa502 0%, #ff9500 100%); border: none; padding: 14px 20px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 20px rgba(255, 165, 2, 0.2);" onmouseover="this.style.boxShadow='0 0 30px rgba(255, 165, 2, 0.4)'" onmouseout="this.style.boxShadow='0 0 20px rgba(255, 165, 2, 0.2)'" onclick="schedulePost()">⏰ Jadwalkan</button>
     </div>
   </div>
 </div>
 
-<div id="post-result" class="alert" style="display:none"></div>
-<style>
-  .card-panduan { grid-column: 1 / -1; width: 100%; }
-  .card { margin-bottom: 20px !important; }
-  .card:last-child { margin-bottom: 0 !important; }
-  .two-column { margin-bottom: 20px !important; }
-  .two-column .card { margin-bottom: 0 !important; }
-</style>
-` }) %>
-
 <script>
+const accountsData = ${JSON.stringify(accounts.map(acc => ({
+  id: acc.id,
+  username: acc.username,
+  theme: acc.theme || '',
+  theme_description: acc.theme_description || ''
+})))};
+
 let generatedContent = null;
+
+function showAccountTheme() {
+  const accountId = document.getElementById('post-account').value;
+  const themeDiv = document.getElementById('account-theme');
+  const themeDisplay = document.getElementById('theme-display');
+  
+  if (!accountId) {
+    themeDiv.style.display = 'none';
+    return;
+  }
+  
+  const account = accountsData.find(acc => acc.id == accountId);
+  if (account && (account.theme || account.theme_description)) {
+    const themeText = account.theme + (account.theme_description ? ' - ' + account.theme_description : '');
+    themeDisplay.textContent = themeText;
+    themeDiv.style.display = 'block';
+  } else {
+    themeDiv.style.display = 'none';
+  }
+}
 
 async function generateContent() {
   const topic = document.getElementById('post-topic').value;
-  const themeDesc = document.getElementById('post-theme-desc').value;
   const commentCount = document.getElementById('post-comment-count').value;
 
   if (!topic) return alert('Masukkan topik terlebih dahulu');
@@ -97,15 +123,16 @@ async function generateContent() {
     const res = await fetch('/posts/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic, theme_description: themeDesc, comment_count: commentCount })
+      body: JSON.stringify({ topic, comment_count: commentCount })
     });
+    
     const data = await res.json();
-
     if (!data.success) throw new Error(data.error);
 
     generatedContent = data.content;
     renderPreview(data.content);
     document.getElementById('preview-card').style.display = 'block';
+    document.getElementById('action-card').style.display = 'block';
     document.getElementById('preview-card').scrollIntoView({ behavior: 'smooth' });
   } catch (err) {
     alert('Error: ' + err.message);
@@ -119,36 +146,43 @@ function renderPreview(content) {
   document.getElementById('preview-main-text').textContent = content.main_post;
   document.getElementById('edit-main').value = content.main_post;
 
-  const commentsHtml = content.comments.map((comment, i) => `
-    <div class="thread-reply">
-      <div class="thread-line"></div>
-      <div class="thread-avatar">💬</div>
-      <div class="thread-content">
-        <div class="thread-author">@username <span class="reply-badge">Reply ${i+1}</span></div>
-        <div class="thread-text" id="preview-comment-${i}">${comment}</div>
-        <textarea class="thread-edit" id="edit-comment-${i}" style="display:none">${comment}</textarea>
-        <button class="btn btn-sm btn-ghost" onclick="toggleEdit('comment-${i}')">✏️ Edit</button>
+  const commentsHtml = content.comments.map((comment, i) => \`
+    <div style="background: linear-gradient(135deg, rgba(124, 106, 255, 0.05) 0%, rgba(255, 107, 157, 0.02) 100%); border: 1px solid rgba(124, 106, 255, 0.15); border-radius: 12px; padding: 16px; margin-bottom: 12px; margin-left: 40px; position: relative;">
+      <div style="position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, rgba(124, 106, 255, 0.3) 0%, transparent 100%);"></div>
+      <div style="display: flex; gap: 12px;">
+        <div style="font-size: 24px;">💬</div>
+        <div style="flex: 1;">
+          <div style="color: #9898b0; font-weight: 500; font-size: 13px; margin-bottom: 8px;">@username <span style="background: rgba(124, 106, 255, 0.2); color: #7c6aff; padding: 2px 8px; border-radius: 4px; font-size: 11px;">Reply \${i+1}</span></div>
+          <div class="thread-text" id="preview-comment-\${i}" style="color: #e8e8f0; line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px;"></div>
+          <textarea class="thread-edit" id="edit-comment-\${i}" style="display:none; background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-family: monospace; font-size: 13px;"></textarea>
+          <button class="btn btn-sm btn-ghost" onclick="toggleEdit('comment-\${i}')">✏️ Edit</button>
+        </div>
       </div>
     </div>
-  `).join('');
-
+  \`).join('');
+  
   document.getElementById('preview-comments').innerHTML = commentsHtml;
+  
+  // Set comment text
+  content.comments.forEach((comment, i) => {
+    const el = document.getElementById('preview-comment-' + i);
+    if (el) el.textContent = comment;
+  });
 }
 
 function toggleEdit(id) {
-  const textEl = document.getElementById('preview-' + (id === 'main' ? 'main-text' : id));
+  const textEl = document.getElementById('preview-' + id);
   const editEl = document.getElementById('edit-' + id);
   
-  if (editEl.style.display === 'none') {
-    editEl.style.display = 'block';
+  if (textEl.style.display !== 'none') {
     textEl.style.display = 'none';
+    editEl.style.display = 'block';
     editEl.focus();
   } else {
     editEl.style.display = 'none';
     textEl.style.display = 'block';
     textEl.textContent = editEl.value;
     
-    // Update generatedContent
     if (id === 'main') {
       generatedContent.main_post = editEl.value;
     } else {
@@ -158,166 +192,65 @@ function toggleEdit(id) {
   }
 }
 
-function getPostData() {
-  if (!generatedContent) return null;
-  const accountId = document.getElementById('post-account').value;
-  if (!accountId) { alert('Pilih akun terlebih dahulu'); return null; }
-  
-  return {
-    account_id: accountId,
-    topic: document.getElementById('post-topic').value,
-    content_main: generatedContent.main_post,
-    content_comments: JSON.stringify(generatedContent.comments),
-    comment_count: generatedContent.comments.length
-  };
-}
-
 async function postNow() {
-  const data = getPostData();
-  if (!data) return;
-  if (!confirm('Post sekarang ke Threads?')) return;
-
-  const btn = document.getElementById('btn-post-now');
-  btn.disabled = true;
+  const accountId = document.getElementById('post-account').value;
+  if (!accountId) return alert('Pilih akun terlebih dahulu');
 
   try {
     const res = await fetch('/posts/post-now', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        account_id: accountId,
+        topic: document.getElementById('post-topic').value,
+        content_main: generatedContent.main_post,
+        content_comments: generatedContent.comments,
+        comment_count: generatedContent.comments.length
+      })
     });
-    const result = await res.json();
     
-    if (result.success) {
-      showResult(true, '✅ Post dimulai! Monitoring status...');
-      // Monitor status setiap 2 detik
-      monitorPostStatus(result.postId);
-    } else {
-      showResult(false, result.error);
-    }
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error);
+    
+    alert('Posting dimulai!');
+    location.reload();
   } catch (err) {
-    showResult(false, err.message);
-  } finally {
-    btn.disabled = false;
+    alert('Error: ' + err.message);
   }
 }
 
-async function monitorPostStatus(postId) {
-  let attempts = 0;
-  const maxAttempts = 60; // 2 menit
-  
-  const checkStatus = async () => {
-    try {
-      const res = await fetch(`/posts/status/${postId}`);
-      const result = await res.json();
-      
-      if (result.success) {
-        const status = result.status;
-        
-        if (status === 'done') {
-          showResult(true, `✅ ${result.statusLabel}\n\nPost berhasil diposting ke Threads!`);
-          return;
-        } else if (status === 'failed') {
-          showResult(false, `❌ ${result.statusLabel}\n\nError: ${result.error_log}`);
-          return;
-        } else {
-          // Masih posting, cek lagi
-          attempts++;
-          if (attempts < maxAttempts) {
-            setTimeout(checkStatus, 2000);
-          } else {
-            showResult(false, 'Timeout: Posting memakan waktu terlalu lama');
-          }
-        }
-      }
-    } catch (err) {
-      console.error('Error checking status:', err);
-    }
-  };
-  
-  checkStatus();
-}
-
 async function saveDraft() {
-  const data = getPostData();
-  if (!data) return;
+  const accountId = document.getElementById('post-account').value;
+  if (!accountId) return alert('Pilih akun terlebih dahulu');
 
   try {
     const res = await fetch('/posts/save-draft', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        account_id: accountId,
+        topic: document.getElementById('post-topic').value,
+        content_main: generatedContent.main_post,
+        content_comments: generatedContent.comments,
+        comment_count: generatedContent.comments.length
+      })
     });
-    const result = await res.json();
-    showResult(result.success, result.success ? 'Draft tersimpan!' : result.error);
+    
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error);
+    
+    alert('Draft tersimpan!');
   } catch (err) {
-    showResult(false, err.message);
+    alert('Error: ' + err.message);
   }
 }
 
-async function schedulePost() {
-  const data = getPostData();
-  if (!data) return;
-  
-  const schedTime = document.getElementById('schedule-time').value;
-  if (!schedTime) { alert('Pilih waktu jadwal'); return; }
-  data.scheduled_at = schedTime;
-
-  try {
-    const res = await fetch('/posts/schedule', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    const result = await res.json();
-    showResult(result.success, result.success ? 'Post dijadwalkan!' : result.error);
-  } catch (err) {
-    showResult(false, err.message);
-  }
+function schedulePost() {
+  alert('Fitur jadwal akan segera hadir');
 }
 
-function showResult(success, message) {
-  const modal = document.getElementById('status-modal');
-  const icon = document.getElementById('status-icon');
-  const title = document.getElementById('status-title');
-  const text = document.getElementById('status-text');
-  
-  if (success) {
-    icon.textContent = '✅';
-    icon.style.color = '#2dd4a0';
-    title.textContent = 'Berhasil!';
-    title.style.color = '#2dd4a0';
-  } else {
-    icon.textContent = '⚠️';
-    icon.style.color = '#ff4d6a';
-    title.textContent = 'Error!';
-    title.style.color = '#ff4d6a';
-  }
-  
-  text.textContent = message;
-  modal.style.display = 'flex !important';
-}
-
-function closeStatusModal() {
-  document.getElementById('status-modal').style.display = 'none !important';
-}
+// Event listeners
+document.getElementById('btn-generate').addEventListener('click', generateContent);
+document.getElementById('btn-regenerate').addEventListener('click', generateContent);
 </script>
-
-<!-- Status Modal -->
-<div id="status-modal" style="display: none !important; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(4px);">
-  <div style="background: linear-gradient(135deg, #16162a 0%, #1a1a2e 100%); border: 1px solid rgba(124, 106, 255, 0.2); border-radius: 16px; padding: 48px 40px; text-align: center; max-width: 450px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 106, 255, 0.15);">
-    <div id="status-icon" style="font-size: 56px; margin-bottom: 20px; animation: pulse 2s infinite;">✅</div>
-    <h2 id="status-title" style="margin: 0 0 12px 0; color: #e8e8f0; font-size: 24px; font-weight: 700;">Berhasil!</h2>
-    <p id="status-text" style="margin: 0 0 32px 0; color: #9898b0; line-height: 1.6; white-space: pre-wrap; font-size: 14px;"></p>
-    <button onclick="closeStatusModal()" style="background: linear-gradient(135deg, #7c6aff 0%, #ff6b9d 100%); color: white; border: none; padding: 12px 32px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; transition: all 0.25s; box-shadow: 0 0 20px rgba(124, 106, 255, 0.3);" onmouseover="this.style.boxShadow='0 0 30px rgba(124, 106, 255, 0.5)'" onmouseout="this.style.boxShadow='0 0 20px rgba(124, 106, 255, 0.3)'">Tutup</button>
-  </div>
-</div>
-
-<style>
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-</style>
-
-
+` }) %>

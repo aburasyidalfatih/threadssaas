@@ -1,0 +1,372 @@
+<%- include('layout', { body: `
+<div class="accounts-stats">
+  <div class="stat-mini-account">
+    <span class="stat-mini-icon">👥</span>
+    <div>
+      <div class="stat-mini-value">${stats.total}</div>
+      <div class="stat-mini-label">Total Akun</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-success">
+    <span class="stat-mini-icon">✅</span>
+    <div>
+      <div class="stat-mini-value">${stats.active}</div>
+      <div class="stat-mini-label">Active</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-muted">
+    <span class="stat-mini-icon">⏸️</span>
+    <div>
+      <div class="stat-mini-value">${stats.inactive}</div>
+      <div class="stat-mini-label">Inactive</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-warning">
+    <span class="stat-mini-icon">⚠️</span>
+    <div>
+      <div class="stat-mini-value">${stats.expiringSoon}</div>
+      <div class="stat-mini-label">Expiring Soon</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-danger">
+    <span class="stat-mini-icon">❌</span>
+    <div>
+      <div class="stat-mini-value">${stats.expired}</div>
+      <div class="stat-mini-label">Expired</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="add-account-card">
+  <div class="card-header">
+    <h3>➕ Tambah Akun Threads</h3>
+  </div>
+  <div class="card-body">
+    <div style="margin-bottom: 20px; display: flex; gap: 15px;">
+      <label style="flex: 1; padding: 15px; background: rgba(124, 106, 255, 0.1); border: 2px solid rgba(124, 106, 255, 0.3); border-radius: 8px; cursor: pointer; display: flex; align-items: flex-start; gap: 10px; transition: all 0.3s;">
+        <input type="radio" name="auth_method" value="oauth" checked onchange="toggleAuthMethod('oauth')" style="margin-top: 3px;"> 
+        <div>
+          <div style="font-weight: bold; color: #7c6aff; font-size: 14px;">🔐 OAuth (Recommended)</div>
+          <div style="color: #9898b0; font-size: 12px; margin-top: 4px;">Koneksi aman via Meta</div>
+        </div>
+      </label>
+      <label style="flex: 1; padding: 15px; background: rgba(45, 212, 160, 0.1); border: 2px solid rgba(45, 212, 160, 0.3); border-radius: 8px; cursor: pointer; display: flex; align-items: flex-start; gap: 10px; transition: all 0.3s;">
+        <input type="radio" name="auth_method" value="direct" onchange="toggleAuthMethod('direct')" style="margin-top: 3px;"> 
+        <div>
+          <div style="font-weight: bold; color: #2dd4a0; font-size: 14px;">🔑 Direct Token</div>
+          <div style="color: #9898b0; font-size: 12px; margin-top: 4px;">Gunakan User ID + Token</div>
+        </div>
+      </label>
+    </div>
+
+    <form id="oauth-form" action="/accounts/add" method="POST" class="form-grid" style="display: block;">
+      <div class="form-group">
+        <label for="username">Username Threads</label>
+        <input type="text" id="username" name="username" placeholder="@username" required>
+      </div>
+      <div class="form-group">
+        <label for="theme">🎯 Tema / Niche</label>
+        <input type="text" id="theme" name="theme" placeholder="Contoh: Parenting, Tips Bisnis, Motivasi">
+      </div>
+      <div class="form-group">
+        <label for="theme_description">📋 Deskripsi Tema (opsional)</label>
+        <textarea id="theme_description" name="theme_description" placeholder="Detail gaya bahasa, target audience, tone, dll" rows="3"></textarea>
+      </div>
+      <input type="hidden" name="auth_method" value="oauth">
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">➕ Tambah & Connect</button>
+      </div>
+      <small class="form-hint">App ID & Secret diambil dari menu Pengaturan. <a href="/settings">Atur di sini</a> jika belum.</small>
+    </form>
+
+    <form id="direct-form" action="/accounts/add-direct" method="POST" class="form-grid" style="display: none;">
+      <div class="form-group">
+        <label for="username_direct">Username Threads</label>
+        <input type="text" id="username_direct" name="username" placeholder="@username" required>
+      </div>
+      <div class="form-group">
+        <label for="threads_user_id">Threads User ID</label>
+        <input type="text" id="threads_user_id" name="threads_user_id" placeholder="Threads User ID" required>
+      </div>
+      <div class="form-group">
+        <label for="access_token">Access Token</label>
+        <input type="password" id="access_token" name="access_token" placeholder="Threads Access Token" required>
+      </div>
+      <div class="form-group">
+        <label for="theme_direct">🎯 Tema / Niche</label>
+        <input type="text" id="theme_direct" name="theme" placeholder="Contoh: Parenting, Tips Bisnis, Motivasi">
+      </div>
+      <div class="form-group">
+        <label for="theme_description_direct">📋 Deskripsi Tema (opsional)</label>
+        <textarea id="theme_description_direct" name="theme_description" placeholder="Detail gaya bahasa, target audience, tone, dll" rows="3"></textarea>
+      </div>
+      <input type="hidden" name="auth_method" value="direct">
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Tambah Akun (Direct Token)</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card" id="accounts-list-card">
+  <div class="card-header">
+    <h3>👥 Daftar Akun (${accounts.length})</h3>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <input type="text" id="searchAccount" placeholder="🔍 Cari username..." style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 13px; width: 200px;">
+      <select id="filterStatus" style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 13px;">
+        <option value="all">Semua Status</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+        <option value="expired">Token Expired</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-body">
+    ${accounts.length === 0 ? '<div class="empty-state-enhanced"><div class="empty-icon">👥</div><div class="empty-title">Belum Ada Akun</div><div class="empty-desc">Tambahkan akun Threads pertama Anda untuk mulai auto posting</div><button onclick="document.getElementById(\\'username\\').focus()" class="btn btn-primary" style="margin-top:16px">+ Tambah Akun Sekarang</button></div>' : ''}
+    <div class="table-wrapper">
+      ${accounts.length > 0 ? '<table class="data-table"><thead><tr><th><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)"></th><th>Username</th><th>Status</th><th>Token</th><th>Expires</th><th>Posts</th><th>Success Rate</th><th>Last Posted</th><th>Aksi</th></tr></thead><tbody id="accountsTableBody">' + accounts.map(acc => {
+        const expiresDate = acc.token_expires_at ? new Date(acc.token_expires_at) : null;
+        const now = new Date();
+        const daysLeft = expiresDate ? Math.ceil((expiresDate - now) / (1000 * 60 * 60 * 24)) : null;
+        const isExpired = expiresDate && expiresDate < now;
+        const isExpiringSoon = daysLeft !== null && daysLeft > 0 && daysLeft < 7;
+        const successRate = acc.total_posts > 0 ? Math.round((acc.success_posts / acc.total_posts) * 100) : 0;
+        const lastPosted = acc.last_posted ? new Date(acc.last_posted).toLocaleString('id-ID', {day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'}) : '-';
+        
+        return '<tr data-status="' + (acc.is_active && acc.access_token ? 'active' : (acc.is_active ? 'inactive' : 'inactive')) + '" data-expired="' + (isExpired ? 'true' : 'false') + '">' +
+          '<td><input type="checkbox" class="account-checkbox" value="' + acc.id + '"></td>' +
+          '<td><strong>@' + acc.username + '</strong>' + (acc.theme ? '<br><small style="color: var(--text-secondary)">' + acc.theme + '</small>' : '') + '</td>' +
+          '<td><span class="badge ' + (acc.is_active ? 'badge-success' : 'badge-muted') + '">' + (acc.is_active ? 'Active' : 'Inactive') + '</span></td>' +
+          '<td><span class="badge ' + (acc.access_token ? 'badge-success' : 'badge-warning') + '">' + (acc.access_token ? '✓ Connected' : '✗ Not Connected') + '</span></td>' +
+          '<td>' + (expiresDate ? (isExpired ? '<span class="badge badge-danger">Expired</span>' : (isExpiringSoon ? '<span class="badge badge-warning">' + daysLeft + ' hari lagi</span>' : expiresDate.toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'}))) : '-') + '</td>' +
+          '<td><strong>' + acc.total_posts + '</strong></td>' +
+          '<td><span class="badge ' + (successRate >= 80 ? 'badge-success' : (successRate >= 50 ? 'badge-warning' : 'badge-danger')) + '">' + successRate + '%</span></td>' +
+          '<td>' + lastPosted + '</td>' +
+          '<td class="action-buttons">' +
+            (acc.access_token ? '<button type="button" class="btn btn-sm btn-info" onclick="testConnection(' + acc.id + ')" title="Test Connection">🔌</button>' : '') +
+            (!acc.access_token ? '<a href="/accounts/connect/' + acc.id + '" class="btn btn-sm btn-primary">Connect</a>' : '<form action="/accounts/disconnect/' + acc.id + '" method="POST" style="display:inline" onsubmit="return confirm(\\'Disconnect akun ini?\\')"><button type="submit" class="btn btn-sm btn-outline">Disconnect</button></form>') +
+            '<button type="button" class="btn btn-sm btn-info" onclick="editAccount(' + acc.id + ', \\'' + (acc.theme || '').replace(/'/g, "\\\\'") + '\\', \\'' + (acc.theme_description || '').replace(/'/g, "\\\\'") + '\\', \\'' + (acc.app_id || '') + '\\', \\'' + (acc.threads_user_id || '').replace(/'/g, "\\\\'") + '\\', \\'' + (acc.access_token || '').replace(/'/g, "\\\\'") + '\\')">✏️</button>' +
+            '<form action="/accounts/toggle/' + acc.id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm ' + (acc.is_active ? 'btn-warning' : 'btn-success') + '">' + (acc.is_active ? '⏸️' : '▶️') + '</button></form>' +
+            '<form action="/accounts/delete/' + acc.id + '" method="POST" style="display:inline" onsubmit="return confirm(\\'Hapus akun @' + acc.username + '?\\')"><button type="submit" class="btn btn-sm btn-danger">🗑️</button></form>' +
+          '</td>' +
+        '</tr>';
+      }).join('') + '</tbody></table>' : ''}
+    </div>
+    ${accounts.length > 0 ? '<div class="bulk-actions" style="margin-top: 16px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px; display: none;" id="bulkActions"><span id="selectedCount">0</span> akun dipilih: <button type="button" class="btn btn-sm btn-success" onclick="bulkAction(\\'enable\\')">Enable</button> <button type="button" class="btn btn-sm btn-warning" onclick="bulkAction(\\'disable\\')">Disable</button> <button type="button" class="btn btn-sm btn-danger" onclick="bulkAction(\\'delete\\')">Delete</button></div>' : ''}
+  </div>
+</div>
+
+<div id="editModal" class="edit-modal-hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 2000; backdrop-filter: blur(4px); align-items: center; justify-content: center;">
+  <div style="background: linear-gradient(135deg, #16162a 0%, #1a1a2e 100%); border: 1px solid rgba(124, 106, 255, 0.2); border-radius: 16px; padding: 40px; width: 90%; max-width: 500px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 106, 255, 0.15);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+      <h3 style="color: #e8e8f0; margin: 0;" id="editModalTitle">✏️ Edit Akun</h3>
+      <button type="button" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #9898b0;" onclick="closeEditModal()">&times;</button>
+    </div>
+    <form id="editForm" method="POST">
+      <div class="form-group" id="edit_threads_user_id_group" style="display: none;">
+        <label style="color: #e8e8f0;">Threads User ID</label>
+        <input type="text" id="edit_threads_user_id" name="threads_user_id" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;" placeholder="Threads User ID">
+      </div>
+      <div class="form-group" id="edit_access_token_group" style="display: none;">
+        <label style="color: #e8e8f0;">Access Token</label>
+        <input type="password" id="edit_access_token" name="access_token" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;" placeholder="Access Token">
+      </div>
+      <div class="form-group">
+        <label style="color: #e8e8f0;">🎯 Tema / Niche</label>
+        <input type="text" id="edit_theme" name="theme" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;" placeholder="Contoh: Parenting, Tips Bisnis">
+      </div>
+      <div class="form-group">
+        <label style="color: #e8e8f0;">📋 Deskripsi Tema (opsional)</label>
+        <textarea id="edit_theme_description" name="theme_description" rows="3" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px; resize: vertical;" placeholder="Detail gaya bahasa, target audience, tone"></textarea>
+      </div>
+      <div style="display: flex; gap: 12px; margin-top: 32px;">
+        <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px;">💾 Simpan</button>
+        <button type="button" class="btn btn-outline" onclick="closeEditModal()" style="flex: 1; padding: 12px;">Batal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+.accounts-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-mini-account {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: var(--transition);
+}
+.stat-mini-account:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+}
+.stat-mini-account.stat-success { border-left: 3px solid var(--accent-success); }
+.stat-mini-account.stat-warning { border-left: 3px solid var(--accent-warning); }
+.stat-mini-account.stat-danger { border-left: 3px solid var(--accent-danger); }
+.stat-mini-account.stat-muted { border-left: 3px solid var(--text-muted); }
+.edit-modal-hidden { display: none !important; }
+.edit-modal-visible { display: flex !important; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th, .data-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color); }
+.data-table th { font-weight: 600; color: var(--text-secondary); font-size: 12px; text-transform: uppercase; }
+.data-table tbody tr:hover { background: var(--bg-tertiary); }
+.action-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+</style>
+
+<script>
+function toggleAuthMethod(method) {
+  document.getElementById('oauth-form').style.display = method === 'oauth' ? 'block' : 'none';
+  document.getElementById('direct-form').style.display = method === 'direct' ? 'block' : 'none';
+}
+
+function editAccount(id, theme, themeDescription, appId, threadsUserId, accessToken) {
+  document.getElementById('edit_theme').value = theme || '';
+  document.getElementById('edit_theme_description').value = themeDescription || '';
+  document.getElementById('editForm').action = '/accounts/update/' + id;
+  
+  const isDirectToken = appId === 'direct';
+  document.getElementById('edit_threads_user_id_group').style.display = isDirectToken ? 'block' : 'none';
+  document.getElementById('edit_access_token_group').style.display = isDirectToken ? 'block' : 'none';
+  document.getElementById('editModalTitle').textContent = isDirectToken ? '✏️ Edit Akun (Direct Token)' : '✏️ Edit Tema Akun';
+  
+  if (isDirectToken) {
+    document.getElementById('edit_threads_user_id').value = threadsUserId || '';
+    document.getElementById('edit_access_token').value = accessToken || '';
+  }
+  
+  document.getElementById('editModal').classList.remove('edit-modal-hidden');
+  document.getElementById('editModal').classList.add('edit-modal-visible');
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').classList.remove('edit-modal-visible');
+  document.getElementById('editModal').classList.add('edit-modal-hidden');
+}
+
+async function testConnection(accountId) {
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = '⏳';
+  
+  try {
+    const response = await fetch('/accounts/test/' + accountId, { method: 'POST' });
+    const result = await response.json();
+    
+    if (result.success) {
+      alert('✅ ' + result.message);
+    } else {
+      alert('❌ ' + result.message);
+    }
+  } catch (error) {
+    alert('❌ Error: ' + error.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🔌';
+  }
+}
+
+// Search and filter
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('searchAccount');
+  const filterSelect = document.getElementById('filterStatus');
+  const tableBody = document.getElementById('accountsTableBody');
+  
+  if (searchInput && filterSelect && tableBody) {
+    function filterTable() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const statusFilter = filterSelect.value;
+      const rows = tableBody.getElementsByTagName('tr');
+      
+      for (let row of rows) {
+        const username = row.querySelector('strong')?.textContent.toLowerCase() || '';
+        const status = row.getAttribute('data-status');
+        const isExpired = row.getAttribute('data-expired') === 'true';
+        
+        let showRow = username.includes(searchTerm);
+        
+        if (showRow && statusFilter !== 'all') {
+          if (statusFilter === 'expired') {
+            showRow = isExpired;
+          } else {
+            showRow = status === statusFilter;
+          }
+        }
+        
+        row.style.display = showRow ? '' : 'none';
+      }
+    }
+    
+    searchInput.addEventListener('input', filterTable);
+    filterSelect.addEventListener('change', filterTable);
+  }
+  
+  // Modal click outside
+  const modal = document.getElementById('editModal');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) closeEditModal();
+    });
+  }
+});
+
+// Bulk actions
+function toggleSelectAll(checkbox) {
+  const checkboxes = document.querySelectorAll('.account-checkbox');
+  checkboxes.forEach(cb => cb.checked = checkbox.checked);
+  updateBulkActions();
+}
+
+document.addEventListener('change', function(e) {
+  if (e.target.classList.contains('account-checkbox')) {
+    updateBulkActions();
+  }
+});
+
+function updateBulkActions() {
+  const checked = document.querySelectorAll('.account-checkbox:checked');
+  const bulkActions = document.getElementById('bulkActions');
+  const selectedCount = document.getElementById('selectedCount');
+  
+  if (bulkActions && selectedCount) {
+    selectedCount.textContent = checked.length;
+    bulkActions.style.display = checked.length > 0 ? 'block' : 'none';
+  }
+}
+
+function bulkAction(action) {
+  const checked = Array.from(document.querySelectorAll('.account-checkbox:checked')).map(cb => cb.value);
+  
+  if (checked.length === 0) return;
+  
+  const confirmMsg = action === 'delete' 
+    ? 'Hapus ' + checked.length + ' akun?' 
+    : (action === 'enable' ? 'Enable ' : 'Disable ') + checked.length + ' akun?';
+  
+  if (!confirm(confirmMsg)) return;
+  
+  // Create form and submit
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = '/accounts/bulk-' + action;
+  
+  checked.forEach(id => {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'ids[]';
+    input.value = id;
+    form.appendChild(input);
+  });
+  
+  document.body.appendChild(form);
+  form.submit();
+}
+</script>
+` }) %>

@@ -1,64 +1,129 @@
 <%- include('layout', { body: `
+<div class="accounts-stats">
+  <div class="stat-mini-account">
+    <span class="stat-mini-icon">👥</span>
+    <div>
+      <div class="stat-mini-value">${stats.total}</div>
+      <div class="stat-mini-label">Total Akun</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-success">
+    <span class="stat-mini-icon">✅</span>
+    <div>
+      <div class="stat-mini-value">${stats.active}</div>
+      <div class="stat-mini-label">Active</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-muted">
+    <span class="stat-mini-icon">⏸️</span>
+    <div>
+      <div class="stat-mini-value">${stats.inactive}</div>
+      <div class="stat-mini-label">Inactive</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-warning">
+    <span class="stat-mini-icon">⚠️</span>
+    <div>
+      <div class="stat-mini-value">${stats.expiringSoon}</div>
+      <div class="stat-mini-label">Expiring Soon</div>
+    </div>
+  </div>
+  <div class="stat-mini-account stat-danger">
+    <span class="stat-mini-icon">❌</span>
+    <div>
+      <div class="stat-mini-value">${stats.expired}</div>
+      <div class="stat-mini-label">Expired</div>
+    </div>
+  </div>
+</div>
+
 <div class="card" id="add-account-card">
   <div class="card-header">
     <h3>➕ Tambah Akun Threads</h3>
   </div>
   <div class="card-body">
-    <div style="margin-bottom: 20px; display: flex; gap: 15px;">
-      <label style="flex: 1; padding: 15px; background: rgba(124, 106, 255, 0.1); border: 2px solid rgba(124, 106, 255, 0.3); border-radius: 8px; cursor: pointer; display: flex; align-items: flex-start; gap: 10px; transition: all 0.3s;">
+    <div style="margin-bottom: 24px; display: flex; gap: 12px;">
+      <label style="flex: 1; padding: 16px; background: rgba(124, 106, 255, 0.1); border: 2px solid rgba(124, 106, 255, 0.3); border-radius: 8px; cursor: pointer; display: flex; align-items: flex-start; gap: 12px; transition: all 0.3s;">
         <input type="radio" name="auth_method" value="oauth" checked onchange="toggleAuthMethod('oauth')" style="margin-top: 3px;"> 
         <div>
-          <div style="font-weight: bold; color: #7c6aff; font-size: 14px;">🔐 OAuth (Recommended)</div>
-          <div style="color: #9898b0; font-size: 12px; margin-top: 4px;">Koneksi aman via Meta</div>
+          <div style="font-weight: 600; color: #7c6aff; font-size: 14px; margin-bottom: 4px;">🔐 OAuth (Recommended)</div>
+          <div style="color: rgba(152, 152, 176, 0.7); font-size: 12px;">Koneksi aman via Meta</div>
         </div>
       </label>
-      <label style="flex: 1; padding: 15px; background: rgba(45, 212, 160, 0.1); border: 2px solid rgba(45, 212, 160, 0.3); border-radius: 8px; cursor: pointer; display: flex; align-items: flex-start; gap: 10px; transition: all 0.3s;">
+      <label style="flex: 1; padding: 16px; background: rgba(45, 212, 160, 0.1); border: 2px solid rgba(45, 212, 160, 0.3); border-radius: 8px; cursor: pointer; display: flex; align-items: flex-start; gap: 12px; transition: all 0.3s;">
         <input type="radio" name="auth_method" value="direct" onchange="toggleAuthMethod('direct')" style="margin-top: 3px;"> 
         <div>
-          <div style="font-weight: bold; color: #2dd4a0; font-size: 14px;">🔑 Direct Token</div>
-          <div style="color: #9898b0; font-size: 12px; margin-top: 4px;">Gunakan User ID + Token</div>
+          <div style="font-weight: 600; color: #2dd4a0; font-size: 14px; margin-bottom: 4px;">🔑 Direct Token</div>
+          <div style="color: rgba(152, 152, 176, 0.7); font-size: 12px;">Gunakan User ID + Token</div>
         </div>
       </label>
     </div>
 
     <!-- OAuth Method -->
-    <form id="oauth-form" action="/accounts/add" method="POST" class="form-grid" style="display: block;">
-      <div class="form-group">
-        <label for="username">Username Threads</label>
-        <input type="text" id="username" name="username" placeholder="@username">
+    <form id="oauth-form" action="/accounts/add" method="POST" style="display: block;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; color: var(--text-primary);">Username Threads</label>
+          <input type="text" id="username" name="username" placeholder="@username" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 14px;">
+          <small style="display: block; margin-top: 6px; color: rgba(152, 152, 176, 0.6); font-size: 12px;">Masukkan username tanpa atau dengan @</small>
+        </div>
+        
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; color: var(--text-primary);">🎯 Tema / Niche</label>
+          <input type="text" id="theme" name="theme" placeholder="Contoh: Parenting, Tips Bisnis" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 14px;">
+          <small style="display: block; margin-top: 6px; color: rgba(152, 152, 176, 0.6); font-size: 12px;">Topik utama konten yang akan diposting</small>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="app_id">Threads App ID</label>
-        <input type="text" id="app_id" name="app_id" placeholder="Meta App ID">
+      
+      <div style="margin-bottom: 24px;">
+        <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; color: var(--text-primary);">📋 Deskripsi Tema (opsional)</label>
+        <textarea id="theme_description" name="theme_description" placeholder="Detail gaya bahasa, target audience, tone, dll" rows="3" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 14px; resize: vertical;"></textarea>
+        <small style="display: block; margin-top: 6px; color: rgba(152, 152, 176, 0.6); font-size: 12px;">Jelaskan gaya bahasa dan karakteristik konten</small>
       </div>
-      <div class="form-group">
-        <label for="app_secret">Threads App Secret</label>
-        <input type="password" id="app_secret" name="app_secret" placeholder="Meta App Secret">
-      </div>
+      
       <input type="hidden" name="auth_method" value="oauth">
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Tambah Akun (OAuth)</button>
-      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">➕ Tambah & Connect</button>
+      <small style="display: block; margin-top: 12px; color: rgba(152, 152, 176, 0.6); font-size: 12px; text-align: center;">App ID & Secret diambil dari menu Pengaturan. <a href="/settings" style="color: var(--accent-primary);">Atur di sini</a> jika belum.</small>
     </form>
 
     <!-- Direct Token Method -->
-    <form id="direct-form" action="/accounts/add-direct" method="POST" class="form-grid" style="display: none;">
-      <div class="form-group">
-        <label for="username_direct">Username Threads</label>
-        <input type="text" id="username_direct" name="username" placeholder="@username" required>
+    <form id="direct-form" action="/accounts/add-direct" method="POST" style="display: none;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; color: var(--text-primary);">Username Threads</label>
+          <input type="text" id="username_direct" name="username" placeholder="@username" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 14px;">
+          <small style="display: block; margin-top: 6px; color: rgba(152, 152, 176, 0.6); font-size: 12px;">Masukkan username tanpa atau dengan @</small>
+        </div>
+        
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; color: var(--text-primary);">Threads User ID</label>
+          <input type="text" id="threads_user_id" name="threads_user_id" placeholder="1234567890" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 14px;">
+          <small style="display: block; margin-top: 6px; color: rgba(152, 152, 176, 0.6); font-size: 12px;">ID numerik dari akun Threads Anda</small>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="threads_user_id">Threads User ID</label>
-        <input type="text" id="threads_user_id" name="threads_user_id" placeholder="Threads User ID" required>
+      
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; color: var(--text-primary);">Access Token</label>
+        <input type="password" id="access_token" name="access_token" placeholder="••••••••••••••••" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 14px;">
+        <small style="display: block; margin-top: 6px; color: rgba(152, 152, 176, 0.6); font-size: 12px;">Long-lived access token dari Meta Developer</small>
       </div>
-      <div class="form-group">
-        <label for="access_token">Access Token</label>
-        <input type="password" id="access_token" name="access_token" placeholder="Threads Access Token" required>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; color: var(--text-primary);">🎯 Tema / Niche</label>
+          <input type="text" id="theme_direct" name="theme" placeholder="Contoh: Parenting, Tips Bisnis" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 14px;">
+          <small style="display: block; margin-top: 6px; color: rgba(152, 152, 176, 0.6); font-size: 12px;">Topik utama konten yang akan diposting</small>
+        </div>
+        
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; color: var(--text-primary);">📋 Deskripsi Tema (opsional)</label>
+          <textarea id="theme_description_direct" name="theme_description" placeholder="Detail gaya bahasa, target audience, tone" rows="1" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 14px; resize: vertical; height: 46px;"></textarea>
+          <small style="display: block; margin-top: 6px; color: rgba(152, 152, 176, 0.6); font-size: 12px;">Jelaskan gaya bahasa dan karakteristik konten</small>
+        </div>
       </div>
+      
       <input type="hidden" name="auth_method" value="direct">
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Tambah Akun (Direct Token)</button>
-      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">➕ Tambah Akun (Direct Token)</button>
     </form>
   </div>
 </div>
@@ -78,20 +143,33 @@ function toggleAuthMethod(method) {
 <div class="card" id="accounts-list-card">
   <div class="card-header">
     <h3>👥 Daftar Akun (${accounts.length})</h3>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <input type="text" id="searchAccount" placeholder="🔍 Cari username..." style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 13px; width: 200px;">
+      <select id="filterStatus" style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 13px;">
+        <option value="all">Semua Status</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+        <option value="expired">Token Expired</option>
+      </select>
+    </div>
   </div>
   <div class="card-body">
-    ${accounts.length === 0 ? '<p class="empty-state">Belum ada akun. Tambahkan akun di atas.</p>' : ''}
+    ${accounts.length === 0 ? '<div class="empty-state-enhanced"><div class="empty-icon">👥</div><div class="empty-title">Belum Ada Akun</div><div class="empty-desc">Tambahkan akun Threads pertama Anda untuk mulai auto posting</div></div>' : ''}
     <div class="table-wrapper">
-      ${accounts.length > 0 ? '<table class="data-table"><thead><tr><th>Username</th><th>Status</th><th>Token</th><th>Expires</th><th>Aksi</th></tr></thead><tbody>' + accounts.map(acc => '<tr>' +
-        '<td><strong>@' + acc.username + '</strong></td>' +
+      ${accounts.length > 0 ? '<table class="data-table"><thead><tr><th>Username</th><th>Status</th><th>Token</th><th>Expires</th><th>Posts</th><th>Success</th><th>Last Posted</th><th>Aksi</th></tr></thead><tbody id="accountsTableBody">' + accounts.map(acc => '<tr data-status="' + (acc.is_active && acc.access_token ? 'active' : 'inactive') + '" data-expired="' + (acc.isExpired ? 'true' : 'false') + '">' +
+        '<td><strong>@' + acc.username + '</strong>' + (acc.theme ? '<br><small style="color: var(--text-secondary)">' + acc.theme + '</small>' : '') + '</td>' +
         '<td><span class="badge ' + (acc.is_active ? 'badge-success' : 'badge-muted') + '">' + (acc.is_active ? 'Active' : 'Inactive') + '</span></td>' +
-        '<td><span class="badge ' + (acc.access_token ? 'badge-success' : 'badge-warning') + '">' + (acc.access_token ? 'Connected' : 'Not Connected') + '</span></td>' +
-        '<td>' + (acc.token_expires_at || '-') + '</td>' +
+        '<td><span class="badge ' + (acc.access_token ? 'badge-success' : 'badge-warning') + '">' + (acc.access_token ? '✓ Connected' : '✗ Not Connected') + '</span></td>' +
+        '<td>' + (acc.isExpired ? '<span class="badge badge-danger">Expired</span>' : (acc.isExpiringSoon ? '<span class="badge badge-warning">' + acc.daysLeft + ' hari</span>' : acc.expiresFormatted)) + '</td>' +
+        '<td><strong>' + acc.total_posts + '</strong></td>' +
+        '<td><span class="badge ' + (acc.successRate >= 80 ? 'badge-success' : (acc.successRate >= 50 ? 'badge-warning' : 'badge-danger')) + '">' + acc.successRate + '%</span></td>' +
+        '<td>' + acc.lastPostedFormatted + '</td>' +
         '<td class="action-buttons">' +
-          (!acc.access_token ? '<a href="/accounts/connect/' + acc.id + '" class="btn btn-sm btn-primary">Connect</a>' : '<form action="/accounts/disconnect/' + acc.id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm btn-outline">Disconnect</button></form>') +
-          '<button type="button" class="btn btn-sm btn-info" onclick="editAccount(' + acc.id + ', \'' + (acc.app_id || '').replace(/'/g, "\\'") + '\', \'' + (acc.app_secret || '').replace(/'/g, "\\'") + '\')">Edit</button>' +
-          '<form action="/accounts/toggle/' + acc.id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm ' + (acc.is_active ? 'btn-warning' : 'btn-success') + '">' + (acc.is_active ? 'Disable' : 'Enable') + '</button></form>' +
-          '<form action="/accounts/delete/' + acc.id + '" method="POST" style="display:inline" onsubmit="return confirm(\'Hapus akun ini?\')"><button type="submit" class="btn btn-sm btn-danger">Hapus</button></form>' +
+          (acc.access_token ? '<button type="button" class="btn btn-sm btn-info" onclick="testConnection(' + acc.id + ')" title="Test Connection">🔌</button>' : '') +
+          (!acc.access_token ? '<a href="/accounts/connect/' + acc.id + '" class="btn btn-sm btn-primary">Connect</a>' : '<form action="/accounts/disconnect/' + acc.id + '" method="POST" style="display:inline" onsubmit="return confirm(&#39;Disconnect akun ini?&#39;)"><button type="submit" class="btn btn-sm btn-outline">Disconnect</button></form>') +
+          '<button type="button" class="btn btn-sm btn-info" onclick="editAccount(' + acc.id + ', &#39;' + (acc.theme || '').replace(/'/g, "&#39;") + '&#39;, &#39;' + (acc.theme_description || '').replace(/'/g, "&#39;") + '&#39;, &#39;' + (acc.app_id || '') + '&#39;, &#39;' + (acc.threads_user_id || '').replace(/'/g, "&#39;") + '&#39;, &#39;' + (acc.access_token || '').replace(/'/g, "&#39;") + '&#39;)">✏️</button>' +
+          '<form action="/accounts/toggle/' + acc.id + '" method="POST" style="display:inline"><button type="submit" class="btn btn-sm ' + (acc.is_active ? 'btn-warning' : 'btn-success') + '">' + (acc.is_active ? '⏸️' : '▶️') + '</button></form>' +
+          '<form action="/accounts/delete/' + acc.id + '" method="POST" style="display:inline" onsubmit="return confirm(&#39;Hapus akun @' + acc.username + '?&#39;)"><button type="submit" class="btn btn-sm btn-danger">🗑️</button></form>' +
         '</td>' +
       '</tr>').join('') + '</tbody></table>' : ''}
     </div>
@@ -103,17 +181,27 @@ function toggleAuthMethod(method) {
 <div id="editModal" class="edit-modal-hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 2000; backdrop-filter: blur(4px); align-items: center; justify-content: center;">
   <div style="background: linear-gradient(135deg, #16162a 0%, #1a1a2e 100%); border: 1px solid rgba(124, 106, 255, 0.2); border-radius: 16px; padding: 40px; width: 90%; max-width: 500px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 106, 255, 0.15);">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-      <h3 style="color: #e8e8f0; margin: 0;">✏️ Edit Akun Threads</h3>
+      <h3 style="color: #e8e8f0; margin: 0;" id="editModalTitle">✏️ Edit Akun</h3>
       <button type="button" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #9898b0;" onclick="closeEditModal()">&times;</button>
     </div>
     <form id="editForm" method="POST">
+      <!-- Direct Token Fields (hidden by default) -->
+      <div class="form-group" id="edit_threads_user_id_group" style="display: none;">
+        <label style="color: #e8e8f0;">Threads User ID</label>
+        <input type="text" id="edit_threads_user_id" name="threads_user_id" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;" placeholder="Threads User ID">
+      </div>
+      <div class="form-group" id="edit_access_token_group" style="display: none;">
+        <label style="color: #e8e8f0;">Access Token</label>
+        <input type="password" id="edit_access_token" name="access_token" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;" placeholder="Access Token">
+      </div>
+      <!-- Theme Fields (always visible) -->
       <div class="form-group">
-        <label style="color: #e8e8f0;">Threads App ID</label>
-        <input type="text" id="edit_app_id" name="app_id" required style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;">
+        <label style="color: #e8e8f0;">🎯 Tema / Niche</label>
+        <input type="text" id="edit_theme" name="theme" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;" placeholder="Contoh: Parenting, Tips Bisnis">
       </div>
       <div class="form-group">
-        <label style="color: #e8e8f0;">Threads App Secret</label>
-        <input type="password" id="edit_app_secret" name="app_secret" required style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px;">
+        <label style="color: #e8e8f0;">📋 Deskripsi Tema (opsional)</label>
+        <textarea id="edit_theme_description" name="theme_description" rows="3" style="background: #1a1a2e; color: #e8e8f0; border: 1px solid rgba(124, 106, 255, 0.3); padding: 12px; border-radius: 8px; width: 100%; font-size: 14px; resize: vertical;" placeholder="Detail gaya bahasa, target audience, tone"></textarea>
       </div>
       <div style="display: flex; gap: 12px; margin-top: 32px;">
         <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px;">💾 Simpan</button>
@@ -164,14 +252,60 @@ function toggleAuthMethod(method) {
   cursor: pointer;
   color: #666;
 }
+.accounts-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-mini-account {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: var(--transition);
+}
+.stat-mini-account:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+}
+.stat-mini-account.stat-success { border-left: 3px solid var(--accent-success); }
+.stat-mini-account.stat-warning { border-left: 3px solid var(--accent-warning); }
+.stat-mini-account.stat-danger { border-left: 3px solid var(--accent-danger); }
+.stat-mini-account.stat-muted { border-left: 3px solid var(--text-muted); }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th, .data-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 13px; }
+.data-table th { font-weight: 600; color: var(--text-secondary); font-size: 11px; text-transform: uppercase; }
+.data-table tbody tr:hover { background: var(--bg-tertiary); }
+.action-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
 </style>
 
 <script>
-function editAccount(id, appId, appSecret) {
-  console.log('Edit Account:', {id, appId, appSecret});
-  document.getElementById('edit_app_id').value = appId || '';
-  document.getElementById('edit_app_secret').value = appSecret || '';
+function editAccount(id, theme, themeDescription, appId, threadsUserId, accessToken) {
+  document.getElementById('edit_theme').value = theme || '';
+  document.getElementById('edit_theme_description').value = themeDescription || '';
   document.getElementById('editForm').action = '/accounts/update/' + id;
+  
+  const isDirectToken = appId === 'direct';
+  const userIdGroup = document.getElementById('edit_threads_user_id_group');
+  const tokenGroup = document.getElementById('edit_access_token_group');
+  const modalTitle = document.getElementById('editModalTitle');
+  
+  if (isDirectToken) {
+    userIdGroup.style.display = 'block';
+    tokenGroup.style.display = 'block';
+    document.getElementById('edit_threads_user_id').value = threadsUserId || '';
+    document.getElementById('edit_access_token').value = accessToken || '';
+    modalTitle.textContent = '✏️ Edit Akun (Direct Token)';
+  } else {
+    userIdGroup.style.display = 'none';
+    tokenGroup.style.display = 'none';
+    modalTitle.textContent = '✏️ Edit Tema Akun';
+  }
+  
   const modal = document.getElementById('editModal');
   modal.classList.remove('edit-modal-hidden');
   modal.classList.add('edit-modal-visible');
@@ -183,20 +317,68 @@ function closeEditModal() {
   modal.classList.add('edit-modal-hidden');
 }
 
+async function testConnection(accountId) {
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = '⏳';
+  
+  try {
+    const response = await fetch('/accounts/test/' + accountId, { method: 'POST' });
+    const result = await response.json();
+    
+    if (result.success) {
+      alert('✅ ' + result.message);
+    } else {
+      alert('❌ ' + result.message);
+    }
+  } catch (error) {
+    alert('❌ Error: ' + error.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🔌';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('editModal');
   if (modal) {
     modal.addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeEditModal();
-      }
+      if (e.target === this) closeEditModal();
     });
   }
-});
-
-document.getElementById('editForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  this.submit();
+  
+  const searchInput = document.getElementById('searchAccount');
+  const filterSelect = document.getElementById('filterStatus');
+  const tableBody = document.getElementById('accountsTableBody');
+  
+  if (searchInput && filterSelect && tableBody) {
+    function filterTable() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const statusFilter = filterSelect.value;
+      const rows = tableBody.getElementsByTagName('tr');
+      
+      for (let row of rows) {
+        const username = row.querySelector('strong')?.textContent.toLowerCase() || '';
+        const status = row.getAttribute('data-status');
+        const isExpired = row.getAttribute('data-expired') === 'true';
+        
+        let showRow = username.includes(searchTerm);
+        
+        if (showRow && statusFilter !== 'all') {
+          if (statusFilter === 'expired') {
+            showRow = isExpired;
+          } else {
+            showRow = status === statusFilter;
+          }
+        }
+        
+        row.style.display = showRow ? '' : 'none';
+      }
+    }
+    
+    searchInput.addEventListener('input', filterTable);
+    filterSelect.addEventListener('change', filterTable);
+  }
 });
 </script>
 <style>

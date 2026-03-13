@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 
 // Save settings
 router.post('/save', (req, res) => {
-  const { gemini_api_key, default_comment_count, post_delay_seconds, auto_reply_style, gemini_model, prompt_organic, prompt_affiliate, prompt_reply } = req.body;
+  const { gemini_api_key, default_comment_count, post_delay_seconds, auto_reply_style, gemini_model, prompt_organic, prompt_affiliate, prompt_reply, threads_app_id, threads_app_secret } = req.body;
 
   const updateSetting = db.prepare("UPDATE settings SET value = ?, updated_at = datetime('now') WHERE key = ?");
   const insertSetting = db.prepare("INSERT OR IGNORE INTO settings (key, value) VALUES (?, '')");
@@ -35,6 +35,8 @@ router.post('/save', (req, res) => {
   if (post_delay_seconds) updateSetting.run(post_delay_seconds, 'post_delay_seconds');
   if (auto_reply_style) updateSetting.run(auto_reply_style, 'auto_reply_style');
   if (gemini_model) updateSetting.run(gemini_model, 'gemini_model');
+  if (threads_app_id !== undefined) updateSetting.run(threads_app_id, 'threads_app_id');
+  if (threads_app_secret !== undefined) updateSetting.run(threads_app_secret, 'threads_app_secret');
   
   // Save custom prompts
   if (prompt_organic !== undefined) {

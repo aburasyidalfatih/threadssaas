@@ -124,7 +124,7 @@ PENTING: Output HANYA JSON, tanpa markdown atau teks tambahan.`;
   /**
    * Generate affiliate promotion content
    */
-  static async generateAffiliateContent(productName, description, affiliateLink, commentCount = 3) {
+  static async generateAffiliateContent(productName, description, affiliateLink, commentCount = 3, angle = null) {
     // Get custom prompt from settings
     const customPrompt = db.prepare("SELECT value FROM settings WHERE key = 'prompt_affiliate'").get();
     
@@ -136,14 +136,20 @@ PENTING: Output HANYA JSON, tanpa markdown atau teks tambahan.`;
         .replace(/{description}/g, description)
         .replace(/{affiliate_link}/g, affiliateLink)
         .replace(/{comment_count}/g, commentCount);
+      
+      if (angle) {
+        prompt += `\n\nGUNAKAN ANGLE INI: ${angle}`;
+      }
     } else {
-      // Use default prompt (optimized for 2026 viral affiliate structure)
+      // Use default prompt with angle support
+      const angleInstruction = angle ? `\n\nWAJIB GUNAKAN ANGLE INI: ${angle}\nSesuaikan hook, storytelling, dan CTA dengan angle tersebut.` : '';
+      
       prompt = `Kamu adalah content creator Threads yang ahli soft-selling dengan engagement tinggi di 2026.
 
 Buatkan thread promosi untuk produk affiliate:
 - Nama Produk: ${productName}
 - Deskripsi: ${description}
-- Link Affiliate: ${affiliateLink}
+- Link Affiliate: ${affiliateLink}${angleInstruction}
 
 STRUKTUR THREAD AFFILIATE (AIDA):
 
@@ -269,14 +275,15 @@ Output: HANYA teks reply, tanpa tanda kutip atau format tambahan.`;
     let cleaned = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
     console.log('[Gemini] Cleaned response:', cleaned.substring(0, 300));
 
+    let parsed;
     try {
-      return JSON.parse(cleaned);
+      parsed = JSON.parse(cleaned);
     } catch (e) {
       // Try to extract JSON from text
       const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         try {
-          return JSON.parse(jsonMatch[0]);
+          parsed = JSON.parse(jsonMatch[0]);
         } catch (e2) {
           // If parsing still fails, return partial response with default comments
           console.warn('[Gemini] Partial response detected, using fallback comments');
@@ -289,14 +296,33 @@ Output: HANYA teks reply, tanpa tanda kutip atau format tambahan.`;
                 'Kesimpulannya, hal ini memiliki dampak signifikan dalam kehidupan sehari-hari.'
               ];
             }
-            return partial;
+            parsed = partial;
           } catch (e3) {
             throw new Error(`Failed to parse Gemini response as JSON: ${text.substring(0, 200)}`);
           }
         }
+      } else {
+        throw new Error(`No valid JSON found in Gemini response: ${text.substring(0, 200)}`);
       }
-      throw new Error(`No valid JSON found in Gemini response: ${text.substring(0, 200)}`);
     }
+
+    // Validate and truncate content to 500 characters max
+    if (parsed.main_post && parsed.main_post.length > 500) {
+      console.warn(`[Gemini] Main post too long (${parsed.main_post.length} chars), truncating to 497...`);
+      parsed.main_post = parsed.main_post.substring(0, 497) + '...';
+    }
+
+    if (parsed.comments && Array.isArray(parsed.comments)) {
+      parsed.comments = parsed.comments.map((comment, idx) => {
+        if (comment.length > 500) {
+          console.warn(`[Gemini] Comment ${idx + 1} too long (${comment.length} chars), truncating to 497...`);
+          return comment.substring(0, 497) + '...';
+        }
+        return comment;
+      });
+    }
+
+    return parsed;
   }
 }
 
